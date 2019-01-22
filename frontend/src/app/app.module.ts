@@ -18,10 +18,12 @@ import { FormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContractComponent } from './contract/contract.component';
+import { EditContractComponent } from './edit-contract/edit-contract.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ContractComponent
+    ContractComponent,
+    EditContractComponent
   ],
   imports: [
     BrowserModule,

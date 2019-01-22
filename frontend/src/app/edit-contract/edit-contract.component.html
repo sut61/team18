@@ -1,0 +1,124 @@
+<div class="main_background">
+  <div class="header_content">
+    <h1 class="title">G18 MaidMaid</h1>
+    <ul class="list_menu">
+      <li><a routerLink="/contract" routerLinkActive="active">Make Contract</a></li>
+      <li class="active"><a routerLink="/editcontract" routerLinkActive="active">Edit Contract</a></li>
+      <li><a routerLink="/" routerLinkActive="active">Log Out</a></li>
+    </ul>
+  </div>
+
+  <div class="main_content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="background_line">
+
+    </div>
+    <div class="insert">
+      <br>
+      <br>
+      <h2 class="label">บริษัท</h2>
+      <mat-form-field class="select_item">
+        <input matInput placeholder="บริษัท" [(ngModel)]="contract.companySelect" disabled>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">ชื่อแม่บ้าน</h2>
+      <mat-form-field class="select_item">
+        <input matInput placeholder="ชื่อแม่บ้าน" [(ngModel)]="contract.maidSelect" disabled>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">ชื่อลูกค้า</h2>
+      <mat-form-field class="select_item">
+        <input matInput placeholder="ชื่อลูกค้า" [(ngModel)]="contract.customerSelect" disabled>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">ประเภทสัญญา</h2>
+      <mat-form-field class="select_item">
+        <mat-select placeholder="Contract Type" [(ngModel)]="contract.contractTypeSelect" name="contractType">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let type of contractTypes" [value]="type.contractType">
+            {{type.contractType}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">วันที่เริ่มสัญญา</h2>
+      <mat-form-field class="calender">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="contract.dateStartInput">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+    <div class="background_line">
+    </div>
+    <div class="table_content">
+      <mat-drawer-container class="table">
+        <br>
+        <br>
+        <h1 class="label2">Select Maid</h1>
+        <br>
+        <table mat-table [dataSource]="allContracts">
+
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef class="tableColumn"> No. </th>
+            <td mat-cell *matCellDef="let element ; let i = index" class="tableColumn">{{i+1}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="maidName">
+            <th mat-header-cell *matHeaderCellDef class="tableColumn"> Maid Name </th>
+            <td mat-cell *matCellDef="let element" class="tableColumn">{{element.maid.maid.maidName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="company">
+            <th mat-header-cell *matHeaderCellDef class="tableColumn"> Company </th>
+            <td mat-cell *matCellDef="let element" class="tableColumn">{{element.maid.maid.companyForMaid.companyName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef class="tableColumn"> Customer Name </th>
+            <td mat-cell *matCellDef="let element" class="tableColumn">{{element.customer.customerName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="contractType">
+            <th mat-header-cell *matHeaderCellDef class="tableColumn"> Contract Type </th>
+            <td mat-cell *matCellDef="let element" class="tableColumn">{{element.contractType.contractType}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)">
+          </tr>
+        </table>
+        <br>
+        <br>
+        <div class="button">
+        <button mat-button class="add_button" (click)="update()"><b class="text_in_button">Update</b></button>
+        <button mat-button class="add_button" (click)="delete()"><b class="text_in_button">Delete</b></button>
+      </div>
+      </mat-drawer-container>
+    </div>
+  </div>
+</div>
