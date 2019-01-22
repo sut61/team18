@@ -1,4 +1,4 @@
-package com.kota.developer.demo.Entity;
+package sut.se.g18.Entity;
 import lombok.NonNull;
 
 public class Register {

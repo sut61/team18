@@ -1,4 +1,4 @@
-package com.okta.developer.demo.Entity;
+package sut.se.g18.Entity;
 
 
 import java.util.Date;
