@@ -20,12 +20,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContractComponent } from './contract/contract.component';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { LoginAddminComponent } from './login-addmin/login-addmin.component';
+import { MainAdminComponent } from './main-admin/main-admin.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ContractComponent,
     EditContractComponent,
-    LoginAddminComponent
+    LoginAddminComponent,
+    MainAdminComponent
   ],
   imports: [
     BrowserModule,

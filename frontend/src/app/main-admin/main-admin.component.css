@@ -1,0 +1,53 @@
+@charset "utf-8";
+body{
+    font-family: 'Raleway', sans-serif;
+}
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.header_content{
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background-color: rgb(0, 191, 255);
+    color:white;
+}
+.title{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 70px;
+}
+.main{
+  height: 622px;
+}
+.group-A{
+    position: absolute;
+    width: 90%;
+    left: 5%;
+}
+.group-A a{
+    width: 30%;
+    height: 150px;
+    margin-right: 3.3%;
+    background-color: rgba(0, 191, 255, 0.6);
+}
+.group-A a b{
+    font-size: 200%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    color:white;
+}
+.group-A a:hover{
+    background-color: rgb(0, 191, 255);
+    color:white;
+}
+.main_background{ 
+    background-image: url("maid2.jpg");
+    background-color: #cccccc; 
+    height: 100%; 
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}

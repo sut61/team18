@@ -135,6 +135,7 @@ export class ContractComponent implements OnInit {
       );
   }
   reset_func() {
+    location.reload();
     this.adminService.getAllMaid().subscribe(data => {
       this.maids = data;
       console.log(this.maids);
@@ -148,5 +149,6 @@ export class ContractComponent implements OnInit {
     this.contract.contractTypeSelect = null;
     this.contract.promotionSelect = null;
     this.contract.dateStartInput = null;
+    
   }
 }

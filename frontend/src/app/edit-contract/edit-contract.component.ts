@@ -95,6 +95,7 @@ export class EditContractComponent implements OnInit {
       );
   }
   reset_func() {
+    location.reload();
     this.adminService.getContract().subscribe(data => {
       this.allContracts = data;
       console.log(this.allContracts);
