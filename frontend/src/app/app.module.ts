@@ -19,11 +19,13 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContractComponent } from './contract/contract.component';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
+import { LoginAddminComponent } from './login-addmin/login-addmin.component';
 @NgModule({
   declarations: [
     AppComponent,
     ContractComponent,
-    EditContractComponent
+    EditContractComponent,
+    LoginAddminComponent
   ],
   imports: [
     BrowserModule,
