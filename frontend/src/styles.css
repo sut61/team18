@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+body {
+ margin: 0;
+ font-family: Kanit, sans-serif;
+}
