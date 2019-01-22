@@ -20,8 +20,83 @@ public class DemoApplication {
 						   MaidSelectRepository maidSelectRepository, PromotionRepository promotionRepository,
 						   CustomerRepository customerRepository, AdminAccountRepository adminAccountRepository,
 						   ContractTypeRepository contractTypeRepository, PaymentStatusRepository paymentStatusRepository,
-						   MaidStatusRepository maidStatusRepository){
+						   MaidStatusRepository maidStatusRepository,MaidRegisterRepository maidRegisterRepository, TitleNameRepository titleNameRepository,
+						   TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy){
 		return args -> {
+
+			Stream.of("นาง","นางสาว","นาย").forEach(title ->{
+
+				if(title.equals("นาง")){
+					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
+					titleNameEntityEntity.setTitlenameType("นาง");
+					titleNameRepository.save(titleNameEntityEntity);
+				}
+
+				if(title.equals("นางสาว")){
+					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
+					titleNameEntityEntity.setTitlenameType("นางสาว");
+					titleNameRepository.save(titleNameEntityEntity);
+				}
+
+				if(title.equals("นาย")){
+					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
+					titleNameEntityEntity.setTitlenameType("นาย");
+					titleNameRepository.save(titleNameEntityEntity);
+				}
+
+			});
+
+			Stream.of("แม่บ้าน","แม่บ้านดูแลเด็ก","แม่บ้านดูแลเผู้สูงอายุ","คนดูแดสวน","คนขับรถ").forEach(typeworking ->{
+				if(typeworking.equals("แม่บ้าน")){
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("แม่บ้าน");
+					typeworkingRepository.save(typeworkingEntityEntity);
+				}
+				if(typeworking.equals("แม่บ้านดูแลเด็ก")){
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลเด็ก");
+					typeworkingRepository.save(typeworkingEntityEntity);
+				}
+				if(typeworking.equals("แม่บ้านดูแลเผู้สูงอายุ")){
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลผู้สูงอายุ");
+					typeworkingRepository.save(typeworkingEntityEntity);
+				}
+				if(typeworking.equals("คนดูแดสวน")){
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("คนดูแดสวน");
+					typeworkingRepository.save(typeworkingEntityEntity);
+				}
+				if(typeworking.equals("คนขับรถ")){
+					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+					typeworkingEntityEntity.setTypeworking("คนขับรถ");
+					typeworkingRepository.save(typeworkingEntityEntity);
+				}
+			});
+
+			Stream.of("ทำงานแบบรายวัน","ทำงานแบบรายสัปดาห์","ทำงานแบบรายเดือน","ทำงานแบบรายปี").forEach(workingDate ->{
+				if(workingDate.equals("ทำงานแบบรายวัน")){
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายวัน");
+					workingDateRepositoy.save(workingDateEntityEntity);
+				}
+				if(workingDate.equals("ทำงานแบบรายสัปดาห์")){
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายสัปดาห์");
+					workingDateRepositoy.save(workingDateEntityEntity);
+				}
+				if(workingDate.equals("ทำงานแบบรายเดือน")){
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายเดือน");
+					workingDateRepositoy.save(workingDateEntityEntity);
+				}
+				if(workingDate.equals("ทำงานแบบรายปี")){
+					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายปี");
+					workingDateRepositoy.save(workingDateEntityEntity);
+				}
+			});
+
 
 			AdminAccountEntity admin = new AdminAccountEntity();
 			admin.setAdminUsername("1234");
