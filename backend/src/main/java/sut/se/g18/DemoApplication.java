@@ -1,4 +1,4 @@
-package com.example.demo;
+package sut.se.g18;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

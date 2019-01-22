@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package sut.se.g18.Entity;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;

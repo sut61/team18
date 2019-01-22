@@ -1,4 +1,4 @@
-package com.maid.payment.demo.Entity;
+package sut.se.g18.Entity;
 
 import lombok.*;
 import javax.persistence.*;

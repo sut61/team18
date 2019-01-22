@@ -1,4 +1,4 @@
-package com.example.demo;
+package sut.se.g18;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
