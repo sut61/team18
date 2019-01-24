@@ -112,7 +112,7 @@ public class ContractController {
     @GetMapping(path = "/promotion/getdata/{companySelect}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<PromotionEntity> getPromotion(@PathVariable String companySelect) {
         CompanyEntity company = companyRepository.findBycompanyName(companySelect);
-        Collection<PromotionEntity> P = promotionRepository.findBycompany(company);
+        Collection<PromotionEntity> P = promotionRepository.findBycompanyEntity(company);
         return P.stream().collect(Collectors.toList());
     }
 
