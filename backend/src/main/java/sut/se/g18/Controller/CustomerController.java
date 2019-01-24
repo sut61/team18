@@ -75,6 +75,12 @@ public class CustomerController {
 
         return customerRepository.save(customerEntity);
     }
+    
+    @GetMapping(path ="/customer/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CustomerEntity getCustomerAccount(@PathVariable String email){
+        CustomerEntity cus = customerRepository.findBycustomerEmail(email);
+        return cus;
+    }
 
 
 

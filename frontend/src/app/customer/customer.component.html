@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <style type="text/css"></style>
+  <title>Page Title</title>
+</head>
+
+<body>
+  <div class="header_content">
+    <h1 class="title">G18 Maid Reservatoin</h1>
+  </div>
+  <div>
+    <div>
+      <div class="panelmaster">
+        <div class="panel1">
+          <h1>Customer</h1>
+          <br><br>
+          <form id="formtext">
+            <label>คำนำหน้าชื่อ :</label>
+            <br><br><br>
+            <label>ชื่อ-นามสกุล :</label>
+            <br><br>
+            <label>เพศ :</label>
+            <br><br><br>
+            <label>Presonal ID :</label>
+            <br><br>
+            <label>E-mail :</label>
+            <br><br><br>
+            <label>Password :</label>
+
+          </form>
+        </div>
+        <div class="panel2">
+          <h1> &nbsp; Register</h1>
+          <br><br>
+          <mat-form-field id="input">
+            <mat-select placeholder ="เลือกคำนำหน้าชื่อ" [(ngModel)]="views.titleName" name = "titlename">
+              <mat-option *ngFor="let titleName of titleNames" [value]="titleName.titlenameType">
+                  {{titleName.titlenameType}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field id="input">
+            <input matInput placeholder="ระบุชื่อ-นามสกุล"  [(ngModel)]="views.customerName" name = "customername">
+          </mat-form-field>
+          <mat-form-field id="input">
+            <mat-select placeholder="เลือกเพศ" [(ngModel)]="views.sex" name = "customerSex">
+              <mat-option *ngFor="let customersex of customersexs" [value]="customersex.customersex">
+                  {{customersex.customersex}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field id="input">
+            <input matInput placeholder="กรอก เลขประจำตัวประชาชน" [(ngModel)]="views.personal" name = "customerper">
+          </mat-form-field>
+          <mat-form-field id="input">
+            <input matInput placeholder="กำหนด E-mail" [(ngModel)]="views.email" name = "customerEmail">
+          </mat-form-field>
+          <mat-form-field id="input">
+            <input matInput placeholder="กำหนด Password"[(ngModel)]="views.pass" name = "customerPass">
+          </mat-form-field>
+        </div>
+        <div class="panel3">
+          <br><br><br><br><br><br>
+          <form id="formtext1">
+            <label>รหัสประเทศ :</label>
+            <br><br><br>
+            <label>เบอร์โทรศัพท์ :</label>
+            <br><br><br>
+            <label>ที่อยู่ :</label>
+
+          </form>
+        </div>
+        <div class="panel4">
+          <br><br><br><br><br><br>
+          <mat-form-field id="input">
+            <mat-select placeholder="เลือกรหัสประเทศ" [(ngModel)]="views.countryCodes" name = "countrycode">
+              <mat-option *ngFor="let country of countryCode" [value]="country.countrycodeid">
+                  {{country.countryCode}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br><br>
+          <mat-form-field id="input">
+            <input matInput placeholder="ระบุเบอร์โทรศัพท์" [(ngModel)]="views.phone" name = "customerPhone" >
+          </mat-form-field>
+          <br><br>
+          <mat-form-field id="input">
+            <textarea matInput placeholder="ระบุที่อยู่" [(ngModel)]="views.address" name = "customerAddress"></textarea>
+          </mat-form-field>
+
+        </div>
+        <div class="button-row">
+          <button class="bottomgreen" mat-raised-button color="primary" (click) = "save_func()">บันทึก</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
