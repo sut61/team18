@@ -21,6 +21,7 @@ import { ContractComponent } from './contract/contract.component';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { LoginAddminComponent } from './login-addmin/login-addmin.component';
 import { MainAdminComponent } from './main-admin/main-admin.component';
+import { LoginMaidComponent } from './login-maid/login-maid.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MainAdminComponent } from './main-admin/main-admin.component';
     ContractComponent,
     EditContractComponent,
     LoginAddminComponent,
-    MainAdminComponent
+    MainAdminComponent,
+    LoginMaidComponent
   ],
   imports: [
     BrowserModule,
