@@ -45,9 +45,6 @@ export class EditContractComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.allContracts.length;
-    if (numSelected >= 0) {
-      this.allContracts[numSelected - 1].maidSelectId = this.id;
-    }
     return numSelected === numRows;
   }
 
@@ -95,11 +92,9 @@ export class EditContractComponent implements OnInit {
       );
   }
   reset_func() {
-    location.reload();
     this.adminService.getContract().subscribe(data => {
       this.allContracts = data;
       console.log(this.allContracts);
     });
   }
-
 }
