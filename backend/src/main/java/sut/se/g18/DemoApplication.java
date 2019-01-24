@@ -22,8 +22,7 @@ public class DemoApplication {
 						   ContractTypeRepository contractTypeRepository, PaymentStatusRepository paymentStatusRepository,
 						   MaidStatusRepository maidStatusRepository,MaidRegisterRepository maidRegisterRepository, TitleNameRepository titleNameRepository,
 						   TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy,
-						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository,TypepaymentRepository typepaymentRepository, BankRepository bankRepository,
-						   CleaningEquipmentRepository cleaningEquipmentRepository,ElectricalEquipmentRepository electricalEquipmentRepository){
+						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository,TypepaymentRepository typepaymentRepository, BankRepository bankRepository){
 		return args -> {
 
 			//Insert Country_code
@@ -324,22 +323,8 @@ public class DemoApplication {
 		    PromotionEntity p1 = new PromotionEntity();
 		    p1.setTitle("Discount");
 		    CompanyEntity company = companyRepository.findBycompanyName("พีกาซัส");
-		    p1.setCompany(company);
-			promotionRepository.save(p1);
-			
-			// Create CleaningEquipment
-			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่","ไม่กวาดทางมะพร้ว พรั่วตักขยะ ไม้กวาดหยักไย่ ผ้าเช็ดพื้น").forEach(cleaning -> {
-				CleaningEquipmentEntity c = new CleaningEquipmentEntity(cleaning);
-				c.setCleaning(cleaning);
-				cleaningEquipmentRepository.save(c);
-			});
-
-			// Create ElectricalEquipment
-			Stream.of("เครื่องดูดฝุ่น Full Size","เครื่องดูดฝุ่น แบบมือถือ","เครื่องขัดพื้น").forEach(electric -> {
-				ElectricalEquipmentEntity e = new ElectricalEquipmentEntity(electric);
-				e.setElectric(electric);
-				electricalEquipmentRepository.save(e);
-			});
+		    p1.setCompanyEntity(company);
+		    promotionRepository.save(p1);
 		};
 	}
 }
