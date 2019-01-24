@@ -24,6 +24,7 @@ import { MainAdminComponent } from './main-admin/main-admin.component';
 import { LoginMaidComponent } from './login-maid/login-maid.component';
 import { LoginCustomerComponent } from './login-customer/login-customer.component';
 import { MainMaidComponent } from './main-maid/main-maid.component';
+import { MainCustomerComponent } from './main-customer/main-customer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MainMaidComponent } from './main-maid/main-maid.component';
     MainAdminComponent,
     LoginMaidComponent,
     LoginCustomerComponent,
-    MainMaidComponent
+    MainMaidComponent,
+    MainCustomerComponent
   ],
   imports: [
     BrowserModule,
