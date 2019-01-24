@@ -12,5 +12,5 @@ import java.util.Collection;
 @CrossOrigin(origins = "http://localhost:4200")
 public interface PromotionRepository extends JpaRepository<PromotionEntity, Long> {
     PromotionEntity findBytitle(String title);
-    Collection<PromotionEntity> findBycompany(CompanyEntity company);
+    Collection<PromotionEntity> findBycompanyEntity(CompanyEntity company);
 }

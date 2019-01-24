@@ -11,6 +11,5 @@ import sut.se.g18.Entity.CustomerEntity;
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
     CustomerEntity findBycustomerName(String customerName);
     CustomerEntity findBycustomerEmail(String customerEmail);
-    CustomerEntity findBycustomerId(Long customerid);
 }
 
