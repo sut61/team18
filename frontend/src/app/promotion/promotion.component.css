@@ -1,0 +1,100 @@
+
+
+*{
+    padding: 0px;
+    margin:  0px;
+    
+}
+.container{
+    width: 960px;
+    margin: 0 auto;
+}
+.menubar{
+    width: 100%;
+   
+    height: 70px;
+    line-height: 70px;
+    background: rgb(31, 30, 30);
+    color:white;
+}
+.menubar .logo {
+    float: left;
+}
+.menubar h1{
+    margin: 0;
+}
+.menubar ul.menu{
+    list-style: none;
+    float: right;
+}
+.menubar ul.menu li{
+    
+    margin-right: 20px;
+    display: inline-block;
+    
+}
+.menubar ul.menu li a{
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 20px;
+    transition: 0.3s all ease;
+}
+.menubar ul.menu li a:hover{
+   border-bottom: 2px solid rgb(156, 154, 154);
+    padding-bottom: 0px;
+}
+.mainContent{
+    margin-bottom: 5px;
+    height: 580px;
+    background: rgb(31, 30, 30);
+    color: white;
+    
+   
+}
+
+.mainContent .mainContentLeft{
+    margin-left: 320px;
+    
+}
+.mainContentLeft{
+    font-size: 13px;
+    border-radius: 25px;
+    width: 50%;
+    height: 550px;
+    float: left;
+    background: rgba(0, 191, 255, 0.3);
+    padding: 10px;
+    
+    
+}
+.mainContent .mainContentLeft .testtest{
+    margin-left:105px;
+    margin-top: 20px;
+}
+.mainContent .mainContentLeft .select1{
+    width: 470px;
+}
+.mainContent .mainContentLeft .select2{
+    width: 470px;
+}
+.mainContent .mainContentLeft .select3{
+    width: 470px;
+}
+.mainContent .mainContentLeft .input1{
+    width: 470px;
+}
+.mainContent .mainContentLeft .select4{
+    width: 470px;
+}
+.mainContent .mainContentLeft .select5{
+    width: 470px;
+}
+.mainContent .mainContentLeft .select6{
+    width: 470px;
+}
+.button1{
+   text-align: center;
+}
+
+

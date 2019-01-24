@@ -9,6 +9,7 @@ import { LoginCustomerComponent } from './login-customer/login-customer.componen
 import { MainMaidComponent } from './main-maid/main-maid.component';
 import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { CustomerComponent } from './customer/customer.component';
+import { PromotionComponent } from './promotion/promotion.component';
 
 const routes: Routes = [
   {path:'' , component:LoginAddminComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:'loginCus' , component:LoginCustomerComponent},
   {path:'mainMaid' , component:MainMaidComponent},
   {path:'mainCus' , component:MainCustomerComponent},
-  {path:'customer' , component:CustomerComponent}
+  {path:'customer' , component:CustomerComponent},
+  {path:'promotion',component:PromotionComponent}
 ];
 
 @NgModule({
