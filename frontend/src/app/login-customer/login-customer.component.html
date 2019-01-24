@@ -16,10 +16,10 @@
       <h1>Login for Admin</h1>
       <br>
       <div class="username">
-        <input matInput placeholder="Username" [(ngModel)]="select.adminUsername" name="adminUsername">
+        <input matInput placeholder="Username" [(ngModel)]="select.customerEmail" name="customerEmail">
       </div>
       <div class="password">
-        <input matInput [(ngModel)]="select.adminPassword" name="adminPassword" placeholder="Password" (click)="loadAdminData()">
+        <input matInput [(ngModel)]="select.customerpass" name="customerpass" placeholder="Password" (click)="loadCustomerData()">
       </div>
       <div class="botton">
         <button mat-button (click)="login()">Login</button>
