@@ -56,9 +56,6 @@ export class ContractComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.maids.length;
-    if (numSelected !== 0) {
-      this.maids[numSelected - 1].maidSelectId = this.id;
-    }
     return numSelected === numRows;
   }
 
@@ -74,7 +71,6 @@ export class ContractComponent implements OnInit {
     this.contract.maidSelect = row.maid.maidName;
     this.adminService.getPromotion(this.contract.companySelect).subscribe(data => {
       this.promotions = data;
-      console.log(this.promotions);
     });
     console.log(this.contract);
   }
@@ -135,7 +131,6 @@ export class ContractComponent implements OnInit {
       );
   }
   reset_func() {
-    location.reload();
     this.adminService.getAllMaid().subscribe(data => {
       this.maids = data;
       console.log(this.maids);
@@ -149,6 +144,5 @@ export class ContractComponent implements OnInit {
     this.contract.contractTypeSelect = null;
     this.contract.promotionSelect = null;
     this.contract.dateStartInput = null;
-    
   }
 }
