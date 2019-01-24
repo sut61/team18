@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminService } from './service/admin.service';
-
+import { PromotionService } from './service/promotion.service';
+import { CustomerService } from './service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatTableModule,
 MatSidenavModule, MatCheckboxModule } from '@angular/material';
@@ -26,6 +27,7 @@ import { LoginCustomerComponent } from './login-customer/login-customer.componen
 import { MainMaidComponent } from './main-maid/main-maid.component';
 import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { CustomerComponent } from './customer/customer.component';
+import { PromotionComponent } from './promotion/promotion.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { CustomerComponent } from './customer/customer.component';
     LoginCustomerComponent,
     MainMaidComponent,
     MainCustomerComponent,
-    CustomerComponent
+    CustomerComponent,
+    PromotionComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,7 @@ import { CustomerComponent } from './customer/customer.component';
     MatRadioModule,
     ReactiveFormsModule
   ],
-  providers: [AdminService],
+  providers: [AdminService,PromotionService,CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

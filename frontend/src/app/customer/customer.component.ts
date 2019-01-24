@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../Service/customer.service';
+import { CustomerService } from '../service/customer.service';
 import { HttpClient} from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 

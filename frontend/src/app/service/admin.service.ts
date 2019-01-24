@@ -10,7 +10,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getAdminAccount(adminUsername): Observable<any> {
-    return this.http.get(this.API + '/admin/'+adminUsername);
+    return this.http.get(this.API + '/admin/' + adminUsername);
   }
 
   getCompany(): Observable<any> {
@@ -22,11 +22,11 @@ export class AdminService {
   }
 
   getMaidSelect(companySelect): Observable<any> {
-    return this.http.get(this.API + '/maid/getdata/'+companySelect);
+    return this.http.get(this.API + '/maid/getdata/' + companySelect);
   }
 
   getPromotion(companySelect): Observable<any> {
-    return this.http.get(this.API + '/promotion/getdata/'+companySelect);
+    return this.http.get(this.API + '/promotion/getdata/' + companySelect);
   }
 
   getContractType(): Observable<any> {
