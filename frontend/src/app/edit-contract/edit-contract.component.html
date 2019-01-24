@@ -58,6 +58,12 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
+      <br>
+      <br>
+      <h2 class="label">ราคา</h2>
+      <mat-form-field class="select_item">
+        <input matInput placeholder="Cost" [(ngModel)]="contract.cost">
+      </mat-form-field>
 
     </div>
     <div class="background_line">
@@ -106,6 +112,11 @@
           <ng-container matColumnDef="contractType">
             <th mat-header-cell *matHeaderCellDef class="tableColumn"> Contract Type </th>
             <td mat-cell *matCellDef="let element" class="tableColumn">{{element.contractType.contractType}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="cost">
+            <th mat-header-cell *matHeaderCellDef class="tableColumn"> Cost </th>
+            <td mat-cell *matCellDef="let element" class="tableColumn">{{element.cost}}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

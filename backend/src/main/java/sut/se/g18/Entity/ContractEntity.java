@@ -18,6 +18,7 @@ public class ContractEntity {
     @Column(name="contractId",unique = true, nullable = false)
     private @NonNull Long contractId;
     private  @NonNull Date dateStart;
+    private @NonNull int cost;
 
     //Many To One with Promotion
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionEntity.class)
@@ -105,5 +106,13 @@ public class ContractEntity {
 
     public void setDateStart(Date dateStart) {
         this.dateStart = dateStart;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }

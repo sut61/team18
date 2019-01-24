@@ -12,7 +12,7 @@ export interface ContractElement {
   styleUrls: ['./edit-contract.component.css']
 })
 export class EditContractComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'no', 'maidName', 'company', 'customer', 'contractType'];
+  displayedColumns: string[] = ['select', 'no', 'maidName', 'company', 'customer', 'contractType', 'cost'];
   selection = new SelectionModel<ContractElement>(true, []);
 
   allContracts: Array<any>;
@@ -24,7 +24,8 @@ export class EditContractComponent implements OnInit {
     contractTypeSelect: null,
     promotionSelect: null,
     dateStartInput: null,
-    contractId: null
+    contractId: null,
+    cost: null
   };
 
   private id: number;
@@ -62,10 +63,11 @@ export class EditContractComponent implements OnInit {
     this.contract.contractTypeSelect = row.contractType.contractType;
     this.contract.dateStartInput = new Date(row.dateStart);
     this.contract.contractId = row.contractId;
+    this.contract.cost = row.cost;
   }
 
   update() {
-    this.httpClient.put('http://localhost:8080/contract/update/' + this.contract.contractTypeSelect + '/' + this.contract.dateStartInput + '/' + this.contract.contractId, this.contract)
+    this.httpClient.put('http://localhost:8080/contract/update/' + this.contract.contractTypeSelect + '/' + this.contract.dateStartInput + '/' + this.contract.contractId + '/' + this.contract.cost, this.contract)
       .subscribe(
         data => {
           console.log('UPDATE Request is successful', data);

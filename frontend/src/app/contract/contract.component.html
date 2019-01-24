@@ -74,6 +74,12 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
+      <br>
+      <br>
+      <h2 class="label">ราคา</h2>
+      <mat-form-field class="select_item">
+        <input matInput placeholder="Cost" [(ngModel)]="contract.cost">
+      </mat-form-field>
 
     </div>
     <div class="background_line">
