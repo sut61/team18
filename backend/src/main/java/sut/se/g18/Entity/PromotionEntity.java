@@ -1,49 +1,139 @@
 package sut.se.g18.Entity;
 
-import lombok.*;
 
-import javax.persistence.*;
+import java.util.Date;
 
-@Entity
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
 @Data
-@Getter @Setter
+@Entity
+@Table(
+    name = "PROMOTION"
+)
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
-@Table(name = "PROMOTION")
 public class PromotionEntity {
     @Id
-    @SequenceGenerator(name="promotion_seq",sequenceName="promotion_seq")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="promotion_seq")
-    @Column(name="promotionId",unique = true, nullable = false)
-    private @NonNull Long promotionId;
-    private @NonNull String title;
+    @SequenceGenerator(
+        name = "promotion_seq",
+        sequenceName = "promotion_seq"
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "promotion_seq"
+    )
+    @Column(
+        name = "PROMOTION_ID",
+        unique = true,
+        nullable = false
+    )
+    @NonNull
+    private Long promotionID;
 
-    //Many To One with Company
+
+    private String title;
+    private @NonNull Date dateStart;
+    private @NonNull Date dateEnd;
+    private int discount;
+
+    // open join table
+    //Many To One with PromotionTypeEntity
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionTypeEntity.class)
+    private PromotionTypeEntity promotionTypeEntity;
+    
+    //Many To One with MaidEntity
+   // @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidEntity.class)
+
+    //Many To One with CompanyEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
-    private CompanyEntity company;
+    private CompanyEntity companyEntity;
 
-    public Long getPromotionId() {
-        return promotionId;
+
+
+
+    public Long getPromotionID() {
+        return this.promotionID;
     }
 
-    public void setPromotionId(Long promotionId) {
-        this.promotionId = promotionId;
+    public void setPromotionID(Long promotionID) {
+        this.promotionID = promotionID;
     }
+
+
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String detail) {
+        this.title = detail;
     }
 
-    public CompanyEntity getCompany() {
-        return company;
+    public Date getDateStart() {
+        return this.dateStart;
     }
 
-    public void setCompany(CompanyEntity company) {
-        this.company = company;
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
     }
+
+    public Date getDateEnd() {
+        return this.dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public int getDiscount() {
+        return this.discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public PromotionTypeEntity getPromotionTypeEntity() {
+        return this.promotionTypeEntity;
+    }
+
+    public void setPromotionTypeEntity(PromotionTypeEntity promotionTypeEntity) {
+        this.promotionTypeEntity = promotionTypeEntity;
+    }
+
+   // public MaidEntity getMaidEntity() {
+     //   return this.maidEntity;
+    //}
+
+   // public void setMaidEntity(MaidEntity maidEntity) {
+     //   this.maidEntity = maidEntity;
+   // }
+
+    public CompanyEntity getCompanyEntity() {
+        return this.companyEntity;
+    }
+
+    public void setCompanyEntity(CompanyEntity companyEntity) {
+        this.companyEntity = companyEntity;
+    }
+    
+
+
+    
+    
+    
+
+
+
+
 }
