@@ -1,0 +1,85 @@
+<div class="main_background">
+<div class="header_content">
+  <h1 class="title">G18 ระบบจัดหาแม่บ้าน</h1>
+</div>
+
+  <div class="main_content">
+    <br>
+    <br>
+    <br>
+    <h1><a>กรอกข้อมูลการชำระเงิน :</a></h1>
+
+    <mat-grid-list cols="2" rowHeight="500px">
+      <br>
+      <div class="left_field">
+        <mat-grid-tile class="example-form">
+          <form class="example-form">
+            <br>
+            <br>
+            <br>
+            <h2>รายการสัญญา</h2>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="เลือกรายการสัญญา" [(ngModel)]="pay.contract" name="contract">
+                <mat-option>None </mat-option>
+                <mat-option *ngFor= "let contract of contracts " [value]="contract.contractId">รายการที่ {{contract.contractId}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <h2>ชื่อ-นามสกุล</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกชื่อ-นามสกุล</mat-label>
+              <input matInput [(ngModel)] = "pay.name" name="name">
+              <mat-icon matSuffix>face</mat-icon>
+            </mat-form-field>
+            <br>
+            <h2>ที่อยู่</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกที่อยู่</mat-label>
+              <textarea matInput [(ngModel)]="pay.address" name="address"></textarea>
+              <mat-icon matSuffix>home</mat-icon>
+            </mat-form-field>
+            <br>
+            <h2>เบอร์โทรศัพท์</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกเบอร์โทรศัพท์</mat-label>
+              <input matInput name="phonenum" [(ngModel)]="pay.phonenum" name="phonenum">
+              <mat-icon matSuffix>account_balance</mat-icon>
+            </mat-form-field>
+          </form>
+        </mat-grid-tile>
+      </div>
+      <div class="right_field">
+        <mat-grid-tile class="example-formright">
+          <form class="example-form">
+            <h2>หมายเลขบัญชี</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกหมายเลขบัญชี</mat-label>
+              <input matInput name="accountnumber" [(ngModel)]="pay.accountnumber" name="accountnumber">
+              <mat-icon matSuffix>account_balance</mat-icon>
+            </mat-form-field>
+            <br>
+            <h2>เลือกประเภทชำระเงิน</h2>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="เลือกประเภทชำระเงิน" [(ngModel)] = "pay.typepayment" name="typename">
+                <mat-option>None </mat-option>
+                <mat-option *ngFor="let type of typepayments" [value]="type.typename">{{type.typename}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <h2>เลือกธนาคาร</h2>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="เลือกธนารคาร" [(ngModel)]="pay.bank" name="bankname">
+                <mat-option>None </mat-option>
+                <mat-option *ngFor="let bank of banks" [value]="bank.bankname">{{bank.bankname}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br> <br>
+            <div class="button-row">
+                <button mat-raised-button (click)="save()" color="primary">ยืนยันการชำระเงิน</button>
+              </div>
+          </form>
+        </mat-grid-tile>
+      </div>
+    </mat-grid-list>
+  </div>
+</div>
