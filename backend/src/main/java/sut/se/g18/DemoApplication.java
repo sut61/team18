@@ -22,8 +22,12 @@ public class DemoApplication {
 						   ContractTypeRepository contractTypeRepository, PaymentStatusRepository paymentStatusRepository,
 						   MaidStatusRepository maidStatusRepository,MaidRegisterRepository maidRegisterRepository, TitleNameRepository titleNameRepository,
 						   TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy,
+<<<<<<< HEAD
+						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository ){
+=======
 						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository,
 						   BankRepository bankRepository, PaymentRepository paymentRepository, TypepaymentRepository typepaymentRepository){
+>>>>>>> c96240a64e5a16d363495bcd78dc1defa93e9eaa
 		return args -> {
 
 			//Insert Country_code
