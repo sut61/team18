@@ -8,9 +8,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -61,4 +62,25 @@ public class PaymentController {
         CustomerEntity customer = customerRepository.findBycustomerEmail(inputEmail);
         return contractRepository.findByCustomerAndStatus(customer, status);
     }
+    @GetMapping(path = "/payment/{inputEmail}/{contractId}/{name}/{address}/{phonenum}/{accountNumber}/{typeName}/{bankName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public PaymentEntity payContract(PaymentEntity payContract, @PathVariable String inputEmail, @PathVariable Long contractId,
+                                      @PathVariable String name, @PathVariable String address, @PathVariable String phonenum, @PathVariable String accountNumber,
+                                      @PathVariable String typeName, @PathVariable String bankName) {
+            CustomerEntity customer = customerRepository.findBycustomerEmail(inputEmail);
+            payContract.setCustomerEntity(customer);
+            ContractEntity contract = contractRepository.findBycontractId(contractId);
+            payContract.setContractEntity(contract);
+            payContract.setName(name);
+            payContract.setAddress(address);
+            payContract.setPhonenum(phonenum);
+            payContract.setAccountNumber(accountNumber);
+            TypepaymentEntity typepay = typepaymentRepository.findBytypeName(typeName);
+            payContract.setTypepaymentEntity(typepay);
+            BankEntity bank = bankRepository.findBybankName(bankName);
+            payContract.setBankEntity(bank);
+            PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("จ่ายแล้ว");
+            contract.setStatus(status);
+            return paymentRepository.save(payContract);                            
+    }
+    
 }
