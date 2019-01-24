@@ -23,6 +23,7 @@ import { LoginAddminComponent } from './login-addmin/login-addmin.component';
 import { MainAdminComponent } from './main-admin/main-admin.component';
 import { LoginMaidComponent } from './login-maid/login-maid.component';
 import { LoginCustomerComponent } from './login-customer/login-customer.component';
+import { MainMaidComponent } from './main-maid/main-maid.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LoginCustomerComponent } from './login-customer/login-customer.componen
     LoginAddminComponent,
     MainAdminComponent,
     LoginMaidComponent,
-    LoginCustomerComponent
+    LoginCustomerComponent,
+    MainMaidComponent
   ],
   imports: [
     BrowserModule,
