@@ -86,6 +86,7 @@ export class EditContractComponent implements OnInit {
       .subscribe(
         data => {
           console.log('DELETE Request is successful', data);
+          alert('ลบสัญญาสำเร็จ');
           this.reset_func();
         },
         error => {
