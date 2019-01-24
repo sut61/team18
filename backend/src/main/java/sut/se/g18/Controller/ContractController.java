@@ -131,10 +131,11 @@ public class ContractController {
         return contractRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/contract/{companySelect}/{maidSelect}/{contractTypeSelect}/{promotionSelect}/{dateStartInput}")
+    @PostMapping("/contract/{companySelect}/{maidSelect}/{contractTypeSelect}/{promotionSelect}/{dateStartInput}/{cost}")
     public ContractEntity newContract(@RequestBody ContractEntity contractEntity, @PathVariable String companySelect,
                                       @PathVariable String maidSelect, @PathVariable String contractTypeSelect,
-                                      @PathVariable String promotionSelect, @PathVariable Date dateStartInput) {
+                                      @PathVariable String promotionSelect, @PathVariable Date dateStartInput,
+                                      @PathVariable int cost) {
         ContractEntity newContract = new ContractEntity();
 
         CompanyEntity company = companyRepository.findBycompanyName(companySelect);
@@ -162,17 +163,20 @@ public class ContractController {
 
         PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("ค้างชำระ");
         newContract.setStatus(status);
+        newContract.setCost(cost);
 
         return contractRepository.save(newContract);
     }
 
-    @PutMapping("/contract/update/{contractTypeSelect}/{dateStartInput}/{contractId}")
+    @PutMapping("/contract/update/{contractTypeSelect}/{dateStartInput}/{contractId}/{cost}")
     public ContractEntity updateContract(@RequestBody ContractEntity updateContractEntity, @PathVariable String contractTypeSelect,
-                                         @PathVariable Date dateStartInput, @PathVariable Long contractId) {
+                                         @PathVariable Date dateStartInput, @PathVariable Long contractId,
+                                         @PathVariable int cost) {
         ContractEntity updateContract = contractRepository.getOne(contractId);
         ContractTypeEntity type = contractTypeRepository.findBycontractType(contractTypeSelect);
         updateContract.setContractType(type);
         updateContract.setDateStart(dateStartInput);
+        updateContract.setCost(cost);
 
         return contractRepository.save(updateContract);
     }

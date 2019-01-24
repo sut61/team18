@@ -32,6 +32,8 @@ public class PaymentEntity {
     //many-to-one with CustomerEntity
     @ManyToOne(fetch = FetchType.EAGER ,targetEntity = CustomerEntity.class)
     private CustomerEntity customerEntity;
+
+
     //many-to-one with typepaymentEntity
     @ManyToOne(fetch = FetchType.EAGER ,targetEntity = TypepaymentEntity.class)
     private TypepaymentEntity typepaymentEntity;
@@ -39,7 +41,14 @@ public class PaymentEntity {
     //one-to-one with ContractEntity
     @OneToOne(fetch = FetchType.EAGER , targetEntity = ContractEntity.class)
     private ContractEntity contractEntity;
+    
+    public CustomerEntity getCustomerEntity() {
+        return this.customerEntity;
+    }
 
+    public void setCustomerEntity(CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
+    }
     public ContractEntity getContractEntity() {
         return this.contractEntity;
     }

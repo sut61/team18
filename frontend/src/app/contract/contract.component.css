@@ -57,7 +57,7 @@ body{
 }
 .insert{
     width: 42.5%;
-    height: 500px;
+    height: 550px;
     background-color: rgba(0, 191, 255, 0.4);
     float: left;
     border-radius: 25px;
@@ -65,7 +65,7 @@ body{
 
 .table{
     width: 42.5%;
-    height: 500px;
+    height: 550px;
     background-color: rgba(0, 191, 255, 0.4);
     border-radius: 25px;
     float: left;

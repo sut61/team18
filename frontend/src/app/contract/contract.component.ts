@@ -26,7 +26,8 @@ export class ContractComponent implements OnInit {
     maidSelect: null,
     contractTypeSelect: null,
     promotionSelect: null,
-    dateStartInput: null
+    dateStartInput: null,
+    cost: null
   };
 
   private id: number;
@@ -117,7 +118,7 @@ export class ContractComponent implements OnInit {
     }
   }
   save_func() {
-    this.httpClient.post('http://localhost:8080/contract/' + this.contract.companySelect + '/' + this.contract.maidSelect + '/' + this.contract.contractTypeSelect + '/' + this.contract.promotionSelect + '/' + this.contract.dateStartInput, this.contract)
+    this.httpClient.post('http://localhost:8080/contract/' + this.contract.companySelect + '/' + this.contract.maidSelect + '/' + this.contract.contractTypeSelect + '/' + this.contract.promotionSelect + '/' + this.contract.dateStartInput + '/' + this.contract.cost, this.contract)
       .subscribe(
         data => {
           console.log('PUT Request is successful', data);
