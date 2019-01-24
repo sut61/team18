@@ -29,7 +29,9 @@ public class PaymentEntity {
     private BankEntity bankEntity;
 
    
-
+    //many-to-one with CustomerEntity
+    @ManyToOne(fetch = FetchType.EAGER ,targetEntity = CustomerEntity.class)
+    private CustomerEntity customerEntity;
     //many-to-one with typepaymentEntity
     @ManyToOne(fetch = FetchType.EAGER ,targetEntity = TypepaymentEntity.class)
     private TypepaymentEntity typepaymentEntity;
