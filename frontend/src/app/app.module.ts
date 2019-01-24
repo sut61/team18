@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { AdminService } from './service/admin.service';
 import { PromotionService } from './service/promotion.service';
 import { CustomerService } from './service/customer.service';
+import { PaymentService } from './service/payment.service';
+
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatTableModule,
 MatSidenavModule, MatCheckboxModule } from '@angular/material';
@@ -18,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 import { ContractComponent } from './contract/contract.component';
 import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { LoginAddminComponent } from './login-addmin/login-addmin.component';
@@ -28,6 +32,7 @@ import { MainMaidComponent } from './main-maid/main-maid.component';
 import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { CustomerComponent } from './customer/customer.component';
 import { PromotionComponent } from './promotion/promotion.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,8 @@ import { PromotionComponent } from './promotion/promotion.component';
     MainMaidComponent,
     MainCustomerComponent,
     CustomerComponent,
-    PromotionComponent
+    PromotionComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +69,10 @@ import { PromotionComponent } from './promotion/promotion.component';
     MatIconModule,
     MatGridListModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
-  providers: [AdminService,PromotionService,CustomerService],
+  providers: [AdminService,PromotionService,CustomerService, PaymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
