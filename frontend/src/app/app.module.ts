@@ -22,6 +22,7 @@ import { EditContractComponent } from './edit-contract/edit-contract.component';
 import { LoginAddminComponent } from './login-addmin/login-addmin.component';
 import { MainAdminComponent } from './main-admin/main-admin.component';
 import { LoginMaidComponent } from './login-maid/login-maid.component';
+import { LoginCustomerComponent } from './login-customer/login-customer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LoginMaidComponent } from './login-maid/login-maid.component';
     EditContractComponent,
     LoginAddminComponent,
     MainAdminComponent,
-    LoginMaidComponent
+    LoginMaidComponent,
+    LoginCustomerComponent
   ],
   imports: [
     BrowserModule,
