@@ -33,7 +33,7 @@ export class LoginCustomerComponent implements OnInit {
       if(this.select.adminUsername == this.admin.adminUsername){
         if(this.select.adminPassword == this.admin.adminPassword){
           alert('เข้าสู่ระบบสำเร็จ');
-          this.router.navigate(['/mainAdmin']);
+          this.router.navigate(['/mainCus']);
         }else{
           alert('รหัสผ่านไม่ถูกต้อง');
         }
