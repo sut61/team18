@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  </head>
+<body>
+  <div class="menubar">
+    <div class="container">
+      <div class="logo">
+        <h1>G18 MaidSystem</h1>
+      </div>
+      <ul class ="menu">
+        <li>
+          <!-- <a href="#">Edit Promotion</a> -->
+        </li>
+        <li>
+          <a href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mainContent">
+      <div class="mainContentLeft">
+        <div class="testtest">
+
+       
+      <h2 class = "label1" >เลือกบริษัท</h2>
+      <mat-form-field class ="select1" >
+        <mat-select placeholder="เลือกบริษัท" [(ngModel)]="views.companySelect">
+          <mat-option *ngFor="let company of companys" [value]="company.companyName">
+            {{company.companyName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+
+      <!-- <h2 class = "label2">เลือกแม่บ้าน</h2>
+      <mat-form-field class ="select2"> 
+        <mat-select  placeholder="เลือกแม่บ้าน">
+          <mat-option *ngFor="let maid of maids" [value]="maid.maidId">
+            {{maid.maidName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      
+      
+      <h2 class = "label3">เลือกประเภทโปรโมชั่น</h2>
+      <mat-form-field class ="select3">
+          <mat-select placeholder="เลือกประเภทโปรโมชั่น" [(ngModel)]="views.promotionTypeSelect">
+              <mat-option *ngFor="let pro of promotionTypes" [value]="pro.promotionType">
+                {{pro.promotionType}}
+              </mat-option>
+            </mat-select>
+      </mat-form-field>
+
+     
+      <h2 class = "label12">เปอร์เซ็นต์ส่วนลด</h2>
+      <mat-form-field class="select2">
+          <input matInput placeholder="เปอร์เซ็นต์ส่วนลด" [(ngModel)]="views.discount" name ="discountTest">
+        </mat-form-field>
+      
+
+      <h2 class = "label4">รายละเอียดโปรโมชั่น</h2>
+      <form class="detail-form">
+          <mat-form-field class="select4">
+              <input matInput placeholder="รายละเอียดโปรโมชั่น" [(ngModel)]="views.title" name ="titleTest">
+            </mat-form-field>
+      </form>
+      <div class = "dateSelect">
+              <h2 class = "label5">วันเริ่มต้นโปรโมชั่น</h2>
+              <mat-form-field class="select5">
+                <input matInput [matDatepicker]="picker" placeholder="เดือน / วัน / ปี" [(ngModel)] = "views.dateStart" >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <h2 class = "label6">วันสิ้นสุดโปรโมชั่น</h2>
+              <mat-form-field class="select6">
+                  <input matInput [matDatepicker]="picker2" placeholder="เดือน / วัน / ปี"[(ngModel)] = "views.dateEnd">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+      <div class="button1">
+
+        <button mat-raised-button color="primary" (click) = save_func() > เพิ่มโปรโมชั่น </button>
+      </div>
+      
+    </div>
+    
+    
+  </div>
+
+</body>
+</html>
