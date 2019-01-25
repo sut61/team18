@@ -23,7 +23,8 @@ public class DemoApplication {
 						   MaidStatusRepository maidStatusRepository,MaidRegisterRepository maidRegisterRepository, TitleNameRepository titleNameRepository,
 						   TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy,
 						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository,TypepaymentRepository typepaymentRepository, BankRepository bankRepository,
-						   CleaningEquipmentRepository cleaningEquipmentRepository,ElectricalEquipmentRepository electricalEquipmentRepository){
+						   CleaningEquipmentRepository cleaningEquipmentRepository,ElectricalEquipmentRepository electricalEquipmentRepository,
+						   PromotionTypeRepository promotionTypeRepository){
 		return args -> {
 
 			//Insert Country_code
@@ -112,7 +113,11 @@ public class DemoApplication {
 			countryCodeRepository.save(Saipan);
 			CountryCodeEntity Tokelau = new CountryCodeEntity("+690 (โทเคอเลา)");
 			countryCodeRepository.save(Tokelau);
-
+			//insert promotionType
+			
+			PromotionTypeEntity promotionTypeEntity = new PromotionTypeEntity();
+            promotionTypeEntity.setPromotionType("ส่วนลด");
+            promotionTypeRepository.save(promotionTypeEntity);
 
 			//Insert Sex
 			SexEntity m = new SexEntity("ชาย");

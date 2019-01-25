@@ -92,24 +92,24 @@ public class PromotionController implements CommandLineRunner {
         return promotionRepository.save(p);
     }
 
-    @GetMapping (path = "/test")
-    public void testInsert(){
-       // CompanyEntity companyEntity = new CompanyEntity();
-      //  companyEntity.setCompanyName("TEST1");
-       // companyRepository.save(companyEntity);
+    // @GetMapping (path = "/test")
+    // public void testInsert(){
+    //    // CompanyEntity companyEntity = new CompanyEntity();
+    //   //  companyEntity.setCompanyName("TEST1");
+    //    // companyRepository.save(companyEntity);
 
 
 
-        PromotionTypeEntity promotionTypeEntity = new PromotionTypeEntity();
-        promotionTypeEntity.setPromotionType("ส่วนลด");
-        promotionTypeRepository.save(promotionTypeEntity);
+    //     PromotionTypeEntity promotionTypeEntity = new PromotionTypeEntity();
+    //     promotionTypeEntity.setPromotionType("ส่วนลด");
+    //     promotionTypeRepository.save(promotionTypeEntity);
 
-    }
+    // }
     
-    @Override
-	public void run(String... arg0) throws Exception{
-		testInsert();
-	}
+     @Override
+	 public void run(String... arg0) throws Exception{
+		//testInsert();
+	 }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
