@@ -11,9 +11,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./submit.component.css']
 })
 export class SubmitComponent implements OnInit {
+  
   datalend:any={maidId:"",customerId:"",cleaningId:"",electricId:"",lendData:""};
 
-  constructor(private lend : LendService ,public dialog: MatDialog) {
+  constructor(private lend : LendService ,public dialog: MatDialog,private route: ActivatedRoute,
+    private router: Router) {
 
    }
 
@@ -71,8 +73,13 @@ export class SubmitComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
       });
+      this.router.navigate(['/mainMaid']);
   
     })
+  };
+  lode(){
+    this.router.navigate(['/mainMaid']);
+
   };
 
 }
