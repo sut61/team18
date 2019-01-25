@@ -33,10 +33,6 @@ export class AdminService {
     return this.http.get(this.API + '/contractType');
   }
 
-  getPaymentStatus(): Observable<any> {
-    return this.http.get(this.API + '/paymentStatus');
-  }
-
   getContract(): Observable<any> {
     return this.http.get(this.API + '/contract');
   }

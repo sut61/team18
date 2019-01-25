@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit {
       this.typepayments = data;
       console.log(this.typepayments);
     });
-    this.paymentService.getContract(this.pay.inputEmail).subscribe(data => {
+    this.paymentService.getContract().subscribe(data => {
       this.contracts = data;
       console.log(this.contracts);
     });

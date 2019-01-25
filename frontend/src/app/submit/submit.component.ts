@@ -68,7 +68,7 @@ export class SubmitComponent implements OnInit {
       const dialogRef = this.dialog.open(TextComponent, {
         width: '600px',
     
-        data: {name: 'บันทึการส่งสำเสร็จ'}
+        data: {name: 'บันทึกสำเร็จ'}
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
