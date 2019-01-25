@@ -10,7 +10,7 @@ import { PaymentService } from './service/payment.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatTableModule,
-MatSidenavModule, MatCheckboxModule } from '@angular/material';
+MatSidenavModule, MatCheckboxModule ,MatDialogModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -33,7 +33,9 @@ import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { CustomerComponent } from './customer/customer.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { PaymentComponent } from './payment/payment.component';
-
+import { SubmitComponent } from './submit/submit.component';
+import { TextComponent } from './text/text.component';
+import { LendService } from './service/lend.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { PaymentComponent } from './payment/payment.component';
     MainCustomerComponent,
     CustomerComponent,
     PromotionComponent,
-    PaymentComponent
+    PaymentComponent,
+    SubmitComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,
@@ -70,9 +74,10 @@ import { PaymentComponent } from './payment/payment.component';
     MatGridListModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
-  providers: [AdminService,PromotionService,CustomerService, PaymentService],
+  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

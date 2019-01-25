@@ -1,0 +1,26 @@
+.oop{
+    widows: 700px; ;
+
+}
+.loginbox{
+   
+    margin-left:10%;
+    margin-right: 50px;
+    max-width: 500px;
+}
+.layout{
+    border: 2px solid black;
+    height: 720px;
+    background-size: cover;
+    width:  100%;
+    background-image: url('src\app\submit\kot.jpg')
+    
+}
+.bot{
+ 
+    border: 2px solid black;
+    width: 88px;
+}
+.head{
+    max-width: 250px;
+}

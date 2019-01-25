@@ -11,6 +11,8 @@ import { MainCustomerComponent } from './main-customer/main-customer.component';
 import { CustomerComponent } from './customer/customer.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SubmitComponent } from './submit/submit.component';
+import { TextComponent } from './text/text.component';
 
 const routes: Routes = [
   {path:'' , component:LoginAddminComponent},
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path:'mainCus' , component:MainCustomerComponent},
   {path:'customer' , component:CustomerComponent},
   {path:'promotion',component:PromotionComponent},
-  {path: 'payment' , component: PaymentComponent}
+  {path: 'payment' , component: PaymentComponent},
+  {path:'submit' , component:SubmitComponent},
+  {path:'text' , component:TextComponent}
 ];
 
 @NgModule({
