@@ -136,32 +136,28 @@ public class ContractController {
                                       @PathVariable String maidSelect, @PathVariable String contractTypeSelect,
                                       @PathVariable String promotionSelect, @PathVariable Date dateStartInput,
                                       @PathVariable int cost) {
-        ContractEntity newContract = new ContractEntity();
 
         CompanyEntity company = companyRepository.findBycompanyName(companySelect);
-        newContract.setCompany(company);
+
         MaidRegisterEntity maidName = maidRegisterRepository.findBymaidName(maidSelect);
-        MaidSelectEntity maid = maidSelectRepository.findBymaid(maidName);
-        newContract.setMaid(maid);
         MaidStatusEntity maidStatus = maidStatusRepository.findBystatus("ทำสัญญาอยู่");
+        MaidSelectEntity maid = maidSelectRepository.findBymaid(maidName);
         maid.setStatus(maidStatus);
         maidSelectRepository.save(maid);
-
-        ContractTypeEntity type = contractTypeRepository.findBycontractType(contractTypeSelect);
-        newContract.setContractType(type);
-
         CustomerEntity customer = maid.getCustomer();
+        ContractTypeEntity type = contractTypeRepository.findBycontractType(contractTypeSelect);
+        PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("ค้างชำระ");
+        ContractEntity newContract = new ContractEntity();
+        newContract.setCompany(company);
+        newContract.setMaid(maid);
+        newContract.setContractType(type);
         newContract.setCustomer(customer);
-
         PromotionEntity promotion = new PromotionEntity();
         if(!(promotionSelect.equals("No Promotion"))){
             promotion = promotionRepository.findBytitle(promotionSelect);
             newContract.setPromotion(promotion);
         }
-        System.out.println(promotion);
         newContract.setDateStart(dateStartInput);
-
-        PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("ค้างชำระ");
         newContract.setStatus(status);
         newContract.setCost(cost);
 

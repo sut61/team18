@@ -20,7 +20,6 @@ export class ContractComponent implements OnInit {
   maids: Array<any>;
   promotions: Array<any>;
   contractTypes: Array<any>;
-  paymentStatus: Array<any>;
   contract: any = {
     companySelect: null,
     maidSelect: null,
@@ -43,11 +42,7 @@ export class ContractComponent implements OnInit {
     this.adminService.getContractType().subscribe(data => {
       this.contractTypes = data;
       console.log(this.contractTypes);
-    });
-    this.adminService.getPaymentStatus().subscribe(data => {
-      this.paymentStatus = data;
-      console.log(this.paymentStatus);
-    });
+   });
     this.adminService.getAllMaid().subscribe(data => {
       this.maids = data;
       console.log(this.maids);

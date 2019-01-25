@@ -42,5 +42,8 @@ export class LoginCustomerComponent implements OnInit {
       }
     }
   }
+  register(){
+    this.router.navigate(['/customer']);
+  }
 
 }
