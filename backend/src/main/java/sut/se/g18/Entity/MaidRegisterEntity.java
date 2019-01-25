@@ -20,6 +20,7 @@ public class MaidRegisterEntity {
     private  String province;
     private  String district;
     private  String canton;
+    
 
     //Many To One with Company
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
@@ -48,7 +49,7 @@ public class MaidRegisterEntity {
             this.titleNameEntity = titleNameEntity;
             this.typeworkingEntity = typeworkingEntity;
             this.workingDateEntity = workingDateEntity;
-
+            
 
     }
 
@@ -115,4 +116,5 @@ public class MaidRegisterEntity {
     public void setWorkingDateEntity(WorkingDateEntity workingDateEntity) {
         this.workingDateEntity = workingDateEntity;
     }
+   
 }
