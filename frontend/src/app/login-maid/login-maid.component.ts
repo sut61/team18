@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AdminService } from '../service/admin.service';
+import { RegisterService } from '../service/register.service';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login-maid',
@@ -8,20 +8,21 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./login-maid.component.css']
 })
 export class LoginMaidComponent implements OnInit {
-  admin: any;
+  maids: any;
   hide = true;
   select: any = {
     adminUsername: null,
     adminPassword: null
   }
-  constructor(private route: ActivatedRoute,private adminService: AdminService, private httpClient: HttpClient, private router: Router) { }
+  constructor(private route: ActivatedRoute,private registerService: RegisterService, private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
   loadAdminData(){
-    this.adminService.getAdminAccount(this.select.adminUsername).subscribe(data => {
-      this.admin = data;
-      console.log(this.admin);
+    console.log(this.select.adminUsername);
+    this.registerService.getMaidZZZ(this.select.adminUsername).subscribe(data => {
+      this.maids = data;
+      console.log(this.maids);
     });
   }
   login(){
@@ -30,8 +31,8 @@ export class LoginMaidComponent implements OnInit {
     }else if(this.select.adminPassword == null || this.select.adminPassword == ''){
       alert('Please Enter Password');
     }else{
-      if(this.select.adminUsername == this.admin.adminUsername){
-        if(this.select.adminPassword == this.admin.adminPassword){
+      if(this.select.adminUsername == this.maids.maidEmail){
+        if(this.select.adminPassword == this.maids.maidPhone){
           alert('เข้าสู่ระบบสำเร็จ');
           this.router.navigate(['/mainMaid']);
         }else{

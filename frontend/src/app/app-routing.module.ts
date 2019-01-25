@@ -13,7 +13,7 @@ import { PromotionComponent } from './promotion/promotion.component';
 import { PaymentComponent } from './payment/payment.component';
 import { SubmitComponent } from './submit/submit.component';
 import { TextComponent } from './text/text.component';
-
+import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {path:'' , component:LoginAddminComponent},
   {path:'contract' , component:ContractComponent},
@@ -27,7 +27,8 @@ const routes: Routes = [
   {path:'promotion',component:PromotionComponent},
   {path: 'payment' , component: PaymentComponent},
   {path:'submit' , component:SubmitComponent},
-  {path:'text' , component:TextComponent}
+  {path:'text' , component:TextComponent},
+  {path: 'register' , component: RegisterComponent}
 ];
 
 @NgModule({
