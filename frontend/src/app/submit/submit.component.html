@@ -1,0 +1,57 @@
+<div class="layout">
+  
+  <div class="loginbox">
+     <br/>
+    <h1 class ="head" style="background-color:hsl(44, 100%, 67%);">ระบบยืมอุปกรณ์</h1>
+
+
+
+    <mat-form-field>
+      <mat-select class="see"  placeholder="เลือกแม่บ้าน" [(ngModel)]="datalend.maidId" name = "maidName">
+        <mat-option style="width: 700px;background-color:hsl(212, 100%, 24%);" *ngFor="let maidNames of maidName" [value]="maidNames.maidId"  >
+          {{maidNames.maidName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+  <br/>
+
+  <mat-form-field>
+      <mat-select placeholder="เลือกลูกค้า" [(ngModel)]="datalend.customerId" name = "customerNames">
+        <mat-option style="width: 300px;background-color:hsl(212, 100%, 24%);"  *ngFor="let customerNames of customerName" [value]="customerNames.customerId">
+          {{customerNames.customerName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <br/>
+    <div class="oop">
+    <mat-form-field>
+        <mat-select placeholder="เลือกอุปกรณ์ทำความสะอาด" [(ngModel)]="datalend.cleaningId" name = "cleanings">
+          <mat-option style="min-width: 800%;background-color:hsl(212, 100%, 24%); padding-right: 10%"  *ngFor="let cleanings of cleaning" [value]="cleanings.cleaningId" > 
+            {{cleanings.cleaning}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </div>
+    
+
+    <mat-form-field>
+      <mat-select placeholder="เลือกอุปกรณ์ไฟฟ้า" [(ngModel)]="datalend.electricId" name = "electrics">
+        <mat-option style="width: 300px;background-color:hsl(212, 100%, 24%);" *ngFor="let electrics of electric" [value]="electrics.electricId">
+          {{electrics.electric}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  <br/>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="อื่นๆ" valuse = "" [(ngModel)]="datalend.lendData">
+        </mat-form-field>
+
+    <div class="bot">
+    <button mat-button    (click)="OnSubmit()">บันทึก</button>
+    </div>
+    
+  </div>
