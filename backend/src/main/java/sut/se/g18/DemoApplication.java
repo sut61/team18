@@ -243,6 +243,7 @@ public class DemoApplication {
 			CustomerEntity cus = new CustomerEntity();
 			cus.setCustomerName("Pitchayut CheeseJa");
 			cus.setCustomerEmail("sut@gg.com");
+			cus.setCustomerpass("1234");
 			customerRepository.save(cus);
 
 		    CompanyEntity c1 = new CompanyEntity();

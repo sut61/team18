@@ -44,4 +44,8 @@ export class LoginMaidComponent implements OnInit {
     }
   }
 
+  register(){
+    this.router.navigate(['/register']);
+  }
+
 }
