@@ -1,0 +1,70 @@
+<div class="jpg">
+
+  <div class = " databox ">
+    <div class="example-container">
+      <h2 class="title-name">ระบบสมัครแม่บ้าน</h2>
+  
+      <mat-form-field class="prefix">
+        <mat-select placeholder="คำนำหน้า" [(ngModel)]="views.titlenameId" name = "titlenameType">
+          <mat-option *ngFor="let titlenameTypes of titlenameType" [value]="titlenameTypes.titlenameId">
+            {{titlenameTypes.titlenameType}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="nametInput" >
+        <mat-placeholder class="placeholder">ชื่อ-นามสกุล</mat-placeholder>
+        <input matInput [(ngModel)]="views.maidName" >
+      </mat-form-field>
+  
+      <mat-form-field class="phoneInput" >
+        <mat-placeholder class="placeholder">เบอร์โทรศัพท์</mat-placeholder>
+        <input matInput [(ngModel)]="views.maidPhone"  type="number">
+      </mat-form-field>
+  
+      <mat-form-field class="emailInput" >
+        <mat-placeholder class="placeholder">E-MAIL</mat-placeholder>
+        <input matInput [(ngModel)]="views.maidEmail">
+      </mat-form-field>
+  
+      <mat-form-field class="addressInput" >
+        <mat-placeholder class="placeholder">ที่อยู่ บ้านเลที่/เลขที่ห้อง</mat-placeholder>
+        <input matInput [(ngModel)]="views.maidAddress" >
+      </mat-form-field>
+  
+      <mat-form-field class="districtInput" >
+        <mat-placeholder class="placeholder">ตำบล/แขวง</mat-placeholder>
+        <input matInput [(ngModel)]="views.district" >
+      </mat-form-field>
+  
+      <mat-form-field class="cantonInput">
+        <mat-placeholder class="placeholder">อำเภอ/เขต</mat-placeholder>
+        <input matInput [(ngModel)]="views.canton" >
+      </mat-form-field>
+  
+      <mat-form-field class="provinceInput">
+        <mat-placeholder class="placeholder">จังหวัด</mat-placeholder>
+        <input matInput [(ngModel)]="views.province" >
+      </mat-form-field>
+  
+      <mat-form-field class="prefix">
+        <mat-select placeholder="ลักษณะงานที่ต้องการทำ " [(ngModel)]="views.typeworkingId" name = "typeworking">
+          <mat-option *ngFor="let typeworkings of typeworking" [value]="typeworkings.typeworkingId">
+            {{typeworkings.typeworking}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="prefix">
+        <mat-select placeholder="ระยะเวลาที่ต้องการทำงาน" [(ngModel)]="views.typeworkingDateId" name = "typeworkingDate">
+          <mat-option *ngFor="let typeworkingDates of typeworkingDate" [value]="typeworkingDates.typeworkingDateId">
+            {{typeworkingDates.typeworkingDate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-button (click)="save_func()" >บันทึกการสมัคร</button>
+      <button mat-button (click)="Canceled()">ยกเลิกการสมัคร</button>
+      
+  
+      </div>
+    </div>
+  </div>
+  

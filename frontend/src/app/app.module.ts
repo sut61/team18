@@ -7,6 +7,7 @@ import { AdminService } from './service/admin.service';
 import { PromotionService } from './service/promotion.service';
 import { CustomerService } from './service/customer.service';
 import { PaymentService } from './service/payment.service';
+import { RegisterService } from './service/register.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatTableModule,
@@ -36,6 +37,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { SubmitComponent } from './submit/submit.component';
 import { TextComponent } from './text/text.component';
 import { LendService } from './service/lend.service';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,8 @@ import { LendService } from './service/lend.service';
     PromotionComponent,
     PaymentComponent,
     SubmitComponent,
-    TextComponent
+    TextComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,7 @@ import { LendService } from './service/lend.service';
     MatFormFieldModule,
     MatDialogModule
   ],
-  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService],
+  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

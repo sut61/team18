@@ -14,6 +14,7 @@ public class DataRegister {
     private  String province;
     private  String district;
     private  String canton;
+    
 
     private Long titlenameId;
     private Long typeworkingId;
@@ -89,4 +90,6 @@ public class DataRegister {
     public void setWorkingDate(WorkingDateEntity workdate) { }
 
     public void setTypeworking(TypeworkingEntity typework) { }
+
+  
 }

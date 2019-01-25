@@ -1,0 +1,55 @@
+.jpg{
+    background-image: url("rr.jpg");
+    height: 1250px; 
+ }
+
+.tootbar{
+    background-color:#000000;
+    color: #5F9EA0;
+    opacity: .8;
+ }
+
+.menu-list{
+    float: left;
+    font-size: 20px;
+    margin-left: 40px;
+    font-weight: bold;
+    font-family: Kanit;
+ }
+
+.databox{
+    position: absolute;
+    width: 60%;
+    height: 1250px;
+    left: 20%;
+    right: 20%;
+    float: left;
+    background: #000000;
+    opacity: .8;
+    color: #5F9EA0;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    color : #FFFFFF;
+  }
+
+  .example-container > * {
+      margin-top: 3%;
+      margin-left: 20%;
+      margin-right: 20%;
+  }
+  .title-name{
+      text-align : center;
+      color: #5F9EA0;
+      font-size: 30px;
+  }
+  .prefix{
+      width: 20%;
+  }
+  button{
+        background : #5F9EA0;
+        color : #FFFFFF;
+        font-size: 20px;
+    }
