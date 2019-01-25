@@ -24,3 +24,7 @@
 .head{
     max-width: 250px;
 }
+.load{
+    border: 2px solid red;
+    width: 88px;
+}
