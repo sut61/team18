@@ -13,5 +13,6 @@ import sut.se.g18.Entity.PaymentStatusEntity;
 @CrossOrigin(origins = "http://localhost:4200")
 public interface ContractRepository extends JpaRepository<ContractEntity, Long> {
     Collection<ContractEntity> findByCustomerAndStatus(CustomerEntity Customer, PaymentStatusEntity Status);
-                ContractEntity findBycontractId(Long contractId);
+
+    ContractEntity findBycontractId(Long contractId);
 }

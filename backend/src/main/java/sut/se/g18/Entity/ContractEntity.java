@@ -1,5 +1,7 @@
 package sut.se.g18.Entity;
 import javax.persistence.*;
+import javax.validation.constraints.*;
+
 import lombok.*;
 
 import java.util.Date;
@@ -16,9 +18,21 @@ public class ContractEntity {
     @SequenceGenerator(name="contract_seq",sequenceName="contract_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="contract_seq")
     @Column(name="contractId",unique = true, nullable = false)
-    private @NonNull Long contractId;
-    private  @NonNull Date dateStart;
-    private @NonNull int cost;
+    @NotNull
+    private Long contractId;
+    @NotNull
+    @Future
+    private Date dateStart;
+    @NotNull
+    @Min(value = 300)
+    @Max(value = 99999)
+    @Positive
+    private int cost;
+    //เพิ่ม datail เพื่อเช็ค Null   Size   Pattern
+    @NotNull
+    @Size(min = 7,max = 30)
+    @Pattern(regexp = "^ทำสัญญา([ก-ู]|[เ-์])+")
+    private String detail;
 
     //Many To One with Promotion
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionEntity.class)
