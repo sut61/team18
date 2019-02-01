@@ -131,11 +131,12 @@ public class ContractController {
         return contractRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/contract/{companySelect}/{maidSelect}/{contractTypeSelect}/{promotionSelect}/{dateStartInput}/{cost}")
+    @PostMapping("/contract/{companySelect}/{maidSelect}/{contractTypeSelect}/{promotionSelect}/{dateStartInput}/" +
+            "{cost}/{detail}")
     public ContractEntity newContract(@RequestBody ContractEntity contractEntity, @PathVariable String companySelect,
                                       @PathVariable String maidSelect, @PathVariable String contractTypeSelect,
                                       @PathVariable String promotionSelect, @PathVariable Date dateStartInput,
-                                      @PathVariable int cost) {
+                                      @PathVariable int cost, @PathVariable String detail) {
 
         CompanyEntity company = companyRepository.findBycompanyName(companySelect);
 
@@ -160,6 +161,7 @@ public class ContractController {
         newContract.setDateStart(dateStartInput);
         newContract.setStatus(status);
         newContract.setCost(cost);
+        newContract.setDetail(detail);
 
         return contractRepository.save(newContract);
     }

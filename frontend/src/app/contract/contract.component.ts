@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AdminService } from '../service/admin.service';
-import { HttpClient } from '@angular/common/http';
-import { SelectionModel } from '@angular/cdk/collections';
-import { matDialogAnimations } from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import {AdminService} from '../service/admin.service';
+import {HttpClient} from '@angular/common/http';
+import {SelectionModel} from '@angular/cdk/collections';
+import {matDialogAnimations} from '@angular/material';
 
 export interface ContractElement {
 }
@@ -26,13 +26,15 @@ export class ContractComponent implements OnInit {
     contractTypeSelect: null,
     promotionSelect: null,
     dateStartInput: null,
-    cost: null
+    cost: null,
+    detail: null
   };
 
   private id: number;
   private sub: any;
 
-  constructor(private adminService: AdminService, private httpClient: HttpClient) { }
+  constructor(private adminService: AdminService, private httpClient: HttpClient) {
+  }
 
   ngOnInit() {
     this.adminService.getCompany().subscribe(data => {
@@ -42,7 +44,7 @@ export class ContractComponent implements OnInit {
     this.adminService.getContractType().subscribe(data => {
       this.contractTypes = data;
       console.log(this.contractTypes);
-   });
+    });
     this.adminService.getAllMaid().subscribe(data => {
       this.maids = data;
       console.log(this.maids);
@@ -81,6 +83,7 @@ export class ContractComponent implements OnInit {
       console.log(this.promotions);
     });
   }
+
   dataChanged() {
     if (this.contract.companySelect) {
       this.maidData();
@@ -91,29 +94,31 @@ export class ContractComponent implements OnInit {
       });
     }
   }
+
   save() {
     if (this.contract.companySelect == null) {
-      alert("กรุณาเลือกบริษัท");
-    }
-    else if (this.contract.maidSelect == null) {
-      alert("กรุณาเลือกแม่บ้าน");
-    }
-    else if (this.contract.contractTypeSelect == null) {
-      alert("กรุณาเลือกประเภทสัญญา");
-    }
-    else if (this.contract.dateStartInput == null) {
-      alert("กรุณาเลือกวันเริ่มสัญญา");
-    }
-    else {
-      if (this.contract.promotionSelect == '' || this.contract.promotionSelect == null) {
-        this.contract.promotionSelect = "No Promotion";
+      alert('กรุณาเลือกบริษัท');
+    } else if (this.contract.maidSelect == null) {
+      alert('กรุณาเลือกแม่บ้าน');
+    } else if (this.contract.contractTypeSelect == null) {
+      alert('กรุณาเลือกประเภทสัญญา');
+    } else if (this.contract.dateStartInput == null) {
+      alert('กรุณาเลือกวันเริ่มสัญญา');
+    } else if (this.contract.detail == null) {
+      alert('กรุณาเกรอกรายละเอียดสัญญา');
+    } else {
+      if (this.contract.promotionSelect === '' || this.contract.promotionSelect == null) {
+        this.contract.promotionSelect = 'No Promotion';
       }
       console.log(this.contract);
       this.save_func();
     }
   }
+
   save_func() {
-    this.httpClient.post('http://localhost:8080/contract/' + this.contract.companySelect + '/' + this.contract.maidSelect + '/' + this.contract.contractTypeSelect + '/' + this.contract.promotionSelect + '/' + this.contract.dateStartInput + '/' + this.contract.cost, this.contract)
+    this.httpClient.post('http://localhost:8080/contract/' + this.contract.companySelect + '/' + this.contract.maidSelect + '/' +
+      this.contract.contractTypeSelect + '/' + this.contract.promotionSelect + '/' + this.contract.dateStartInput + '/' +
+      this.contract.cost + '/' + this.contract.detail , this.contract)
       .subscribe(
         data => {
           console.log('PUT Request is successful', data);
@@ -126,6 +131,7 @@ export class ContractComponent implements OnInit {
         }
       );
   }
+
   reset_func() {
     this.adminService.getAllMaid().subscribe(data => {
       this.maids = data;
@@ -140,5 +146,7 @@ export class ContractComponent implements OnInit {
     this.contract.contractTypeSelect = null;
     this.contract.promotionSelect = null;
     this.contract.dateStartInput = null;
+    this.contract.cost = null;
+    this.contract.detail = null;
   }
 }
