@@ -35,7 +35,6 @@ body{
 }
 .list_menu li.active a{
     background-color: rgba(0, 191, 255, 0.7);
-    transition: all ease-in-out 0.45;
     border-radius: 8px;
     color:white;
 }

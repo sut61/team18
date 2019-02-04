@@ -1,0 +1,82 @@
+<div class="main_background">
+  <div class="header_content">
+    <h1 class="title">G18 MaidMaid</h1>
+    <ul class="list_menu">
+      <li class="active"><a routerLink="/learned" routerLinkActive="active">Insert Learn Course</a></li>
+      <li><a routerLink="/" routerLinkActive="active">View Learned Course</a></li>
+      <li><a routerLink="/" routerLinkActive="active">Log Out</a></li>
+    </ul>
+  </div>
+
+  <div class="main_content">
+    <br>
+    <div class="insert">
+      <br>
+      <br>
+      <h2 class="label">เลือกบริษัท</h2>
+      <mat-form-field class="select_item">
+        <mat-select placeholder="Company Name" [(ngModel)]="newLearn.companySelect" (ngModelChange)="dataChanged($event)"
+                    name="companyName">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let c of company" [value]="c.companyName">
+            {{c.companyName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">เลือกแม่บ้าน</h2>
+      <mat-form-field class="select_item">
+        <mat-select placeholder="Maid Name" [(ngModel)]="newLearn.maidSelect" name="maidName">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let m of maid" [value]="m.maidName">
+            {{m.maidName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">เลือกหลักสูตร</h2>
+      <mat-form-field class="select_item">
+        <mat-select placeholder="Course Title" [(ngModel)]="newLearn.courseSelect" name="courseTitle">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let c of course" [value]="c.courseTitle">
+            {{c.courseTitle}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">เลือกระดับทักษะ</h2>
+      <mat-form-field class="select_item">
+        <mat-select placeholder="Skill Rank" [(ngModel)]="newLearn.skillRankSelect" name="skillRank">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let s of skill" [value]="s.skillRank">
+            {{s.skillRank}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <br>
+      <h2 class="label">เลือกวันที่จบหลักสูตร</h2>
+      <mat-form-field class="calender">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newLearn.dateInput">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <br>
+      <h2 class="label">รายละเอียด</h2>
+      <mat-form-field class="select_item">
+        <input matInput placeholder="Detail (เริ่มด้วยคำว่า คอร์ส)" [(ngModel)]="newLearn.detailInput">
+      </mat-form-field>
+      <br>
+      <br>
+      <button mat-button class="add_button" (click)="save()"><b class="text_in_button">Add Learned Course</b></button>
+    </div>
+  </div>
+</div>
