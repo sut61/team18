@@ -24,9 +24,35 @@ public class DemoApplication {
 						   TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy,
 						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository,TypepaymentRepository typepaymentRepository, BankRepository bankRepository,
 						   CleaningEquipmentRepository cleaningEquipmentRepository,ElectricalEquipmentRepository electricalEquipmentRepository,
-						   PromotionTypeRepository promotionTypeRepository){
+						   PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
+						   CourseTypeRepository courseTypeRepository,CourseRepository courseRepository){
 		return args -> {
 
+			SkillEntity sk1 = new SkillEntity();
+			sk1.setSkillRank("Beginner");
+			skillRepository.save(sk1);
+			SkillEntity sk2 = new SkillEntity();
+			sk2.setSkillRank("Apprentice");
+			skillRepository.save(sk2);
+			SkillEntity sk3 = new SkillEntity();
+			sk3.setSkillRank("Professional");
+			skillRepository.save(sk3);
+			SkillEntity sk4 = new SkillEntity();
+			sk4.setSkillRank("Master");
+			skillRepository.save(sk4);
+			SkillEntity sk5 = new SkillEntity();
+			sk5.setSkillRank("Guru");
+			skillRepository.save(sk5);
+
+			CourseTypeEntity ct1 = new CourseTypeEntity();
+			ct1.setCourseType("ดูแลบ้าน");
+			courseTypeRepository.save(ct1);
+			CourseTypeEntity ct2 = new CourseTypeEntity();
+			ct2.setCourseType("งานในครัว");
+			courseTypeRepository.save(ct2);
+			CourseTypeEntity ct3 = new CourseTypeEntity();
+			ct3.setCourseType("ดูแลสวน");
+			courseTypeRepository.save(ct3);
 			//Insert Country_code
 			//NORTH AMERICA
 			CountryCodeEntity Alaska = new CountryCodeEntity("+1+907 (อะเเลสกา)");
@@ -263,6 +289,22 @@ public class DemoApplication {
 			CompanyEntity c4 = new CompanyEntity();
 			c4.setCompanyName("สวนรักษ์");
 			companyRepository.save(c4);
+
+			CourseEntity co1 = new CourseEntity();
+			CompanyEntity comp1 = companyRepository.findBycompanyName("พีกาซัส");
+			CourseTypeEntity ctype1 = courseTypeRepository.findByCourseType("งานในครัว");
+			co1.setCourseTitle("คอร์สฝึกสอนทำอาหารอีสาน");
+			co1.setCourseDetail("ทำลาบ ก้อย");
+			co1.setCompany(comp1);
+			co1.setCourseType(ctype1);
+			courseRepository.save(co1);
+			CourseEntity co2 = new CourseEntity();
+			CourseTypeEntity ctype2 = courseTypeRepository.findByCourseType("ดูแลสวน");
+			co2.setCourseTitle("คอร์สอบรมการตกแต่งกิ่งต้นบอนไซ");
+			co2.setCourseDetail("เรียนรู้การตัดแต่งกิ่งต้นบอนไซเบื้องต้น");
+			co2.setCompany(comp1);
+			co2.setCourseType(ctype2);
+			courseRepository.save(co2);
 
 			MaidRegisterEntity mm1 = new MaidRegisterEntity();
 			CompanyEntity com = companyRepository.findBycompanyName("พีกาซัส");
