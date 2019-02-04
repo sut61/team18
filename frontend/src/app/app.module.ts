@@ -38,6 +38,7 @@ import { SubmitComponent } from './submit/submit.component';
 import { TextComponent } from './text/text.component';
 import { LendService } from './service/lend.service';
 import { RegisterComponent } from './register/register.component';
+import { LearnedComponent } from './learned/learned.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { RegisterComponent } from './register/register.component';
     PaymentComponent,
     SubmitComponent,
     TextComponent,
-    RegisterComponent
+    RegisterComponent,
+    LearnedComponent
   ],
   imports: [
     BrowserModule,

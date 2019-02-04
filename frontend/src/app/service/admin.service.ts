@@ -37,4 +37,17 @@ export class AdminService {
     return this.http.get(this.API + '/contract');
   }
 
+  // FOR SPRINT #2
+  getAllSkillRank(): Observable<any> {
+    return this.http.get(this.API + '/skill');
+  }
+
+  getMaidInCompany(companySelect): Observable<any> {
+    return this.http.get(this.API + '/maidInCompany/' + companySelect);
+  }
+
+  getCourseInCompany(companySelect): Observable<any> {
+    return this.http.get(this.API + '/courseInCompany/' + companySelect);
+  }
+
 }
