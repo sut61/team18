@@ -19,7 +19,7 @@
         <input matInput placeholder="Username" [(ngModel)]="select.adminUsername" name="adminUsername">
       </div>
       <div class="password">
-        <input matInput [(ngModel)]="select.adminPassword" name="adminPassword" placeholder="Password" (click)="loadAdminData()">
+        <input matInput type="password" [(ngModel)]="select.adminPassword" name="adminPassword" placeholder="Password" (click)="loadAdminData()">
       </div>
       <div class="botton">
         <button mat-button (click)="login()">Login</button>
