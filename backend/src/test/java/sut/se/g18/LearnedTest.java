@@ -346,8 +346,8 @@ public class LearnedTest {
             e.printStackTrace();
         } catch (javax.persistence.PersistenceException e){
             System.out.println("===========In testDate============");
-            System.out.println(e);
             e.printStackTrace();
+            System.out.println(e);
         }
     }
 }

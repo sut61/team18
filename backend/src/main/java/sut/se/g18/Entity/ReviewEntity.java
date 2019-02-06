@@ -2,6 +2,9 @@ package sut.se.g18.Entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -18,7 +21,7 @@ public class ReviewEntity{
     private @NonNull Long reviewId;
     
     @Column(unique = true)
-    @NotNull 
+    @NotNull
     @Size(min = 3,max = 50)
     @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9])+")
     private  String review;
