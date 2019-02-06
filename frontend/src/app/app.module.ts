@@ -39,6 +39,8 @@ import { TextComponent } from './text/text.component';
 import { LendService } from './service/lend.service';
 import { RegisterComponent } from './register/register.component';
 import { LearnedComponent } from './learned/learned.component';
+import { CompanyComponent } from './company/company.component';
+import { CompanyService } from './company.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,8 @@ import { LearnedComponent } from './learned/learned.component';
     SubmitComponent,
     TextComponent,
     RegisterComponent,
-    LearnedComponent
+    LearnedComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,7 @@ import { LearnedComponent } from './learned/learned.component';
     MatFormFieldModule,
     MatDialogModule
   ],
-  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService],
+  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService,CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
