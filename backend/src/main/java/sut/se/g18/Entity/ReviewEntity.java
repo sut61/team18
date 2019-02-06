@@ -21,7 +21,7 @@ public class ReviewEntity{
     @NotNull 
     @Size(min = 3,max = 50)
     @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9])+")
-
+    private  String review;
     //---คะแนน----
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "scoreId")
