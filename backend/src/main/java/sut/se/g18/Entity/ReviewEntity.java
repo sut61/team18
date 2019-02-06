@@ -16,7 +16,11 @@ public class ReviewEntity{
     @SequenceGenerator(name="reviewId_seq",sequenceName="reviewId_seq")     
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="reviewId_seq")
     private @NonNull Long reviewId;
-    private @NonNull String review;
+    
+    @Column(unique = true)
+    @NotNull 
+    @Size(min = 3,max = 50)
+    @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9])+")
 
     //---คะแนน----
     @OneToOne(fetch = FetchType.EAGER)
