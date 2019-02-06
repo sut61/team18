@@ -299,20 +299,24 @@ public class DemoApplication {
 			customerRepository.save(cus);
 
 		    CompanyEntity c1 = new CompanyEntity();
-		    c1.setCompanyName("พีกาซัส");
+		    c1.setCompanyName("บริษัทพีกาซัส");
+		    c1.setCompanyAddress("aa");
 		    companyRepository.save(c1);
 			CompanyEntity c2 = new CompanyEntity();
-			c2.setCompanyName("โอซาก้า");
+			c2.setCompanyName("บริษัทโอซาก้า");
+			c2.setCompanyAddress("bb");
 			companyRepository.save(c2);
 			CompanyEntity c3 = new CompanyEntity();
-			c3.setCompanyName("กินซ่า");
+			c3.setCompanyName("บริษัทกินซ่า");
+			c3.setCompanyAddress("cc");
 			companyRepository.save(c3);
 			CompanyEntity c4 = new CompanyEntity();
-			c4.setCompanyName("สวนรักษ์");
+			c4.setCompanyName("บริษัทสวนรักษ์");
+			c4.setCompanyAddress("dd");
 			companyRepository.save(c4);
 
 			CourseEntity co1 = new CourseEntity();
-			CompanyEntity comp1 = companyRepository.findBycompanyName("พีกาซัส");
+			CompanyEntity comp1 = companyRepository.findBycompanyName("บริษัทพีกาซัส");
 			CourseTypeEntity ctype1 = courseTypeRepository.findByCourseType("งานในครัว");
 			co1.setCourseTitle("คอร์สฝึกสอนทำอาหารอีสาน");
 			co1.setCourseDetail("ทำลาบ ก้อย");
@@ -328,10 +332,10 @@ public class DemoApplication {
 			courseRepository.save(co2);
 
 			MaidRegisterEntity mm1 = new MaidRegisterEntity();
-			CompanyEntity com = companyRepository.findBycompanyName("พีกาซัส");
-			CompanyEntity com2 = companyRepository.findBycompanyName("โอซาก้า");
-			CompanyEntity com3 = companyRepository.findBycompanyName("กินซ่า");
-			CompanyEntity com4 = companyRepository.findBycompanyName("สวนรักษ์");
+			CompanyEntity com = companyRepository.findBycompanyName("บริษัทพีกาซัส");
+			CompanyEntity com2 = companyRepository.findBycompanyName("บริษัทโอซาก้า");
+			CompanyEntity com3 = companyRepository.findBycompanyName("บริษัทกินซ่า");
+			CompanyEntity com4 = companyRepository.findBycompanyName("บริษัทสวนรักษ์");
 			mm1.setCompanyForMaid(com);
 			mm1.setMaidName("Ping Kasinan");
 			mm1.setMaidPhone("0935395533");
@@ -392,10 +396,10 @@ public class DemoApplication {
 
 		    PromotionEntity p1 = new PromotionEntity();
 		    p1.setTitle("Discount");
-		    CompanyEntity company = companyRepository.findBycompanyName("พีกาซัส");
+		    CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
 		    p1.setCompanyEntity(company);
 			promotionRepository.save(p1);
-			
+
 			// Create CleaningEquipment
 			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่","ไม่กวาดทางมะพร้ว พรั่วตักขยะ ไม้กวาดหยักไย่ ผ้าเช็ดพื้น").forEach(cleaning -> {
 				CleaningEquipmentEntity c = new CleaningEquipmentEntity(cleaning);
