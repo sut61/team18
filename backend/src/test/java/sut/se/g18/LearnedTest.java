@@ -50,6 +50,8 @@ public class LearnedTest {
 
     private CourseEntity course;
 
+    private CourseEntity course2;
+
     private SkillEntity rank;
 
     private SimpleDateFormat formatter5 = new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss");
@@ -61,6 +63,7 @@ public class LearnedTest {
         company1 = companyRepository.findBycompanyName("พีกาซัส");
         maid = maidRegisterRepository.findBymaidName("Ping Kasinan");
         course = courseRepository.findByCourseTitle("คอร์สอบรมการตกแต่งกิ่งต้นบอนไซ");
+        course2 = courseRepository.findByCourseTitle("คอร์สฝึกสอนทำอาหารอีสาน");
         rank = skillRepository.findBySkillRank("Guru");
     }
 
@@ -81,10 +84,14 @@ public class LearnedTest {
 
             //fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In tsetSuccess============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 0);
         } catch (ParseException e) {
+            System.out.println("===========In tsetSuccess============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
@@ -107,10 +114,14 @@ public class LearnedTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testNullDetail============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         } catch (ParseException e) {
+            System.out.println("===========In testNullDetail============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
@@ -133,10 +144,14 @@ public class LearnedTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testMinSizeDetail============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 2); //ผิด Pattern ด้วย
         } catch (ParseException e) {
+            System.out.println("===========In testMinSizeDetail============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
@@ -160,10 +175,14 @@ public class LearnedTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testMaxSizeDetail============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         } catch (ParseException e) {
+            System.out.println("===========In testMaxSizeDetail============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
@@ -186,10 +205,14 @@ public class LearnedTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testInvalidPatternDetail============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         } catch (ParseException e) {
+            System.out.println("===========In testInvalidPatternDetail============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
@@ -212,10 +235,14 @@ public class LearnedTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testInvalidDate============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         } catch (ParseException e) {
+            System.out.println("===========In testInvalidDate============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
@@ -234,6 +261,8 @@ public class LearnedTest {
             L.setDateLearned(formatter5.parse("Fri, Oct 18 2019 00:00:00"));
 
         } catch (ParseException e) {
+            System.out.println("===========In testReInsertObject============");
+            System.out.println(e);
             e.printStackTrace();
         }
         entityManager.persist(L);
@@ -256,15 +285,19 @@ public class LearnedTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testReInsertObject============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         } catch (ParseException e) {
+            System.out.println("===========In testReInsertObject============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
 
-    // TEST RE INSERT DATE
+    // TEST LEARN 2 OR MORE COURSES IN 1 DAY
     @Test
     public void testDate() {
         LearnedEntity L = new LearnedEntity();
@@ -278,6 +311,8 @@ public class LearnedTest {
             L.setDateLearned(formatter5.parse("Fri, Oct 18 2019 00:00:00"));
 
         } catch (ParseException e) {
+            System.out.println("===========In testDate============");
+            System.out.println(e);
             e.printStackTrace();
         }
         entityManager.persist(L);
@@ -287,9 +322,9 @@ public class LearnedTest {
         L2.setDetail("คอร์สเรียนตัดหญ้า");
         L2.setCompany(company1);
         L2.setMaid(maid);
-        L2.setCourse(course);
+        L2.setCourse(course2);
         L2.setSkill(rank);
-        if(learnedRepository.findBycourseAndMaid(course, maid) == null){
+        if(learnedRepository.findBycourseAndMaid(course2, maid) == null){
             L2.setCheckObject(true);
         }
 
@@ -300,12 +335,18 @@ public class LearnedTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testDate============");
+            System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         } catch (ParseException e) {
+            System.out.println("===========In testDate============");
+            System.out.println(e);
             e.printStackTrace();
         } catch (javax.persistence.PersistenceException e){
+            System.out.println("===========In testDate============");
+            System.out.println(e);
             e.printStackTrace();
         }
     }
