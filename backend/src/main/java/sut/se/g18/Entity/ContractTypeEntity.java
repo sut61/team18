@@ -3,6 +3,7 @@ package sut.se.g18.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -17,22 +18,10 @@ public class ContractTypeEntity {
     @SequenceGenerator(name="contractType_seq",sequenceName="contractType_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="contractType_seq")
     @Column(name="contractTypeId",unique = true, nullable = false)
-    private @NonNull Long contractTypeId;
-    private  @NonNull String contractType;
+    @NotNull
+    private Long contractTypeId;
+    @NotNull
+    @Column(unique = true)
+    private String contractType;
 
-    public Long getContractTypeId() {
-        return contractTypeId;
-    }
-
-    public void setContractTypeId(Long contractTypeId) {
-        this.contractTypeId = contractTypeId;
-    }
-
-    public String getContractType() {
-        return contractType;
-    }
-
-    public void setContractType(String contractType) {
-        this.contractType = contractType;
-    }
 }

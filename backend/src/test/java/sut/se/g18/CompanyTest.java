@@ -46,11 +46,6 @@ public class CompanyTest {
     }
 
     @Test
-    public void contextLoads() {
-        System.out.println("Test Successful");
-    }
-
-    @Test
     public void testSuccess() {
         CompanyEntity c = new CompanyEntity();
         c.setCompanyName("บริษัทบ้านสะอาดจำกัดมหาชน");

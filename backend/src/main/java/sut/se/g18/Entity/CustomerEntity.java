@@ -1,6 +1,10 @@
 package sut.se.g18.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Entity
@@ -16,9 +20,12 @@ public class CustomerEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_seq")
     @Column(name="customerId",unique = true, nullable = false)
     private @NonNull Long customerId;
-    private @NonNull String customerName;
+    @NotNull
+    @Size(min = 2,max = 20)
+    private  String customerName;
     private  String customeraddress;
     private  String customerEmail;
+    @Pattern(regexp = "^0([0-9])+")
     private  String customerphone;
     private  String customerpass;
     private  String customerper;
