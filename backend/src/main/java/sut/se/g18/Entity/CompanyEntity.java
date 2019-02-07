@@ -29,6 +29,7 @@ public class CompanyEntity {
     @NotNull
     @Column(unique = true)
     private  String companyAddress;
+    private String companyPhone;
 
     @ManyToOne(fetch=FetchType.EAGER, targetEntity = CompanyTypeEntity.class)
     private CompanyTypeEntity companyTypeEntity;
@@ -59,6 +60,15 @@ public class CompanyEntity {
     public void setCompanyAddress(String companyAddress) {
         this.companyAddress = companyAddress;
     }
+
+    public String getCompanyPhone() {
+        return companyPhone;
+    }
+
+    public void setCompanyPhone(String companyPhone) {
+        this.companyPhone = companyPhone;
+    }
+
 
     public CompanyTypeEntity getCompanyTypeEntity() {
         return companyTypeEntity;

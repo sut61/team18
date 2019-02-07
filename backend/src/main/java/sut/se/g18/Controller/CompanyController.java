@@ -47,14 +47,14 @@ public class CompanyController {
         return provincRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/company/{companyName}/{companyType}/{companyAddress}/{provincName}")
+    @PostMapping("/company/{companyName}/{companyType}/{companyAddress}/{provincName}/{companyPhone}")
     public CompanyEntity company(@RequestBody CompanyEntity comp, @PathVariable String companyName, @PathVariable String companyType,
-                                 @PathVariable String companyAddress, @PathVariable String provincName) {
+                                 @PathVariable String companyAddress, @PathVariable String provincName, @PathVariable String companyPhone) {
         System.out.println(companyName);
         System.out.println(companyType);
         System.out.println(companyAddress);
         System.out.println(provincName);
-
+        System.out.println(companyPhone);
         CompanyEntity companyEntity = new CompanyEntity();
         CompanyTypeEntity companytype = companyTypeRepository.findBycompanyType(companyType);
         ProvinceEntity provinc = provincRepository.findByprovinceName(provincName);
@@ -64,7 +64,7 @@ public class CompanyController {
         companyEntity.setCompanyTypeEntity(companytype);
         companyEntity.setCompanyAddress(companyAddress);
         companyEntity.setProvinecEntity(provinc);
-
+        companyEntity.setCompanyPhone(companyPhone);
 
 
 
