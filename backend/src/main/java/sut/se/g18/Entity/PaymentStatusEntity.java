@@ -3,6 +3,7 @@ package sut.se.g18.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -17,8 +18,10 @@ public class PaymentStatusEntity {
     @SequenceGenerator(name="paymentStatus_seq",sequenceName="paymentStatus_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="paymentStatus_seq")
     @Column(name="paymentStatusId",unique = true, nullable = false)
-    private @NonNull Long paymentStatusId;
-    private @NonNull String paymentStatus;
+    @NotNull private Long paymentStatusId;
+    @NotNull
+    @Column(unique = true)
+    private String paymentStatus;
 
     public Long getPaymentStatusId() {
         return paymentStatusId;
