@@ -26,8 +26,7 @@ public class DemoApplication {
 						   CleaningEquipmentRepository cleaningEquipmentRepository,ElectricalEquipmentRepository electricalEquipmentRepository,
 						   PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
 						   CourseTypeRepository courseTypeRepository,CourseRepository courseRepository,
-						   CompanyTypeRepository companyTypeRepository,
-						   ProvinceRepository provinceRepository){
+						   CompanyTypeRepository companyTypeRepository,ProvinceRepository provinceRepository){
 		return args -> {
 
 			//Insert Company Type
@@ -301,18 +300,22 @@ public class DemoApplication {
 		    CompanyEntity c1 = new CompanyEntity();
 		    c1.setCompanyName("บริษัทพีกาซัส");
 		    c1.setCompanyAddress("aa");
+		    c1.setCompanyPhone("011111111");
 		    companyRepository.save(c1);
 			CompanyEntity c2 = new CompanyEntity();
 			c2.setCompanyName("บริษัทโอซาก้า");
 			c2.setCompanyAddress("bb");
+			c2.setCompanyPhone("022222222");
 			companyRepository.save(c2);
 			CompanyEntity c3 = new CompanyEntity();
 			c3.setCompanyName("บริษัทกินซ่า");
 			c3.setCompanyAddress("cc");
+			c3.setCompanyPhone("033333333");
 			companyRepository.save(c3);
 			CompanyEntity c4 = new CompanyEntity();
 			c4.setCompanyName("บริษัทสวนรักษ์");
 			c4.setCompanyAddress("dd");
+			c4.setCompanyPhone("044444444");
 			companyRepository.save(c4);
 
 			CourseEntity co1 = new CourseEntity();
