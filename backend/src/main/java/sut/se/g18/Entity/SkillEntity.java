@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Data
@@ -20,5 +21,7 @@ public class SkillEntity {
     @NotNull
     private Long skillId;
     @NotNull
+    @Column(unique = true)
+    @Pattern(regexp = "([ก-ู]|[เ-์]| |[a-z]|[A-Z])+")
     private String skillRank;
 }
