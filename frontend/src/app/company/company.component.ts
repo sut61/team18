@@ -14,6 +14,7 @@ export class CompanyComponent implements OnInit {
   views: any = {
     name: null,
     type: null,
+    phone: null,
     address: null,
     province: null
   }
@@ -36,6 +37,9 @@ export class CompanyComponent implements OnInit {
     else if (this.views.type == null) {
       alert('กรุณาเลือกประเภทบริษัท');
     }
+    else if (this.views.phone == null || this.views.phone == '') {
+      alert('กรุณาระบุที่เบอร์โทรศัพท์');
+    }
     else if (this.views.address == null || this.views.address == '') {
       alert('กรุณาระบุที่อยู่บริษัท');
     }
@@ -44,9 +48,10 @@ export class CompanyComponent implements OnInit {
     } else {
       console.log(this.views.name);
       console.log(this.views.type);
+      console.log(this.views.phone);
       console.log(this.views.address);
       console.log(this.views.province);
-      this.httpClient.post('http://localhost:8080/company/' + this.views.name + '/' + this.views.type + '/' + this.views.address + '/' + '/' + this.views.province, this.views)
+      this.httpClient.post('http://localhost:8080/company/' + this.views.name + '/' + this.views.type + '/' + this.views.phone + '/' + this.views.address + '/' + this.views.province, this.views)
         .subscribe(
           data => {
             console.log('PUT Request is successful', data);

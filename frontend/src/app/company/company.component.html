@@ -14,7 +14,7 @@
   <div>
     <div>
       <div class="panelmaster">
-        <br><br>
+        <br>
         <div class="insert">
           <h1 class="mid">COMPANY</h1>
           <form id="formtext">
@@ -32,6 +32,11 @@
                 </mat-select>
               </mat-form-field>
             <br><br><br><br>
+            <label>เบอร์โทรศัพท์ :</label>
+            <mat-form-field id="input">
+                <textarea matInput placeholder="ระบุเบอร์โทรศัพท์" [(ngModel)]="views.phone" name = "companyPhone"></textarea>
+            </mat-form-field>
+            <br><br><br><br><br>
             <label>ที่อยู่บริษัท :</label>
             <mat-form-field id="input">
                 <textarea matInput placeholder="ระบุที่อยู่" [(ngModel)]="views.address" name = "companyAddress"></textarea>
@@ -45,7 +50,7 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-            <br><br><br><br><br>
+            <br><br><br><br>
             <div class="button-row">
                 <button class="bottomgreen" mat-raised-button color="primary" (click) = "save_func()">บันทึก</button>
               </div>
