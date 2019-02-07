@@ -53,6 +53,11 @@ public class CustomerTest {
     public void testSuccess() {
         CustomerEntity c = new CustomerEntity();
         c.setCustomerName("Mine mine");
+        c.setCustomerphone("0890000000");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
         try {
 
             entityManager.persist(c);
@@ -70,7 +75,11 @@ public class CustomerTest {
     public void testNameNull() {
         CustomerEntity c = new CustomerEntity();
         c.setCustomerName(null);
-        c.setCustomerphone("0890566951");
+        c.setCustomerphone("0890000000");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
         try {
 
             entityManager.persist(c);
@@ -129,6 +138,111 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+    @Test
+    public void testAddressNull() {
+        CustomerEntity c = new CustomerEntity();
+        c.setCustomerName("Mine Mine");
+        c.setCustomerphone("0890000000");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress(null);
+        c.setCustomerpass("111111");
+        try {
+
+            entityManager.persist(c);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+    @Test
+    public void testEmailNull() {
+        CustomerEntity c = new CustomerEntity();
+        c.setCustomerName("Mine Mine");
+        c.setCustomerphone("0890000000");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail(null);
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
+        try {
+
+            entityManager.persist(c);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+    @Test
+    public void testPhoneNull() {
+        CustomerEntity c = new CustomerEntity();
+        c.setCustomerName("Mine Mine");
+        c.setCustomerphone(null);
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
+        try {
+
+            entityManager.persist(c);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+    @Test
+    public void testPassNull() {
+        CustomerEntity c = new CustomerEntity();
+        c.setCustomerName("Mine Mine");
+        c.setCustomerphone("0890000000");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass(null);
+        try {
+
+            entityManager.persist(c);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+    @Test
+    public void testPerNull() {
+        CustomerEntity c = new CustomerEntity();
+        c.setCustomerName("Mine Mine");
+        c.setCustomerphone("0890000000");
+        c.setCustomerper(null);
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
+        try {
+
+            entityManager.persist(c);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);

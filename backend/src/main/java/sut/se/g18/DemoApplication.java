@@ -292,9 +292,12 @@ public class DemoApplication {
 			contractTypeRepository.save(type5);
 
 			CustomerEntity cus = new CustomerEntity();
-			cus.setCustomerName("Pitchayut CheeseJa");
-			cus.setCustomerEmail("sut@gg.com");
-			cus.setCustomerpass("1234");
+			cus.setCustomerName("Mine Mine");
+			cus.setCustomerphone("0890000000");
+			cus.setCustomerper("1430200231078");
+			cus.setCustomerEmail("mine@sut.com");
+			cus.setCustomeraddress("222 หมู่ 8 มทส.");
+			cus.setCustomerpass("111111");
 			customerRepository.save(cus);
 
 		    CompanyEntity c1 = new CompanyEntity();
