@@ -19,15 +19,31 @@ public class CustomerEntity {
     @SequenceGenerator(name="customer_seq",sequenceName="customer_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_seq")
     @Column(name="customerId",unique = true, nullable = false)
+<<<<<<< HEAD
     private @NonNull Long customerId;
     @NotNull
     @Size(min = 2,max = 20)
     private  String customerName;
+=======
+    @NotNull
+    private  Long customerId;
+    @NotNull
+    @Size(min = 2,max = 20)
+    private  String customerName;
+    @NotNull
+>>>>>>> mine
     private  String customeraddress;
+    @NotNull
     private  String customerEmail;
+<<<<<<< HEAD
+=======
+    @NotNull
+>>>>>>> mine
     @Pattern(regexp = "^0([0-9])+")
     private  String customerphone;
+    @NotNull
     private  String customerpass;
+    @NotNull
     private  String customerper;
 
     @ManyToOne(fetch=FetchType.EAGER, targetEntity = CountryCodeEntity.class)

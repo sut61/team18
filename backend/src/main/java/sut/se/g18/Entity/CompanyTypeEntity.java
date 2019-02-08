@@ -3,6 +3,7 @@ package sut.se.g18.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -16,8 +17,11 @@ public class CompanyTypeEntity {
     @SequenceGenerator(name="companyType_seq",sequenceName="companyType_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="companyType_seq")
     @Column(name="companyType_Id",unique = true, nullable = false)
-    private@NonNull Long companyTypeId;
-    private @NonNull String companyType;
+    @NotNull
+    private Long companyTypeId;
+    @NotNull
+    @Column(unique = true)
+    private  String companyType;
 
 
     public CompanyTypeEntity() {

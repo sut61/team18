@@ -3,6 +3,7 @@ package sut.se.g18.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -18,8 +19,11 @@ public class ProvinceEntity {
     @SequenceGenerator(name="provinces_seq",sequenceName="provinces_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="provinces_seq")
     @Column(name="provincesId",unique = true, nullable = false)
+    @NotNull
     private Long provinceId;
-    private @NonNull String provinceName;
+    @NotNull
+    @Column(unique = true)
+    private  String provinceName;
 
     public Long getProvinceId() {
         return provinceId;
