@@ -292,12 +292,18 @@ public class DemoApplication {
 			contractTypeRepository.save(type5);
 
 			CustomerEntity cus = new CustomerEntity();
-			cus.setCustomerName("Mine Mine");
+			cus.setCustomerName("Pitchayut CheeseJa");
 			cus.setCustomerphone("0890000000");
 			cus.setCustomerper("1430200231078");
 			cus.setCustomerEmail("mine@sut.com");
 			cus.setCustomeraddress("222 หมู่ 8 มทส.");
 			cus.setCustomerpass("111111");
+			SexEntity sex = sexRepository.findBycustomersex("ชาย");
+			cus.setSexEntity(sex);
+			TitleNameEntity title = titleNameRepository.findBytitlenameType("นาย");
+			cus.setTitle(title);
+			CountryCodeEntity code = countryCodeRepository.findBycountrycode("+679 (ฟีจี)");
+			cus.setCountry(code);
 			customerRepository.save(cus);
 
 		    CompanyEntity c1 = new CompanyEntity();
@@ -375,24 +381,28 @@ public class DemoApplication {
 			MaidStatusEntity statusMaid = maidStatusRepository.findBystatus("จอง");
 			m1.setStatus(statusMaid);
 			maidSelectRepository.save(m1);
+
 			MaidSelectEntity m3 = new MaidSelectEntity();
 			m3.setCustomer(customer);
 			MaidRegisterEntity maid2 = maidRegisterRepository.findBymaidName("Ball Donlawat");
 			m3.setMaid(maid2);
 			m3.setStatus(statusMaid);
 			maidSelectRepository.save(m3);
+
 			MaidSelectEntity m2 = new MaidSelectEntity();
 			m2.setCustomer(customer);
 			MaidRegisterEntity maid3 = maidRegisterRepository.findBymaidName("Yongyut Srisuban");
 			m2.setMaid(maid3);
 			m2.setStatus(statusMaid);
 			maidSelectRepository.save(m2);
+
 			MaidSelectEntity m4 = new MaidSelectEntity();
 			m4.setCustomer(customer);
 			MaidRegisterEntity maid4 = maidRegisterRepository.findBymaidName("Nanthika Poonpin");
 			m4.setMaid(maid4);
 			m4.setStatus(statusMaid);
 			maidSelectRepository.save(m4);
+
 			MaidSelectEntity m5 = new MaidSelectEntity();
 			m5.setCustomer(customer);
 			MaidRegisterEntity maid5 = maidRegisterRepository.findBymaidName("Ploy Sumitra");

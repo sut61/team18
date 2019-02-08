@@ -30,7 +30,7 @@ public class CompanyEntity {
     @Column(unique = true)
     private  String companyAddress;
     @NotNull
-    @Pattern(regexp = "^0(0-9)+")
+    @Pattern(regexp = "^0([0-9])+")
     @Size(min = 9,max = 9)
     private String companyPhone;
 
