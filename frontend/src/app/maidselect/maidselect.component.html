@@ -1,0 +1,57 @@
+<div class="jpg">
+
+  <div class = " databox ">
+    <div class="example-container">
+      <h2 class="title-name">ระบบเลือกแม่บ้าน</h2>
+
+      <mat-form-field class="emailInput" >
+        <mat-placeholder class="placeholder">E-MAIL</mat-placeholder>
+        <input matInput [(ngModel)]="views.emailInput">
+      </mat-form-field>
+      
+      <h2 class="title-company">ค้นหาด้วยบริษัท</h2>
+      <mat-form-field class="prefix">
+        <mat-select placeholder="เลือกบริษัท" [(ngModel)]="views.companySelect" name = "companyName">
+          <mat-option *ngFor="let companyName of companys" [value]="companyName.companyName">
+            {{companyName.companyName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="prefix">
+        <mat-select placeholder="เลือกฉันเถอะนะคนดี" [(ngModel)]="views.maidselect" name = "maidName">
+          <mat-option *ngFor="let maidName of maids" [value]="maidName.maidName">
+            {{maidName.maidName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h2 class="work">หาจากคุณสมบัติที่ต้องการ</h2>
+      <mat-form-field class="prefix">
+        <mat-select placeholder="ลักษณะงานที่ต้องการทำ " [(ngModel)]="views.typeworkingSelect" name = "typeworking">
+          <mat-option *ngFor="let typeworking of typeworking" [value]="typeworking.typeworking">
+            {{typeworking.typeworking}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="prefix">
+        <mat-select placeholder="ระยะเวลาที่ต้องการทำงาน" [(ngModel)]="views.typeworkingDateSelect" name = "typeworkingDate">
+          <mat-option *ngFor="let typeworkingDate of workingDate" [value]="typeworkingDate.typeworkingDate">
+            {{typeworkingDate.typeworkingDate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h2 class="work">เลือกสถานะ</h2>
+      <mat-form-field class="prefix">
+        <mat-select placeholder="เลือกสถานะ" [(ngModel)]="views.statusSelect" name = "status">
+          <mat-option *ngFor="let status of statusMaid" [value]="status.status">
+            {{status.status}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <button mat-button (click)="save_func()" >บันทึกการเลือกแม่บ้าน</button>
+      <button mat-button (click)="Canceled()">ยกเลิกการเลือก</button>
+
+
+    </div>
+  </div>
+</div>

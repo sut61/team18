@@ -16,6 +16,8 @@ import { TextComponent } from './text/text.component';
 import { RegisterComponent } from './register/register.component';
 import { LearnedComponent } from './learned/learned.component';
 import { CompanyComponent } from './company/company.component';
+import { MaidselectComponent } from './maidselect/maidselect.component';
+
 const routes: Routes = [
   {path: '' , component: LoginAddminComponent},
   {path: 'contract' , component: ContractComponent},
@@ -32,7 +34,8 @@ const routes: Routes = [
   {path: 'text' , component: TextComponent},
   {path: 'register' , component: RegisterComponent},
   {path: 'learned' , component: LearnedComponent},
-  {path: 'company' , component: CompanyComponent}
+  {path: 'company' , component: CompanyComponent},
+  {path: 'select' , component: MaidselectComponent}
 ];
 
 @NgModule({

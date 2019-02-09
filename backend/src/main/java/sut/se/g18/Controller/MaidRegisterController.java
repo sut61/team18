@@ -25,14 +25,20 @@ public class MaidRegisterController {
     private TypeworkingRepository typeworkingRepository;
     @Autowired
     private WorkingDateRepositoy workingDateRepositoy;
+    @Autowired
+    private CompanyRepository companyRepository;
+    @Autowired
+    private WelfareAndSalaryRepository welfareAndSalaryRepository;
 
     public MaidRegisterController(MaidRegisterRepository maidRegisterRepository,
             TitleNameRepository titleNameRepository, TypeworkingRepository typeworkingRepository,
-            WorkingDateRepositoy workingDateRepositoy) {
+            WorkingDateRepositoy workingDateRepositoy,CompanyRepository companyRepository,WelfareAndSalaryRepository welfareAndSalaryRepository) {
         this.maidRegisterRepository = maidRegisterRepository;
         this.titleNameRepository = titleNameRepository;
         this.typeworkingRepository = typeworkingRepository;
         this.workingDateRepositoy = workingDateRepositoy;
+        this.companyRepository = companyRepository;
+        this.welfareAndSalaryRepository = welfareAndSalaryRepository;
     }
 
     @GetMapping(path = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,22 +46,13 @@ public class MaidRegisterController {
         return maidRegisterRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @GetMapping(path = "/register/{adminUsername}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public MaidRegisterEntity getData(@PathVariable String adminUsername) {
-        return maidRegisterRepository.findBymaidEmail(adminUsername);
-    }
-
+   
     /* ======================================================= */
     @GetMapping(path = "/title", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<TitleNameEntity> TitleName() {
         return titleNameRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @GetMapping("/title-list/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public TitleNameEntity titleNameFind(@PathVariable("id") Long id) {
-        return titleNameRepository.findByTitlenameId(id);
-    }
     /* ======================================================= */
 
     @GetMapping(path = "/typeworking", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,44 +60,53 @@ public class MaidRegisterController {
         return typeworkingRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @GetMapping("/typeworking-list/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public TypeworkingEntity typeworkingFind(@PathVariable("id") Long id) {
-        return typeworkingRepository.findByTypeworkingId(id);
-    }
 
     /* ======================================================= */
     @GetMapping(path = "/workingDate", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<WorkingDateEntity> WorkingDate() {
         return workingDateRepositoy.findAll().stream().collect(Collectors.toList());
     }
-
-    @GetMapping("/workingDate-list/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public WorkingDateEntity workingDateFind(@PathVariable("id") Long id) {
-        return workingDateRepositoy.findByTypeworkingDateId(id);
+/* ======================================================= */
+    @GetMapping(path = "/ccompany", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Collection<CompanyEntity> Company() {
+        return companyRepository.findAll().stream().collect(Collectors.toList());
     }
     /* ======================================================= */
+    @GetMapping(path = "/WelfareAndSalary", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Collection<WelfareAndSalaryEntity> WelfareAndSalary() {
+        return welfareAndSalaryRepository.findAll().stream().collect(Collectors.toList());
+    }
 
-    @PostMapping(path = "/regi")
-    public MaidRegisterEntity dataRegis(@RequestBody DataRegister dataRegister) {
+    @PostMapping(path = "/regi/{titleSelect}/{inputmaidName}/{inputmaidPhone}/{inputmaidEmail}/{inputmaidAddress}/{inputdistrict}/{inputcanton}/{inputprovince}/{typeworkingEntity}/{workingDateEntity}/{companys}/{WelfareAndSalarySelect}")
+    public MaidRegisterEntity maidRegisterEntity(MaidRegisterEntity maidentity, @PathVariable String titleSelect,
+    @PathVariable String inputmaidName, @PathVariable String inputmaidPhone,
+    @PathVariable String inputmaidEmail, @PathVariable String inputmaidAddress,
+    @PathVariable String inputdistrict, @PathVariable String inputcanton ,
+    @PathVariable String inputprovince, @PathVariable String typeworkingEntity, @PathVariable String workingDateEntity,
+    @PathVariable String companys, @PathVariable String WelfareAndSalarySelect) {
 
-        TitleNameEntity ti = this.titleNameRepository.findByTitlenameId(dataRegister.getTitlenameId());
-        TypeworkingEntity typework = this.typeworkingRepository.findByTypeworkingId(dataRegister.getTypeworkingId());
-        WorkingDateEntity workdate = this.workingDateRepositoy
-                .findByTypeworkingDateId(dataRegister.getTypeworkingDateId());
+        MaidRegisterEntity maidRegisterEntity = new MaidRegisterEntity();
+        TitleNameEntity ti = titleNameRepository.findBytitlenameType(titleSelect);
+        CompanyEntity companyy = companyRepository.findBycompanyName(companys);
+        TypeworkingEntity type = typeworkingRepository.findByTypeworking(typeworkingEntity);
+        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(workingDateEntity);
+       WelfareAndSalaryEntity we = welfareAndSalaryRepository.findBywelsaName(WelfareAndSalarySelect);
 
-        // String maidName,String maidAddress,String maidEmail,String maidPhone,String
-        // province,
-        // String district,String canton,TitleNameEntity titleName,TypeworkingEntity
-        // typeworking,
-        // WorkingDateEntity workingDate
-        MaidRegisterEntity re = this.maidRegisterRepository
-                .save(new MaidRegisterEntity(dataRegister.getMaidName(), dataRegister.getMaidAddress(),
-                        dataRegister.getMaidEmail(), dataRegister.getMaidPhone(), dataRegister.getProvince(),
-                        dataRegister.getDistrict(), dataRegister.getCanton(), ti, typework, workdate));
+       maidRegisterEntity.setTitleNameEntity(ti);
+       maidRegisterEntity.setMaidName(inputmaidName);
+       maidRegisterEntity.setMaidAddress(inputmaidAddress);
+       maidRegisterEntity.setMaidEmail(inputmaidEmail);
+       maidRegisterEntity.setMaidPhone(inputmaidPhone);
+       maidRegisterEntity.setProvince(inputprovince);
+       maidRegisterEntity.setDistrict(inputdistrict);
+       maidRegisterEntity.setCanton(inputcanton);
 
-        return re;
+       maidRegisterEntity.setTypeworkingEntity(type);
+       maidRegisterEntity.setWorkingDateEntity(work);
+       maidRegisterEntity.setCompanyForMaid(companyy);
+       maidRegisterEntity.setWelfareAndSalaryEntity(we);
+
+        return maidRegisterRepository.save(maidRegisterEntity);
     }
 
 }
