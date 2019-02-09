@@ -37,14 +37,6 @@ public class WelfareAndSalaryTest{
     private TestEntityManager entityManager;
     
     private Validator validator;
-    @Autowired
-    private CompanyRepository compaR;
-
-    @Autowired
-    private TypeworkingRepository typeR;
-
-    @Autowired
-    private TypewelfareRepository typewelR;
 
     @Before
 	public void setup() {
