@@ -46,4 +46,10 @@ export class RegisterService {
   saveRegi(data: any): Observable<any> {
     return this.http.post(this.API + '/regi', data);
   }
+  getCompanyForMaid(): Observable<any>{
+    return this.http.get(this.API + '/companys');
+  }
+  getWelsaName(): Observable<any>{
+    return this.http.get(this.API + '/WelfareAndSalary');
+}
 }

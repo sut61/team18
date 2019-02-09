@@ -8,6 +8,7 @@ import { PromotionService } from './service/promotion.service';
 import { CustomerService } from './service/customer.service';
 import { PaymentService } from './service/payment.service';
 import { RegisterService } from './service/register.service';
+import { SelectService } from './service/select.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatTableModule,
@@ -41,6 +42,7 @@ import { RegisterComponent } from './register/register.component';
 import { LearnedComponent } from './learned/learned.component';
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company.service';
+import { MaidselectComponent } from './maidselect/maidselect.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +61,8 @@ import { CompanyService } from './company.service';
     TextComponent,
     RegisterComponent,
     LearnedComponent,
-    CompanyComponent
+    CompanyComponent,
+    MaidselectComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,7 @@ import { CompanyService } from './company.service';
     MatFormFieldModule,
     MatDialogModule
   ],
-  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService,CompanyService],
+  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService,CompanyService,SelectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
