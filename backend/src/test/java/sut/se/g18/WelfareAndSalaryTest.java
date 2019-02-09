@@ -37,7 +37,8 @@ public class WelfareAndSalaryTest{
     private TestEntityManager entityManager;
     
     private Validator validator;
-
+    
+    @Autowired WelfareAndSalaryRepository welfare;
     @Before
 	public void setup() {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
