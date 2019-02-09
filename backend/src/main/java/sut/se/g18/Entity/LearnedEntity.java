@@ -31,18 +31,22 @@ public class LearnedEntity {
     private boolean checkObject;
 
     //Many To One with Company
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
     private CompanyEntity company;
 
     //Many To One with Course
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CourseEntity.class)
     private CourseEntity course;
 
     //Many To One with MaidRegister
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidRegisterEntity.class)
     private MaidRegisterEntity maid;
 
     //Many To One with Skill
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = SkillEntity.class)
     private SkillEntity skill;
 

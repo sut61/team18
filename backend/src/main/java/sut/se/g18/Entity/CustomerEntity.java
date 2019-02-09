@@ -1,6 +1,11 @@
 package sut.se.g18.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Entity
@@ -15,12 +20,23 @@ public class CustomerEntity {
     @SequenceGenerator(name="customer_seq",sequenceName="customer_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_seq")
     @Column(name="customerId",unique = true, nullable = false)
-    private @NonNull Long customerId;
-    private @NonNull String customerName;
+    @NotNull
+    private  Long customerId;
+    @NotNull
+    @Size(min = 2,max = 20)
+    private  String customerName;
+    @NotNull
     private  String customeraddress;
+    @NotNull
+    @Email
     private  String customerEmail;
+    @NotNull
+    @Pattern(regexp = "^0([0-9])+")
     private  String customerphone;
+    @NotNull
+    @Size(min = 4)
     private  String customerpass;
+    @NotNull
     private  String customerper;
 
     @ManyToOne(fetch=FetchType.EAGER, targetEntity = CountryCodeEntity.class)

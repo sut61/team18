@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <style type="text/css"></style>
+  <title>Page Title</title>
+</head>
+
+<body>
+  <div class="header_content">
+    <h1 class="title">G18 Maid Reservatoin</h1>
+  </div>
+  <div>
+    <div>
+      <div class="panelmaster">
+        <br>
+        <div class="insert">
+          <h1 class="mid">COMPANY</h1>
+          <form id="formtext">
+            <label>ชื่อบริษัท</label>
+            <mat-form-field id="input">
+                <input matInput placeholder="กรอกชื่อขึ้นต้นด้วย บริษัท" [(ngModel)]="views.name" name = "companyName" >
+              </mat-form-field>
+            <br><br><br><br>
+            <label>ประเภทบริษัท</label>
+            <mat-form-field id="input">
+                <mat-select placeholder="เลือกประเภทบริษัท" [(ngModel)]="views.type" name = companyType>
+                  <mat-option *ngFor="let type of companytype" [value]=type.companyType>
+                    {{type.companyType}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <br><br><br><br>
+            <label>เบอร์โทรศัพท์ :</label>
+            <mat-form-field id="input">
+                <input matInput placeholder="ระบุเบอร์โทรศัพท์" [(ngModel)]="views.phone" name = "companyPhone">
+            </mat-form-field>
+            <br><br><br><br><br>
+            <label>ที่อยู่บริษัท :</label>
+            <mat-form-field id="input">
+                <textarea matInput placeholder="ระบุที่อยู่" [(ngModel)]="views.address" name = "companyAddress"></textarea>
+            </mat-form-field>
+            <br><br><br><br><br>
+            <label>จังหวัด</label>
+            <mat-form-field id="input">
+                <mat-select placeholder="เลือกจังหวัด"[(ngModel)]="views.province" name = provinceName>
+                  <mat-option *ngFor="let province of provincename" [value]= province.provinceName>
+                    {{province.provinceName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <br><br><br><br>
+            <div class="button-row">
+                <button class="bottomgreen" mat-raised-button color="primary" (click) = "save_func()">บันทึก</button>
+              </div>
+           
+           
+
+          </form>
+        </div>
+       
+       
+
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>

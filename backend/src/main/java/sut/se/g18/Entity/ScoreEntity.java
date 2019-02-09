@@ -2,6 +2,7 @@ package sut.se.g18.Entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -16,7 +17,7 @@ public class ScoreEntity{
     @SequenceGenerator(name="scoreId_seq",sequenceName="scoreId_seq")     
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="scoreId_seq")
     private @NonNull Long scoreId;
-    private @NonNull String score;
+    @NotNull private String score;
 
 
     

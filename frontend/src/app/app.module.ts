@@ -8,6 +8,7 @@ import { PromotionService } from './service/promotion.service';
 import { CustomerService } from './service/customer.service';
 import { PaymentService } from './service/payment.service';
 import { RegisterService } from './service/register.service';
+import { SelectService } from './service/select.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatTableModule,
@@ -39,6 +40,11 @@ import { TextComponent } from './text/text.component';
 import { LendService } from './service/lend.service';
 import { RegisterComponent } from './register/register.component';
 import { LearnedComponent } from './learned/learned.component';
+import { CompanyComponent } from './company/company.component';
+import { CompanyService } from './company.service';
+import { MaidselectComponent } from './maidselect/maidselect.component';
+import { ComplaintComponent } from './complaint/complaint.component';
+import { ComplaintService } from './service/complaint.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +62,10 @@ import { LearnedComponent } from './learned/learned.component';
     SubmitComponent,
     TextComponent,
     RegisterComponent,
-    LearnedComponent
+    LearnedComponent,
+    CompanyComponent,
+    MaidselectComponent,
+    ComplaintComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +91,7 @@ import { LearnedComponent } from './learned/learned.component';
     MatFormFieldModule,
     MatDialogModule
   ],
-  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService],
+  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService,CompanyService,SelectService,ComplaintService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

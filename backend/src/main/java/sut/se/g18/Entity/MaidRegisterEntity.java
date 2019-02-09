@@ -35,10 +35,15 @@ public class MaidRegisterEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = WorkingDateEntity.class)
     private WorkingDateEntity workingDateEntity;
 
+    //Many To One with WelfareAndSalaryEntity
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = WelfareAndSalaryEntity.class)
+    private WelfareAndSalaryEntity welfareAndSalaryEntity;
+
+
     public MaidRegisterEntity(){}
     public MaidRegisterEntity(String maidName, String maidAddress, String maidEmail, String maidPhone, String province,
                               String district, String canton, TitleNameEntity titleNameEntity, TypeworkingEntity typeworkingEntity,
-                              WorkingDateEntity workingDateEntity){
+                              WorkingDateEntity workingDateEntity,WelfareAndSalaryEntity welfareAndSalaryEntity,CompanyEntity companyForMaid){
             this.maidName=maidName;
             this.maidAddress=maidAddress;
             this.maidEmail=maidEmail;
@@ -49,6 +54,8 @@ public class MaidRegisterEntity {
             this.titleNameEntity = titleNameEntity;
             this.typeworkingEntity = typeworkingEntity;
             this.workingDateEntity = workingDateEntity;
+            this.companyForMaid = companyForMaid;
+            this.welfareAndSalaryEntity = welfareAndSalaryEntity;
             
 
     }
@@ -115,6 +122,20 @@ public class MaidRegisterEntity {
     }
     public void setWorkingDateEntity(WorkingDateEntity workingDateEntity) {
         this.workingDateEntity = workingDateEntity;
+    }
+
+    /**
+     * @return the welfareAndSalaryEntity
+     */
+    public WelfareAndSalaryEntity getWelfareAndSalaryEntity() {
+        return welfareAndSalaryEntity;
+    }
+
+    /**
+     * @param welfareAndSalaryEntity the welfareAndSalaryEntity to set
+     */
+    public void setWelfareAndSalaryEntity(WelfareAndSalaryEntity welfareAndSalaryEntity) {
+        this.welfareAndSalaryEntity = welfareAndSalaryEntity;
     }
    
 }

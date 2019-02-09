@@ -31,4 +31,76 @@ public class CourseEntity {
     //Many To One with CourseType
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CourseTypeEntity.class)
     private CourseTypeEntity courseType;
+
+    /**
+     * @return the courseId
+     */
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    /**
+     * @param courseId the courseId to set
+     */
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
+    /**
+     * @return the courseTitle
+     */
+    public String getCourseTitle() {
+        return courseTitle;
+    }
+
+    /**
+     * @param courseTitle the courseTitle to set
+     */
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
+    }
+
+    /**
+     * @return the courseDetail
+     */
+    public String getCourseDetail() {
+        return courseDetail;
+    }
+
+    /**
+     * @param courseDetail the courseDetail to set
+     */
+    public void setCourseDetail(String courseDetail) {
+        this.courseDetail = courseDetail;
+    }
+
+    /**
+     * @return the company
+     */
+    public CompanyEntity getCompany() {
+        return company;
+    }
+
+    /**
+     * @param company the company to set
+     */
+    public void setCompany(CompanyEntity company) {
+        this.company = company;
+    }
+
+    /**
+     * @return the courseType
+     */
+    public CourseTypeEntity getCourseType() {
+        return courseType;
+    }
+
+    /**
+     * @param courseType the courseType to set
+     */
+    public void setCourseType(CourseTypeEntity courseType) {
+        this.courseType = courseType;
+    }
+
+    
 }

@@ -1,21 +1,15 @@
 package sut.se.g18.Entity;
 
+import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
+@Getter @Setter
+@ToString
+@EqualsAndHashCode
 @Data
 @Entity
 @Table(
@@ -37,13 +31,26 @@ public class PromotionEntity {
         unique = true,
         nullable = false
     )
-    @NonNull
+    @NotNull
     private Long promotionID;
 
+    @NotNull
+    @Size(min = 5,max = 50)
+    @Pattern(regexp = "^โปรโมชั่น([ก-ู]|[เ-์]| )+")
+    @Column(unique = true)
+    private  String  title;
+    
+    @NotNull
+    private  Date dateStart;
 
-    private String title;
-    private @NonNull Date dateStart;
-    private @NonNull Date dateEnd;
+    @NotNull
+    
+    private  Date dateEnd;
+
+    @NotNull
+    @Min(value = 0)
+    @Max(value = 100)
+    @Positive
     private int discount;
 
     // open join table

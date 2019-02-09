@@ -15,18 +15,45 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
+
 	@Bean
 	ApplicationRunner init(ContractRepository contractRepository, CompanyRepository companyRepository,
-						   MaidSelectRepository maidSelectRepository, PromotionRepository promotionRepository,
-						   CustomerRepository customerRepository, AdminAccountRepository adminAccountRepository,
-						   ContractTypeRepository contractTypeRepository, PaymentStatusRepository paymentStatusRepository,
-						   MaidStatusRepository maidStatusRepository,MaidRegisterRepository maidRegisterRepository, TitleNameRepository titleNameRepository,
-						   TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy,
-						   CountryCodeRepository countryCodeRepository, SexRepository sexRepository,TypepaymentRepository typepaymentRepository, BankRepository bankRepository,
-						   CleaningEquipmentRepository cleaningEquipmentRepository,ElectricalEquipmentRepository electricalEquipmentRepository,
-						   PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
-						   CourseTypeRepository courseTypeRepository,CourseRepository courseRepository){
+			MaidSelectRepository maidSelectRepository, PromotionRepository promotionRepository,
+			CustomerRepository customerRepository, AdminAccountRepository adminAccountRepository,
+			ContractTypeRepository contractTypeRepository, PaymentStatusRepository paymentStatusRepository,
+			MaidStatusRepository maidStatusRepository, MaidRegisterRepository maidRegisterRepository,
+			TitleNameRepository titleNameRepository, TypeworkingRepository typeworkingRepository,
+			WorkingDateRepositoy workingDateRepositoy, CountryCodeRepository countryCodeRepository,
+			SexRepository sexRepository, TypepaymentRepository typepaymentRepository, BankRepository bankRepository,
+			CleaningEquipmentRepository cleaningEquipmentRepository,
+			ElectricalEquipmentRepository electricalEquipmentRepository,
+			PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
+			CourseTypeRepository courseTypeRepository, CourseRepository courseRepository,
+			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository,
+			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository) {
 		return args -> {
+
+			// Insert Company Type
+			CompanyTypeEntity PublicCompany = new CompanyTypeEntity("บริษัทมหาชน");
+			companyTypeRepository.save(PublicCompany);
+			CompanyTypeEntity PrivateCompanies = new CompanyTypeEntity("บริษัทเอกชน");
+			companyTypeRepository.save(PrivateCompanies);
+
+			// insert Province
+			Stream.of("กรุงเทพมหานคร", "กระบี่", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น", "จันทบุรี",
+					"ฉะเชิงเทรา", "ชลบุรี", "ชัยนาท", "ชัยภูมิ", "ชุมพร", "เชียงราย", "เชียงใหม่", "ตรัง", "ตราด",
+					"ตาก", "นครนายก", "นครปฐม", "นครพนม", "นครราชสีมา", "นครศรีธรรมราช", "นครสวรรค์", "นนทบุรี",
+					"นราธิวาส", "น่าน", "บึงกาฬ", "บุรีรัมย์", "ปทุมธานี", "ประจวบคีรีขันธ์", "ปราจีนบุรี", "ปัตตานี",
+					"พระนครศรีอยุธยา", "พังงา", "พัทลุง", "พิจิตร", "พิษณุโลก", "เพชรบุรี", "เพชรบูรณ์", "แพร่",
+					"พะเยา", "ภูเก็ต", "มหาสารคาม", "มุกดาหาร", "แม่ฮ่องสอน", "ยะลา", "ยโสธร", "ร้อยเอ็ด", "ระนอง",
+					"ระยอง", "ราชบุรี", "ลพบุรี", "ลำปาง", "ลำพูน", "เลย", "ศรีสะเกษ", "สกลนคร", "สงขลา", "สตูล",
+					"สมุทรปราการ", "สมุทรสงคราม", "สมุทรสาคร", "สระแก้ว", "สระบุรี", "สิงห์บุรี", "สุโขทัย",
+					"สุพรรณบุรี", "สุราษฎร์ธานี", "สุรินทร์", "หนองคาย", "หนองบัวลำภู", "อ่างทอง", "อุดรธานี",
+					"อุทัยธานี", "อุตรดิตถ์", "อุบลราชธานี", "อำนาจเจริญ").forEach(provinces -> {
+						ProvinceEntity province = new ProvinceEntity();
+						province.setProvinceName(provinces);
+						provinceRepository.save(province);
+					});
 
 			SkillEntity sk1 = new SkillEntity();
 			sk1.setSkillRank("Beginner");
@@ -53,8 +80,8 @@ public class DemoApplication {
 			CourseTypeEntity ct3 = new CourseTypeEntity();
 			ct3.setCourseType("ดูแลสวน");
 			courseTypeRepository.save(ct3);
-			//Insert Country_code
-			//NORTH AMERICA
+			// Insert Country_code
+			// NORTH AMERICA
 			CountryCodeEntity Alaska = new CountryCodeEntity("+1+907 (อะเเลสกา)");
 			countryCodeRepository.save(Alaska);
 			CountryCodeEntity Canada = new CountryCodeEntity("+1 (แคนาดา)");
@@ -63,7 +90,7 @@ public class DemoApplication {
 			countryCodeRepository.save(Hawaii);
 			CountryCodeEntity USA = new CountryCodeEntity("+1 (สหรัฐอเมริกา)");
 			countryCodeRepository.save(USA);
-			//ASIA
+			// ASIA
 			CountryCodeEntity Bangladesh = new CountryCodeEntity("+880 (บังคลาเทศ)");
 			countryCodeRepository.save(Bangladesh);
 			CountryCodeEntity Bhutan = new CountryCodeEntity("+975 (ภูฏาน)");
@@ -118,7 +145,7 @@ public class DemoApplication {
 			countryCodeRepository.save(Australia);
 			CountryCodeEntity Newzealand = new CountryCodeEntity("+64 (นิวซีแลนด์)");
 			countryCodeRepository.save(Newzealand);
-			//PACIFIC OCEAN
+			// PACIFIC OCEAN
 			CountryCodeEntity AmericanSamoa = new CountryCodeEntity("+684 (อเมริกันซามัว)");
 			countryCodeRepository.save(AmericanSamoa);
 			CountryCodeEntity Fiji = new CountryCodeEntity("+679 (ฟีจี)");
@@ -139,13 +166,20 @@ public class DemoApplication {
 			countryCodeRepository.save(Saipan);
 			CountryCodeEntity Tokelau = new CountryCodeEntity("+690 (โทเคอเลา)");
 			countryCodeRepository.save(Tokelau);
-			//insert promotionType
-			
-			PromotionTypeEntity promotionTypeEntity = new PromotionTypeEntity();
-            promotionTypeEntity.setPromotionType("ส่วนลด");
-            promotionTypeRepository.save(promotionTypeEntity);
+			// insert promotionType
 
-			//Insert Sex
+			PromotionTypeEntity promotionTypeEntity = new PromotionTypeEntity();
+			promotionTypeEntity.setPromotionType("ส่วนลด");
+			promotionTypeRepository.save(promotionTypeEntity);
+			
+
+			
+			//insert ComplaintType
+			ComplaintTypeEntity complaintTypeEntity = new ComplaintTypeEntity();
+			complaintTypeEntity.setComplaintType("พฤติกรรมไม่เหมาะสม");
+			complaintTypeRepository.save(complaintTypeEntity);
+
+			// Insert Sex
 			SexEntity m = new SexEntity("ชาย");
 			sexRepository.save(m);
 			SexEntity fm = new SexEntity("หญิง");
@@ -153,21 +187,21 @@ public class DemoApplication {
 			SexEntity nfmm = new SexEntity("-ไม่ระบุ-");
 			sexRepository.save(nfmm);
 
-			Stream.of("นาง","นางสาว","นาย").forEach(title ->{
+			Stream.of("นาง", "นางสาว", "นาย").forEach(title -> {
 
-				if(title.equals("นาง")){
+				if (title.equals("นาง")) {
 					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
 					titleNameEntityEntity.setTitlenameType("นาง");
 					titleNameRepository.save(titleNameEntityEntity);
 				}
 
-				if(title.equals("นางสาว")){
+				if (title.equals("นางสาว")) {
 					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
 					titleNameEntityEntity.setTitlenameType("นางสาว");
 					titleNameRepository.save(titleNameEntityEntity);
 				}
 
-				if(title.equals("นาย")){
+				if (title.equals("นาย")) {
 					TitleNameEntity titleNameEntityEntity = new TitleNameEntity();
 					titleNameEntityEntity.setTitlenameType("นาย");
 					titleNameRepository.save(titleNameEntityEntity);
@@ -175,89 +209,92 @@ public class DemoApplication {
 
 			});
 
-			Stream.of("แม่บ้าน","แม่บ้านดูแลเด็ก","แม่บ้านดูแลเผู้สูงอายุ","คนดูแดสวน","คนขับรถ").forEach(typeworking ->{
-				if(typeworking.equals("แม่บ้าน")){
-					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
-					typeworkingEntityEntity.setTypeworking("แม่บ้าน");
-					typeworkingRepository.save(typeworkingEntityEntity);
-				}
-				if(typeworking.equals("แม่บ้านดูแลเด็ก")){
-					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
-					typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลเด็ก");
-					typeworkingRepository.save(typeworkingEntityEntity);
-				}
-				if(typeworking.equals("แม่บ้านดูแลเผู้สูงอายุ")){
-					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
-					typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลผู้สูงอายุ");
-					typeworkingRepository.save(typeworkingEntityEntity);
-				}
-				if(typeworking.equals("คนดูแดสวน")){
-					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
-					typeworkingEntityEntity.setTypeworking("คนดูแดสวน");
-					typeworkingRepository.save(typeworkingEntityEntity);
-				}
-				if(typeworking.equals("คนขับรถ")){
-					TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
-					typeworkingEntityEntity.setTypeworking("คนขับรถ");
-					typeworkingRepository.save(typeworkingEntityEntity);
-				}
+			Stream.of("แม่บ้าน", "แม่บ้านดูแลเด็ก", "แม่บ้านดูแลเผู้สูงอายุ", "คนดูแดสวน", "คนขับรถ")
+					.forEach(typeworking -> {
+						if (typeworking.equals("แม่บ้าน")) {
+							TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+							typeworkingEntityEntity.setTypeworking("แม่บ้าน");
+							typeworkingRepository.save(typeworkingEntityEntity);
+						}
+						if (typeworking.equals("แม่บ้านดูแลเด็ก")) {
+							TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+							typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลเด็ก");
+							typeworkingRepository.save(typeworkingEntityEntity);
+						}
+						if (typeworking.equals("แม่บ้านดูแลเผู้สูงอายุ")) {
+							TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+							typeworkingEntityEntity.setTypeworking("แม่บ้านดูแลผู้สูงอายุ");
+							typeworkingRepository.save(typeworkingEntityEntity);
+						}
+						if (typeworking.equals("คนดูแดสวน")) {
+							TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+							typeworkingEntityEntity.setTypeworking("คนดูแดสวน");
+							typeworkingRepository.save(typeworkingEntityEntity);
+						}
+						if (typeworking.equals("คนขับรถ")) {
+							TypeworkingEntity typeworkingEntityEntity = new TypeworkingEntity();
+							typeworkingEntityEntity.setTypeworking("คนขับรถ");
+							typeworkingRepository.save(typeworkingEntityEntity);
+						}
+					});
+
+			Stream.of("ทำงานแบบรายวัน", "ทำงานแบบรายสัปดาห์", "ทำงานแบบรายเดือน", "ทำงานแบบรายปี")
+					.forEach(workingDate -> {
+						if (workingDate.equals("ทำงานแบบรายวัน")) {
+							WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+							workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายวัน");
+							workingDateRepositoy.save(workingDateEntityEntity);
+						}
+						if (workingDate.equals("ทำงานแบบรายสัปดาห์")) {
+							WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+							workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายสัปดาห์");
+							workingDateRepositoy.save(workingDateEntityEntity);
+						}
+						if (workingDate.equals("ทำงานแบบรายเดือน")) {
+							WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+							workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายเดือน");
+							workingDateRepositoy.save(workingDateEntityEntity);
+						}
+						if (workingDate.equals("ทำงานแบบรายปี")) {
+							WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
+							workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายปี");
+							workingDateRepositoy.save(workingDateEntityEntity);
+						}
+					});
+			Stream.of("ธนาคารไทยพานิชย์", "ธนาคารกรุงไทย", "ธนาคารกสิกรไทย", "ธนาคารออมสิน", "ธนาคารกรุงเทพ")
+					.forEach(bankname -> {
+						BankEntity bank = new BankEntity();
+						bank.setBankname(bankname);
+						bankRepository.save(bank);
+					});
+
+			Stream.of("Visa", "Paypal", "MasterCard", "Amex", "JBC").forEach(typepay -> {
+				TypepaymentEntity type = new TypepaymentEntity();
+				type.setTypename(typepay);
+				typepaymentRepository.save(type);
 			});
+			AdminAccountEntity admin = new AdminAccountEntity();
+			admin.setAdminUsername("1234");
+			admin.setAdminPassword("4321");
+			adminAccountRepository.save(admin);
 
-			Stream.of("ทำงานแบบรายวัน","ทำงานแบบรายสัปดาห์","ทำงานแบบรายเดือน","ทำงานแบบรายปี").forEach(workingDate ->{
-				if(workingDate.equals("ทำงานแบบรายวัน")){
-					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
-					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายวัน");
-					workingDateRepositoy.save(workingDateEntityEntity);
-				}
-				if(workingDate.equals("ทำงานแบบรายสัปดาห์")){
-					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
-					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายสัปดาห์");
-					workingDateRepositoy.save(workingDateEntityEntity);
-				}
-				if(workingDate.equals("ทำงานแบบรายเดือน")){
-					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
-					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายเดือน");
-					workingDateRepositoy.save(workingDateEntityEntity);
-				}
-				if(workingDate.equals("ทำงานแบบรายปี")){
-					WorkingDateEntity workingDateEntityEntity = new WorkingDateEntity();
-					workingDateEntityEntity.setTypeworkingDate("ทำงานแบบรายปี");
-					workingDateRepositoy.save(workingDateEntityEntity);
-				}
-			});
-			Stream.of("ธนาคารไทยพานิชย์","ธนาคารกรุงไทย","ธนาคารกสิกรไทย","ธนาคารออมสิน","ธนาคารกรุงเทพ").forEach(bankname -> {
-				BankEntity bank = new BankEntity();
-				bank.setBankname(bankname);
-				bankRepository.save(bank);
-			});
+			PaymentStatusEntity s1 = new PaymentStatusEntity();
+			s1.setPaymentStatus("ค้างชำระ");
+			paymentStatusRepository.save(s1);
+			PaymentStatusEntity s2 = new PaymentStatusEntity();
+			s2.setPaymentStatus("จ่ายแล้ว");
+			paymentStatusRepository.save(s2);
 
-			Stream.of("Visa","Paypal","MasterCard","Amex","JBC").forEach(typepay -> {
-                TypepaymentEntity type = new TypepaymentEntity();
-                type.setTypename(typepay);
-                typepaymentRepository.save(type);
-            });
-		    AdminAccountEntity admin = new AdminAccountEntity();
-		    admin.setAdminUsername("1234");
-		    admin.setAdminPassword("4321");
-		    adminAccountRepository.save(admin);
+			MaidStatusEntity stat2 = new MaidStatusEntity();
+			stat2.setStatus("จอง");
+			maidStatusRepository.save(stat2);
+			MaidStatusEntity stat3 = new MaidStatusEntity();
+			stat3.setStatus("ทำสัญญาอยู่");
+			maidStatusRepository.save(stat3);
 
-		    PaymentStatusEntity s1 = new PaymentStatusEntity();
-		    s1.setPaymentStatus("ค้างชำระ");
-		    paymentStatusRepository.save(s1);
-		    PaymentStatusEntity s2 = new PaymentStatusEntity();
-		    s2.setPaymentStatus("จ่ายแล้ว");
-		    paymentStatusRepository.save(s2);
-
-		    MaidStatusEntity stat2 = new MaidStatusEntity();
-		    stat2.setStatus("จอง");
-		    maidStatusRepository.save(stat2);
-		    MaidStatusEntity stat3 = new MaidStatusEntity();
-		    stat3.setStatus("ทำสัญญาอยู่");
-		    maidStatusRepository.save(stat3);
-
-		    ContractTypeEntity type1 = new ContractTypeEntity();
-		    type1.setContractType("1 Day");
-		    contractTypeRepository.save(type1);
+			ContractTypeEntity type1 = new ContractTypeEntity();
+			type1.setContractType("1 Day");
+			contractTypeRepository.save(type1);
 			ContractTypeEntity type2 = new ContractTypeEntity();
 			type2.setContractType("1 Week");
 			contractTypeRepository.save(type2);
@@ -273,25 +310,61 @@ public class DemoApplication {
 
 			CustomerEntity cus = new CustomerEntity();
 			cus.setCustomerName("Pitchayut CheeseJa");
-			cus.setCustomerEmail("sut@gg.com");
-			cus.setCustomerpass("1234");
+			cus.setCustomerphone("0890000000");
+			cus.setCustomerper("1430200231078");
+			cus.setCustomerEmail("mine@sut.com");
+			cus.setCustomeraddress("222 หมู่ 8 มทส.");
+			cus.setCustomerpass("111111");
+			SexEntity sex = sexRepository.findBycustomersex("ชาย");
+			cus.setSexEntity(sex);
+			TitleNameEntity title = titleNameRepository.findBytitlenameType("นาย");
+			cus.setTitle(title);
+			CountryCodeEntity code = countryCodeRepository.findBycountrycode("+679 (ฟีจี)");
+			cus.setCountry(code);
 			customerRepository.save(cus);
 
 		    CompanyEntity c1 = new CompanyEntity();
-		    c1.setCompanyName("พีกาซัส");
-		    companyRepository.save(c1);
+		    c1.setCompanyName("บริษัทพีกาซัส");
+		    c1.setCompanyAddress("aa");
+			c1.setCompanyPhone("011111111");
+			CompanyTypeEntity ctt1 = companyTypeRepository.findBycompanyType("บริษัทมหาชน");
+			c1.setCompanyTypeEntity(ctt1);
+			ProvinceEntity p11 = provinceRepository.findByprovinceName("หนองคาย");
+			c1.setProvinecEntity(p11);
+			companyRepository.save(c1);
 			CompanyEntity c2 = new CompanyEntity();
-			c2.setCompanyName("โอซาก้า");
+			c2.setCompanyName("บริษัทโอซาก้า");
+			c2.setCompanyAddress("bb");
+			c2.setCompanyPhone("022222222");
+			CompanyTypeEntity ctt2 = companyTypeRepository.findBycompanyType("บริษัทเอกชน");
+			c2.setCompanyTypeEntity(ctt2);
+			ProvinceEntity p22 = provinceRepository.findByprovinceName("นครราชสีมา");
+			c2.setProvinecEntity(p22);
 			companyRepository.save(c2);
+
 			CompanyEntity c3 = new CompanyEntity();
-			c3.setCompanyName("กินซ่า");
+			c3.setCompanyName("บริษัทกินซ่า");
+			c3.setCompanyAddress("cc");
+			c3.setCompanyPhone("033333333");
+			CompanyTypeEntity ctt3 = companyTypeRepository.findBycompanyType("บริษัทมหาชน");
+			c2.setCompanyTypeEntity(ctt3);
+			ProvinceEntity p33 = provinceRepository.findByprovinceName("ชลบุรี");
+			c2.setProvinecEntity(p33);
+
 			companyRepository.save(c3);
+
 			CompanyEntity c4 = new CompanyEntity();
-			c4.setCompanyName("สวนรักษ์");
+			c4.setCompanyName("บริษัทสวนรักษ์");
+			c4.setCompanyAddress("dd");
+			c4.setCompanyPhone("044444444");
+			CompanyTypeEntity ct4 = companyTypeRepository.findBycompanyType("บริษัทเอกชน");
+			c2.setCompanyTypeEntity(ct4);
+			ProvinceEntity p44 = provinceRepository.findByprovinceName("เชียงใหม่");
+			c2.setProvinecEntity(p44);
 			companyRepository.save(c4);
 
 			CourseEntity co1 = new CourseEntity();
-			CompanyEntity comp1 = companyRepository.findBycompanyName("พีกาซัส");
+			CompanyEntity comp1 = companyRepository.findBycompanyName("บริษัทพีกาซัส");
 			CourseTypeEntity ctype1 = courseTypeRepository.findByCourseType("งานในครัว");
 			co1.setCourseTitle("คอร์สฝึกสอนทำอาหารอีสาน");
 			co1.setCourseDetail("ทำลาบ ก้อย");
@@ -307,10 +380,10 @@ public class DemoApplication {
 			courseRepository.save(co2);
 
 			MaidRegisterEntity mm1 = new MaidRegisterEntity();
-			CompanyEntity com = companyRepository.findBycompanyName("พีกาซัส");
-			CompanyEntity com2 = companyRepository.findBycompanyName("โอซาก้า");
-			CompanyEntity com3 = companyRepository.findBycompanyName("กินซ่า");
-			CompanyEntity com4 = companyRepository.findBycompanyName("สวนรักษ์");
+			CompanyEntity com = companyRepository.findBycompanyName("บริษัทพีกาซัส");
+			CompanyEntity com2 = companyRepository.findBycompanyName("บริษัทโอซาก้า");
+			CompanyEntity com3 = companyRepository.findBycompanyName("บริษัทกินซ่า");
+			CompanyEntity com4 = companyRepository.findBycompanyName("บริษัทสวนรักษ์");
 			mm1.setCompanyForMaid(com);
 			mm1.setMaidName("Ping Kasinan");
 			mm1.setMaidPhone("0935395533");
@@ -336,57 +409,73 @@ public class DemoApplication {
 			mm5.setCompanyForMaid(com4);
 			maidRegisterRepository.save(mm5);
 
-			MaidSelectEntity m1 = new MaidSelectEntity();
-			CustomerEntity customer = customerRepository.findBycustomerName("Pitchayut CheeseJa");
-			m1.setCustomer(customer);
-			MaidRegisterEntity maid1 = maidRegisterRepository.findBymaidName("Ping Kasinan");
-			m1.setMaid(maid1);
-			MaidStatusEntity statusMaid = maidStatusRepository.findBystatus("จอง");
+			 MaidSelectEntity m1 = new MaidSelectEntity();
+			 CustomerEntity customer = customerRepository.findBycustomerName("Pitchayut CheeseJa");
+			 m1.setCustomer(customer);
+			 MaidRegisterEntity maid1 = maidRegisterRepository.findBymaidName("Ping Kasinan");
+			 m1.setMaid(maid1);
+			 MaidStatusEntity statusMaid = maidStatusRepository.findBystatus("จอง");
 			m1.setStatus(statusMaid);
-			maidSelectRepository.save(m1);
-			MaidSelectEntity m3 = new MaidSelectEntity();
-			m3.setCustomer(customer);
-			MaidRegisterEntity maid2 = maidRegisterRepository.findBymaidName("Ball Donlawat");
-			m3.setMaid(maid2);
-			m3.setStatus(statusMaid);
-			maidSelectRepository.save(m3);
-			MaidSelectEntity m2 = new MaidSelectEntity();
-			m2.setCustomer(customer);
-			MaidRegisterEntity maid3 = maidRegisterRepository.findBymaidName("Yongyut Srisuban");
-			m2.setMaid(maid3);
-			m2.setStatus(statusMaid);
-			maidSelectRepository.save(m2);
-			MaidSelectEntity m4 = new MaidSelectEntity();
-			m4.setCustomer(customer);
-			MaidRegisterEntity maid4 = maidRegisterRepository.findBymaidName("Nanthika Poonpin");
-			m4.setMaid(maid4);
-			m4.setStatus(statusMaid);
-			maidSelectRepository.save(m4);
-			MaidSelectEntity m5 = new MaidSelectEntity();
-			m5.setCustomer(customer);
-			MaidRegisterEntity maid5 = maidRegisterRepository.findBymaidName("Ploy Sumitra");
-			m5.setMaid(maid5);
-			m5.setStatus(statusMaid);
-			maidSelectRepository.save(m5);
+			 m1.setMaidEmail("pingzzzzzzzzzzzzz@gmail.com");
+			 maidSelectRepository.save(m1);
 
-		    PromotionEntity p1 = new PromotionEntity();
-		    p1.setTitle("Discount");
-		    CompanyEntity company = companyRepository.findBycompanyName("พีกาซัส");
-		    p1.setCompanyEntity(company);
-			promotionRepository.save(p1);
-			
+			 MaidSelectEntity m3 = new MaidSelectEntity();
+			 m3.setCustomer(customer);
+			 MaidRegisterEntity maid2 = maidRegisterRepository.findBymaidName("Ball Donlawat");
+			 m3.setMaid(maid2);
+			 m3.setStatus(statusMaid);
+			 m3.setMaidEmail("ballzzzzzzzzzzzz@gmail.com");
+			 maidSelectRepository.save(m3);
+
+			 MaidSelectEntity m2 = new MaidSelectEntity();
+			 m2.setCustomer(customer);
+			 MaidRegisterEntity maid3 = maidRegisterRepository.findBymaidName("Yongyut Srisuban");
+			 m2.setMaid(maid3);
+			m2.setStatus(statusMaid);
+			 m2.setMaidEmail("yermzzzzzzzzzzz@gmail.com");
+			 maidSelectRepository.save(m2);
+
+			 MaidSelectEntity m4 = new MaidSelectEntity();
+			 m4.setCustomer(customer);
+			 MaidRegisterEntity maid4 = maidRegisterRepository.findBymaidName("Nanthika Poonpin");
+			 m4.setMaid(maid4);
+			m4.setStatus(statusMaid);
+			 m4.setMaidEmail("beamzzzzzzzzz@gmail.com");
+			 maidSelectRepository.save(m4);
+
+			 MaidSelectEntity m5 = new MaidSelectEntity();
+			 m5.setCustomer(customer);
+			 MaidRegisterEntity maid5 = maidRegisterRepository.findBymaidName("Ploy Sumitra");
+			 m5.setMaid(maid5);
+			m5.setStatus(statusMaid);
+			 m5.setMaidEmail("plorrrrrrrry@gmail.com");
+			 maidSelectRepository.save(m5);
+
+			// PromotionEntity p1 = new PromotionEntity();
+			// p1.setTitle("Discount");
+			// CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
+			// p1.setCompanyEntity(company);
+			// promotionRepository.save(p1);
+
 			// Create CleaningEquipment
-			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่","ไม่กวาดทางมะพร้ว พรั่วตักขยะ ไม้กวาดหยักไย่ ผ้าเช็ดพื้น").forEach(cleaning -> {
-				CleaningEquipmentEntity c = new CleaningEquipmentEntity(cleaning);
-				c.setCleaning(cleaning);
-				cleaningEquipmentRepository.save(c);
-			});
+			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่",
+					"ไม่กวาดทางมะพร้ว พรั่วตักขยะ ไม้กวาดหยักไย่ ผ้าเช็ดพื้น").forEach(cleaning -> {
+						CleaningEquipmentEntity c = new CleaningEquipmentEntity(cleaning);
+						c.setCleaning(cleaning);
+						cleaningEquipmentRepository.save(c);
+					});
 
 			// Create ElectricalEquipment
-			Stream.of("เครื่องดูดฝุ่น Full Size","เครื่องดูดฝุ่น แบบมือถือ","เครื่องขัดพื้น").forEach(electric -> {
+			Stream.of("เครื่องดูดฝุ่น Full Size", "เครื่องดูดฝุ่น แบบมือถือ", "เครื่องขัดพื้น").forEach(electric -> {
 				ElectricalEquipmentEntity e = new ElectricalEquipmentEntity(electric);
 				e.setElectric(electric);
 				electricalEquipmentRepository.save(e);
+			});
+			//Add Typewelfare
+			Stream.of("สวัสดิการเพื่อความมั่นคงและสุขภาพ","สวัสดิการที่จ่ายตอบแทนเมื่อไม่ได้ทำงาน","สวัสดิการบริการ").forEach(welfare -> {
+				TypewelfareEntity type = new TypewelfareEntity();
+				type.setTypewelName(welfare);
+				typewelfareRepository.save(type);
 			});
 		};
 	}
