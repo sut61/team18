@@ -22,15 +22,10 @@ public class ReviewEntity{
 
     //review
     @Column(unique = true)
-<<<<<<< HEAD
-    @NotNull
-    @Size(min = 3,max = 50)
-    @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9])+")
-=======
     @NotNull 
     @Size(min = 3,max = 40)
     @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| )+")
->>>>>>> update entity - colse #170
+
     private  String review;
 
     //---คะแนน----
