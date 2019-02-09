@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 public interface TypeworkingRepository  extends JpaRepository<TypeworkingEntity, Long>{
     TypeworkingEntity findByTypeworkingId(Long typeworkingId);
+    TypeworkingEntity findByTypeworking(String typeworking);
 }

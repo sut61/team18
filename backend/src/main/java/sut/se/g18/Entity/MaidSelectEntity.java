@@ -10,6 +10,7 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "MAID")
 public class MaidSelectEntity {
@@ -17,7 +18,7 @@ public class MaidSelectEntity {
     @SequenceGenerator(name = "maid_seq", sequenceName = "maid_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "maid_seq")
     @Column(name = "maidId", unique = true, nullable = false)
-    private @NonNull Long maidId;
+    private @NotNull Long maidId;
 
     @NotNull
     @Size(min = 15, max = 50)
@@ -33,10 +34,6 @@ public class MaidSelectEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidRegisterEntity.class)
     private MaidRegisterEntity maid;
 
-    // Many To One with MaidStatus
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidStatusEntity.class)
-    private MaidStatusEntity status;
-
     // Many To One with Company
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
     private CompanyEntity companyForMaid;
@@ -47,48 +44,22 @@ public class MaidSelectEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = WorkingDateEntity.class)
     private WorkingDateEntity workingDateEntity;
 
-    public MaidSelectEntity(String maidEmail, CompanyEntity com, TypeworkingEntity typework, WorkingDateEntity workdate,
-            MaidStatusEntity st) {
-        this.maidEmail = maidEmail;
-        this.companyForMaid = com;
-        this.typeworkingEntity = typework;
-        this.workingDateEntity = workdate;
-        this.status = st;
-    }
+    // Many To One with MaidStatus
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidStatusEntity.class)
+    private MaidStatusEntity status;
 
-    public MaidSelectEntity() {
-    }
-
+    /**
+     * @return the maidId
+     */
     public Long getMaidId() {
         return maidId;
     }
 
+    /**
+     * @param maidId the maidId to set
+     */
     public void setMaidId(Long maidId) {
         this.maidId = maidId;
-    }
-
-    public CustomerEntity getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerEntity customer) {
-        this.customer = customer;
-    }
-
-    public MaidStatusEntity getStatus() {
-        return status;
-    }
-
-    public void setStatus(MaidStatusEntity status) {
-        this.status = status;
-    }
-
-    public MaidRegisterEntity getMaid() {
-        return maid;
-    }
-
-    public void setMaid(MaidRegisterEntity maid) {
-        this.maid = maid;
     }
 
     /**
@@ -103,6 +74,34 @@ public class MaidSelectEntity {
      */
     public void setMaidEmail(String maidEmail) {
         this.maidEmail = maidEmail;
+    }
+
+    /**
+     * @return the customer
+     */
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * @return the maid
+     */
+    public MaidRegisterEntity getMaid() {
+        return maid;
+    }
+
+    /**
+     * @param maid the maid to set
+     */
+    public void setMaid(MaidRegisterEntity maid) {
+        this.maid = maid;
     }
 
     /**
@@ -147,4 +146,19 @@ public class MaidSelectEntity {
         this.workingDateEntity = workingDateEntity;
     }
 
+    /**
+     * @return the status
+     */
+    public MaidStatusEntity getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(MaidStatusEntity status) {
+        this.status = status;
+    }
+
+    
 }

@@ -1,5 +1,8 @@
 package sut.se.g18.Entity;
 import lombok.*;
+
+import java.util.Collection;
+
 import javax.persistence.*;
 
 @Entity
@@ -33,5 +36,8 @@ public class TypeworkingEntity {
         public void setTypeworking(String typeworking) {
             this.typeworking = typeworking;
         }
+		public Collection<MaidRegisterEntity> findAll() {
+			return null;
+		}
 
 }
