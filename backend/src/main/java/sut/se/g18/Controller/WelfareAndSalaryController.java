@@ -50,7 +50,7 @@ public class WelfareAndSalaryController{
                                             @PathVariable String nameWelfare, @PathVariable int salary, @PathVariable String detail, @PathVariable String termcondition) {
                                 CompanyEntity com = companyRepository.findBycompanyName(companySelect);
                                 TypewelfareEntity type = typewelfareRepository.findByTypewelName(typeWelfare);
-                                WorkingDateEntity work = workingDateRepositoy.findByTypeworkingDate(workingDate);
+                                WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(workingDate);
                                 welsa.setCompany(com);
                                 welsa.setTypewelfare(type);
                                 welsa.setWorkingdate(work);
