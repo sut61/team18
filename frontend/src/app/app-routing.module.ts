@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContractComponent } from './contract/contract.component';
@@ -18,6 +19,7 @@ import { LearnedComponent } from './learned/learned.component';
 import { CompanyComponent } from './company/company.component';
 import { MaidselectComponent } from './maidselect/maidselect.component';
 import { ComplaintComponent } from './complaint/complaint.component';
+import { WelfareandsalaryComponent } from './welfareandsalary/welfareandsalary.component';
 
 const routes: Routes = [
   {path: '' , component: LoginAddminComponent},
@@ -37,7 +39,8 @@ const routes: Routes = [
   {path: 'learned' , component: LearnedComponent},
   {path: 'company' , component: CompanyComponent},
   {path: 'complaint' , component: ComplaintComponent},
-  {path: 'select' , component: MaidselectComponent}
+  {path: 'select' , component: MaidselectComponent},
+  {path: 'welsa' , component: WelfareandsalaryComponent}
 ];
 
 @NgModule({

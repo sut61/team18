@@ -12,7 +12,7 @@ import { SelectService } from './service/select.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatTableModule,
-MatSidenavModule, MatCheckboxModule ,MatDialogModule} from '@angular/material';
+MatSidenavModule, MatCheckboxModule , MatDialogModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -45,6 +45,10 @@ import { CompanyService } from './company.service';
 import { MaidselectComponent } from './maidselect/maidselect.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { ComplaintService } from './service/complaint.service';
+import { WelfareandsalaryComponent } from './welfareandsalary/welfareandsalary.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { WelfaresalaryService } from './service/welfaresalary.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +69,8 @@ import { ComplaintService } from './service/complaint.service';
     LearnedComponent,
     CompanyComponent,
     MaidselectComponent,
-    ComplaintComponent
+    ComplaintComponent,
+    WelfareandsalaryComponent
   ],
   imports: [
     BrowserModule,
@@ -89,9 +94,13 @@ import { ComplaintService } from './service/complaint.service';
     MatRadioModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
+
   ],
-  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService,CompanyService,SelectService,ComplaintService],
+
+  providers: [AdminService, PromotionService, CustomerService, PaymentService,
+    LendService, RegisterService, CompanyService, SelectService, ComplaintService, WelfaresalaryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

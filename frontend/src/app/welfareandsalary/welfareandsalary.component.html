@@ -1,0 +1,110 @@
+<div class="main_background">
+  <div class="header_content">
+    <h1 class="title">G18 ระบบจัดหาแม่บ้าน</h1>
+    <ul class="list_menu">
+      <li><a routerLink="/" routerLinkActive="active">Log Out</a></li>
+    </ul>
+  </div>
+  <div class="main_content">
+    <br>
+    <br>
+    <h1><a>กรอกข้อมูลสวัสดิการและผลตอบแทน :</a></h1>
+    <br>
+    <mat-grid-list cols="3" rowHeight="800px">
+      <div class="left_field">
+        <br>
+        <mat-grid-tile class="example-form" [rowspan]="1">
+          <form class="example-form">
+            <h2>เลือกบริษัท</h2>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="เลือกบริษัท" [(ngModel)]="welsa.company" name="company">
+                <mat-option>None </mat-option>
+                <mat-option *ngFor="let company of companys" [value]="company.companyName">{{company.companyName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <h2>เลือกระยะเวลาทำงาน</h2>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="เลือกระยะเวลาทำงาน" [(ngModel)]="welsa.typework" name="typework">
+                <mat-option>None </mat-option>
+                <mat-option *ngFor="let typework of typeworks" [value]="typework.typeworkingDate">
+                  {{typework.typeworkingDate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <h2>เลือกประเภทสวัสดิการ</h2>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="เลือกประเภทสวัสดิการ" [(ngModel)]="welsa.typewel" name="typewel">
+                <mat-option>None </mat-option>
+                <mat-option *ngFor="let typewelfare of typewelfares" [value]="typewelfare.typewelName">
+                  {{typewelfare.typewelName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <h2>กรอกชื่อสวัสดิการ</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกชื่อสวัสดิการ</mat-label>
+              <input matInput [(ngModel)]="welsa.welsaName" name="welsaName">
+              <mat-icon matSuffix>message</mat-icon>
+            </mat-form-field>
+            <h2>กรอกค่าจ้าง</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกค่าจ้าง</mat-label>
+              <input matInput [(ngModel)]="welsa.salary" name="salary">
+              <mat-icon matSuffix>account_balance_wallet</mat-icon>
+            </mat-form-field>
+            <br><br><br><br><br><br><br><br><br>
+          </form>
+        </mat-grid-tile>
+      </div>
+      <mat-grid-tile [colspan]="2">
+        <div class="right_field">
+          <form class="example-form1">
+            <br>
+            <h2>กรอกรายละเอียด</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกรายละเอียด</mat-label>
+              <textarea matInput [(ngModel)]="welsa.detail" name="detail"></textarea>
+              <mat-icon matSuffix>list_alt</mat-icon>
+            </mat-form-field>
+            <h2>กรอกข้อกำหนดและเงื่อนไข</h2>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>กรอกข้อกำหนดและเงื่อนไข</mat-label>
+              <textarea matInput [(ngModel)]="welsa.termcon" name="termcon"></textarea>
+              <mat-icon matSuffix>list_alt</mat-icon>
+            </mat-form-field>
+            <br>
+            <div class="button-row">
+              <button mat-raised-button color="primary" (click)="save()" >ยืนยันการบันทึกสวัสดิการและผลตอบแทน</button>
+            </div>
+          </form>
+          <br>
+          <mat-drawer-container class="table">
+            <table mat-table [dataSource]="welfareSalary" class="mat-elevation-z8" width=100%>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element ">{{element.welsaName}}</td>
+              </ng-container>
+              <ng-container matColumnDef="typeWel">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element ">{{element.typewelfare.typewelName}}</td>
+              </ng-container>
+              <ng-container matColumnDef="typeWork">
+                <th mat-header-cell *matHeaderCellDef> Typework </th>
+                <td mat-cell *matCellDef="let element ">{{element.workingdate.typeworkingDate}}</td>
+              </ng-container>
+              <ng-container matColumnDef="salary">
+                <th mat-header-cell *matHeaderCellDef> Salary </th>
+                <td mat-cell *matCellDef="let element ">{{element.salary}}</td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </table>
+            <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+          </mat-drawer-container>
+        </div>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
