@@ -12,6 +12,8 @@ import javax.validation.constraints.Pattern;
 @ToString
 @EqualsAndHashCode
 @Getter @Setter
+
+
 public class TypepaymentEntity {
     @Id
     @SequenceGenerator(name = "type_seq",sequenceName = "type_seq")
