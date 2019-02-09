@@ -2,6 +2,8 @@ package sut.se.g18.Entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Data
 @Entity
@@ -15,8 +17,10 @@ public class TypepaymentEntity {
     @SequenceGenerator(name = "type_seq",sequenceName = "type_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "type_seq")
     @Column(name = "type_id",unique = true, nullable = false)
-    private @NonNull Long typeId;
-    private @NonNull String typeName;
+    private @NotNull Long typeId;
+
+    @Pattern(regexp = "([A-Z]|[a-z])+")@Column(unique = true)
+    @NotNull private  String typeName;
 
 
     public Long getTypeid() {
