@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { LearnedComponent } from './learned/learned.component';
 import { CompanyComponent } from './company/company.component';
 import { MaidselectComponent } from './maidselect/maidselect.component';
+import { ComplaintComponent } from './complaint/complaint.component';
 
 const routes: Routes = [
   {path: '' , component: LoginAddminComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'register' , component: RegisterComponent},
   {path: 'learned' , component: LearnedComponent},
   {path: 'company' , component: CompanyComponent},
+  {path: 'complaint' , component: ComplaintComponent},
   {path: 'select' , component: MaidselectComponent}
 ];
 

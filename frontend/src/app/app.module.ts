@@ -43,6 +43,8 @@ import { LearnedComponent } from './learned/learned.component';
 import { CompanyComponent } from './company/company.component';
 import { CompanyService } from './company.service';
 import { MaidselectComponent } from './maidselect/maidselect.component';
+import { ComplaintComponent } from './complaint/complaint.component';
+import { ComplaintService } from './service/complaint.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,8 @@ import { MaidselectComponent } from './maidselect/maidselect.component';
     RegisterComponent,
     LearnedComponent,
     CompanyComponent,
-    MaidselectComponent
+    MaidselectComponent,
+    ComplaintComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,7 @@ import { MaidselectComponent } from './maidselect/maidselect.component';
     MatFormFieldModule,
     MatDialogModule
   ],
-  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService,CompanyService,SelectService],
+  providers: [AdminService,PromotionService,CustomerService, PaymentService,LendService,RegisterService,CompanyService,SelectService,ComplaintService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

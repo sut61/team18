@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  </head>
+<body>
+  <div class="menubar">
+    <div class="container">
+      <div class="logo">
+        <h1>G18 MaidSystem</h1>
+      </div>
+      <ul class ="menu">
+        <li>
+          <!-- <a href="#">Edit Promotion</a> -->
+        </li>
+        <li>
+          <a href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mainContent">
+    <div class="mainContentLeft">
+      <div class="testtest">
+
+    <h2 class = "label1" >เลือกบริษัท</h2>
+   <mat-form-field class ="select1">
+  <mat-select placeholder="เลือกบริษัท" [(ngModel)]="views.companySelect" (ngModelChange)="dataChanged($event)" name="companyName">
+    <mat-option *ngFor="let company of companys" [value]="company.companyName">
+      {{company.companyName}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<h2 class = "label1" >เลือกแม่บ้าน</h2>
+<mat-form-field class ="select2">
+    <mat-select placeholder="เลือกแม่บ้าน" [(ngModel)]="views.maidSelect">
+      <mat-option *ngFor="let m of maids" [value]="m.maidName">
+        {{m.maidName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h2 class = "label1" >เลือกเรื่องที่จะร้องเรียน</h2>
+  <mat-form-field class ="select3">
+      <mat-select placeholder="เรื่องที่ร้องเรียน" [(ngModel)]="views.complaintTypeSelect" name="comTypeTest">
+        <mat-option *ngFor="let c of complaintTypes" [value]="c.complaintType">
+          {{c.complaintType}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+ <h2 class = "label13" >เนื้อหาที่จะร้องเรียน</h2>
+ <form class="example-form">
+    <mat-form-field class="comDetail">
+      <textarea matInput placeholder="เนื้อหาที่จะร้องเรียน" [(ngModel)]="views.complaintDetail" name ="detailTest"></textarea>
+    </mat-form-field>
+  </form>
+
+  <h2 class = "complaintDateSelect">วันที่ร้องเรียน</h2>
+  <mat-form-field class ="comDate">
+    <input matInput [matDatepicker]="picker" placeholder="เดือน / วัน / ปี" [(ngModel)] = "views.complaintDateSelect">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+     
+  
+
+    </div>
+    <div class="button1">
+
+        <button mat-raised-button color="primary" (click) = save_func() > ร้องเรียน </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

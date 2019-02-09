@@ -29,7 +29,8 @@ public class DemoApplication {
 			ElectricalEquipmentRepository electricalEquipmentRepository,
 			PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
 			CourseTypeRepository courseTypeRepository, CourseRepository courseRepository,
-			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository) {
+			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository,
+			ComplaintTypeRepository complaintTypeRepository) {
 		return args -> {
 
 			// Insert Company Type
@@ -170,6 +171,13 @@ public class DemoApplication {
 			PromotionTypeEntity promotionTypeEntity = new PromotionTypeEntity();
 			promotionTypeEntity.setPromotionType("ส่วนลด");
 			promotionTypeRepository.save(promotionTypeEntity);
+			
+
+			
+			//insert ComplaintType
+			ComplaintTypeEntity complaintTypeEntity = new ComplaintTypeEntity();
+			complaintTypeEntity.setComplaintType("พฤติกรรมไม่เหมาะสม");
+			complaintTypeRepository.save(complaintTypeEntity);
 
 			// Insert Sex
 			SexEntity m = new SexEntity("ชาย");
