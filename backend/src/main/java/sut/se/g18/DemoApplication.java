@@ -315,13 +315,6 @@ public class DemoApplication {
 			cus.setCountry(code);
 			customerRepository.save(cus);
 
-<<<<<<< HEAD
-			CompanyEntity c1 = new CompanyEntity();
-			c1.setCompanyName("บริษัทพีกาซัส");
-			c1.setCompanyAddress("aa");
-			c1.setCompanyPhone("011111111");
-			companyRepository.save(c1);
-=======
 		    CompanyEntity c1 = new CompanyEntity();
 		    c1.setCompanyName("บริษัทพีกาซัส");
 		    c1.setCompanyAddress("aa");
@@ -331,8 +324,6 @@ public class DemoApplication {
 			ProvinceEntity p11 = provinceRepository.findByprovinceName("หนองคาย");
 			c1.setProvinecEntity(p11);
 			companyRepository.save(c1);
-			
->>>>>>> แก้ไขข้อมูลที่เป็น Null - colse #156
 			CompanyEntity c2 = new CompanyEntity();
 			c2.setCompanyName("บริษัทโอซาก้า");
 			c2.setCompanyAddress("bb");
