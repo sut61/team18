@@ -297,25 +297,45 @@ public class DemoApplication {
 			cus.setCustomerpass("1234");
 			customerRepository.save(cus);
 
-		    CompanyEntity c1 = new CompanyEntity();
-		    c1.setCompanyName("บริษัทพีกาซัส");
-		    c1.setCompanyAddress("aa");
-		    c1.setCompanyPhone("011111111");
-		    companyRepository.save(c1);
+			CompanyEntity c1 = new CompanyEntity();
+			c1.setCompanyName("บริษัทพีกาซัส");
+			c1.setCompanyAddress("aa");
+			c1.setCompanyPhone("011111111");
+			CompanyTypeEntity ctt1 = companyTypeRepository.findBycompanyType("บริษัทมหาชน");
+			c1.setCompanyTypeEntity(ctt1);
+			ProvinceEntity p11 = provinceRepository.findByprovinceName("หนองคาย");
+			c1.setProvinecEntity(p11);
+			companyRepository.save(c1);
+
 			CompanyEntity c2 = new CompanyEntity();
 			c2.setCompanyName("บริษัทโอซาก้า");
 			c2.setCompanyAddress("bb");
 			c2.setCompanyPhone("022222222");
+			CompanyTypeEntity ctt2 = companyTypeRepository.findBycompanyType("บริษัทเอกชน");
+			c2.setCompanyTypeEntity(ctt2);
+			ProvinceEntity p22 = provinceRepository.findByprovinceName("นครราชสีมา");
+			c2.setProvinecEntity(p22);
 			companyRepository.save(c2);
+
 			CompanyEntity c3 = new CompanyEntity();
 			c3.setCompanyName("บริษัทกินซ่า");
 			c3.setCompanyAddress("cc");
 			c3.setCompanyPhone("033333333");
+			CompanyTypeEntity ctt3 = companyTypeRepository.findBycompanyType("บริษัทมหาชน");
+			c2.setCompanyTypeEntity(ctt3);
+			ProvinceEntity p33 = provinceRepository.findByprovinceName("ชลบุรี");
+			c2.setProvinecEntity(p33);
+
 			companyRepository.save(c3);
+
 			CompanyEntity c4 = new CompanyEntity();
 			c4.setCompanyName("บริษัทสวนรักษ์");
 			c4.setCompanyAddress("dd");
 			c4.setCompanyPhone("044444444");
+			CompanyTypeEntity ct4 = companyTypeRepository.findBycompanyType("บริษัทเอกชน");
+			c2.setCompanyTypeEntity(ct4);
+			ProvinceEntity p44 = provinceRepository.findByprovinceName("เชียงใหม่");
+			c2.setProvinecEntity(p44);
 			companyRepository.save(c4);
 
 			CourseEntity co1 = new CourseEntity();

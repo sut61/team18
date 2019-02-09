@@ -35,27 +35,112 @@ public class ContractEntity {
     private String detail;
 
     //Many To One with Promotion
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionEntity.class)
     private PromotionEntity promotion;
 
     //Many To One with Company
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
     private CompanyEntity company;
 
     //Many To One with PaymentStatus
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PaymentStatusEntity.class)
     private PaymentStatusEntity status;
 
     //Many To One with ContractType
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = ContractTypeEntity.class)
     private ContractTypeEntity contractType;
 
     //Many To One with Customer
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CustomerEntity.class)
     private CustomerEntity customer;
 
     //One To One with MaidSelectEntity
+    @NotNull
     @OneToOne(fetch = FetchType.EAGER,targetEntity = MaidSelectEntity.class)
     private MaidSelectEntity maid;
 
+    public Long getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Long contractId) {
+        this.contractId = contractId;
+    }
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public PromotionEntity getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(PromotionEntity promotion) {
+        this.promotion = promotion;
+    }
+
+    public CompanyEntity getCompany() {
+        return company;
+    }
+
+    public void setCompany(CompanyEntity company) {
+        this.company = company;
+    }
+
+    public PaymentStatusEntity getStatus() {
+        return status;
+    }
+
+    public void setStatus(PaymentStatusEntity status) {
+        this.status = status;
+    }
+
+    public ContractTypeEntity getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(ContractTypeEntity contractType) {
+        this.contractType = contractType;
+    }
+
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
+
+    public MaidSelectEntity getMaid() {
+        return maid;
+    }
+
+    public void setMaid(MaidSelectEntity maid) {
+        this.maid = maid;
+    }
 }
