@@ -1,0 +1,110 @@
+@charset "utf-8";
+body{
+    font-family: 'Raleway', sans-serif;
+}
+*{
+    padding: 0px;
+    margin: 0px;
+
+}
+.header_content{
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  background:rgba(0, 191, 255, 0.4);
+  color:white;
+
+}
+.title{
+  float: left;
+  margin-left:17px;
+}
+.main_content{
+
+  width: 100%;
+  height: 100%;
+  color: white;
+
+}
+
+.main_content h1 a{
+  margin-left: 4%;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 80%;
+  margin-left: 3%;
+}
+.example-form1 {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  height: 45%;
+  margin-left: 15%;
+  background-color: rgba(0, 191, 255, 0.4);
+  border-radius: 25px;
+  text-align: center;
+
+
+}
+.example-full-width {
+  width: 80%;
+}
+.main_background{
+  background-image: url("money2.jpg");
+  background-color: #cccccc;
+  height: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.left_field{
+  width: 32%;
+  height: 600px;
+  background-color: rgba(0, 191, 255, 0.4);
+  float: left;
+  border-radius: 25px;
+  margin-left: 3.5%;
+}
+.right_field{
+  width: 1400px;
+  height: 815px;
+  float: right;
+  border-radius: 25px;
+  margin-right: 5%;
+  margin-left: 7%;
+
+}
+
+.button-row button,
+.button-row a {
+  margin-left: 3%;
+
+}
+.list_menu{
+  float: right;
+}
+.list_menu li{
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 15px;
+  padding-right: 15px;
+}
+.list_menu li a{
+  text-decoration: none;
+  padding:10px 20px;
+  font-family:"Roboto",sans-serif;
+  font-size: 20px;
+  color:white;
+}
+.list_menu li.active a{
+  background-color: rgba(0, 191, 255, 0.7);
+  border-radius: 8px;
+  color:white;
+}
+.list_menu li a:hover{
+  background-color: rgba(0, 191, 255, 0.9);
+  border-radius: 8px;
+  color:white;
+}
