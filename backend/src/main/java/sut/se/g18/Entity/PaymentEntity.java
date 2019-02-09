@@ -2,6 +2,9 @@ package sut.se.g18.Entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -15,11 +18,11 @@ public class PaymentEntity {
     @SequenceGenerator(name = "pay_seq",sequenceName = "pay_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "pay_seq")
     @Column(name = "pay_id",unique = true, nullable = false)
-    private @NonNull Long payId;
-    private @NonNull String name;
-    private @NonNull String address;
-    private @NonNull String phonenum;
-    private @NonNull String accountNumber;
+    private @NotNull Long payId;
+    private @NotNull String name;
+    private @NotNull String address;
+    private @NotNull @Size(min=9,max=10) @Pattern(regexp="([0-9])+")String phonenum;
+    private @NotNull String accountNumber;
 
     
 
