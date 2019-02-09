@@ -30,7 +30,7 @@ public class DemoApplication {
 			PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
 			CourseTypeRepository courseTypeRepository, CourseRepository courseRepository,
 			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository,
-			ComplaintTypeRepository complaintTypeRepository) {
+			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository) {
 		return args -> {
 
 			// Insert Company Type
@@ -470,6 +470,12 @@ public class DemoApplication {
 				ElectricalEquipmentEntity e = new ElectricalEquipmentEntity(electric);
 				e.setElectric(electric);
 				electricalEquipmentRepository.save(e);
+			});
+			//Add Typewelfare
+			Stream.of("สวัสดิการเพื่อความมั่นคงและสุขภาพ","สวัสดิการที่จ่ายตอบแทนเมื่อไม่ได้ทำงาน","สวัสดิการบริการ").forEach(welfare -> {
+				TypewelfareEntity type = new TypewelfareEntity();
+				type.setTypewelName(welfare);
+				typewelfareRepository.save(type);
 			});
 		};
 	}
