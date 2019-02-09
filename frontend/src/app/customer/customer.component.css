@@ -1,5 +1,4 @@
-
-     .panelmaster{
+.panelmaster{
         position: absolute;
         width: 90%;
         margin-left: 5%;
@@ -8,7 +7,7 @@
         height: 500px;
         background-image: url("kkkk.jpg");
         background-color: #cccccc;
-        height: 100%; 
+        height: 100%;
         background-position: top;
         background-repeat: no-repeat;
         background-size: cover;
@@ -18,7 +17,7 @@
         height: 275px;
         float: left;
         text-align: right;
-       
+
       }
       .placeholder {
         color: rgb(53, 9, 175);
@@ -29,21 +28,21 @@
         height: 275px;
         float: left;
         text-align: left;
-      
+
       }
       .panel3{
         width: 27%;
         height: 275px;
         float: left;
-       
+
       }
       .panel4{
         width: 30%;
         height: 400px;
         float: left;
-      
+
       }
-      
+
       #formtext{
         margin-right: 6px;
         margin:20px 20px 20px 20% ;
@@ -55,7 +54,7 @@
         font-size: 20px;
         text-align: right;
       }
-  
+
       #input{
               margin-top: 5px;
               width: 250px;
@@ -75,4 +74,3 @@
       float:right;
       margin-right: 150px;
   }
-  

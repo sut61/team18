@@ -186,7 +186,7 @@ public class CompanyTest {
         CompanyEntity c = new CompanyEntity();
         c.setCompanyName("dd");
         c.setCompanyAddress("18/1 หมู่ 3 มหาวิทยาลัยเทคโนโลยีสุรนารี");
-        c.setCompanyPhone("07777777");
+        c.setCompanyPhone("7777777");
         try {
 
             entityManager.persist(c);
@@ -206,7 +206,7 @@ public class CompanyTest {
         CompanyEntity c = new CompanyEntity();
         c.setCompanyName("aaaaaaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
         c.setCompanyAddress("20/1 หมู่ 3 มหาวิทยาลัยเทคโนโลยีสุรนารี");
-        c.setCompanyPhone("0888888888888");
+        c.setCompanyPhone("88888888888888");
         try {
 
             entityManager.persist(c);

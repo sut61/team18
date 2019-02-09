@@ -65,6 +65,8 @@ public class CustomerTest {
 
             //fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("================================ From testSuccess ==================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -87,6 +89,8 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("============================ From testNameNull ======================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -97,6 +101,10 @@ public class CustomerTest {
         CustomerEntity c = new CustomerEntity();
         c.setCustomerName("d");
         c.setCustomerphone("0935152478");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
         try {
 
             entityManager.persist(c);
@@ -104,6 +112,8 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("========================= From testOversize ======================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -114,6 +124,10 @@ public class CustomerTest {
         CustomerEntity c = new CustomerEntity();
         c.setCustomerName("ddddddddddddddddddddddddddddddddddddddd");
         c.setCustomerphone("0935395533");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
         try {
 
             entityManager.persist(c);
@@ -121,6 +135,8 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("====================== From testMaxsize ==========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -131,6 +147,10 @@ public class CustomerTest {
         CustomerEntity c = new CustomerEntity();
         c.setCustomerName("Mine Mineee");
         c.setCustomerphone("123456");
+        c.setCustomerper("1234567890000");
+        c.setCustomerEmail("mine@sut.com");
+        c.setCustomeraddress("222 หมู่ 8 มทส.");
+        c.setCustomerpass("111111");
 
         try{
             entityManager.persist(c);
@@ -138,6 +158,8 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
+            System.out.println("================================ From testPatternDetail ==========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -159,30 +181,49 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("========================== From testAddressNull ========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
     @Test
-    public void testEmailNull() {
-        CustomerEntity c = new CustomerEntity();
+    public void testCustomerEmailNotEmail() {
+       CustomerEntity c = new CustomerEntity();
         c.setCustomerName("Mine Mine");
         c.setCustomerphone("0890000000");
         c.setCustomerper("1234567890000");
-        c.setCustomerEmail(null);
+        c.setCustomerEmail("aaaaaa");
         c.setCustomeraddress("222 หมู่ 8 มทส.");
         c.setCustomerpass("111111");
+
         try {
 
             entityManager.persist(c);
             entityManager.flush();
-
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "[SHOWERROR]===============================================================================[SHOWERROR]");
+            System.out.println(e.getMessage());
+            System.out.println(
+                    "[SHOWERROR]===============================================================================[SHOWERROR]");
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
+        } catch (javax.persistence.PersistenceException e) {
+            e.printStackTrace();
         }
     }
     @Test
@@ -201,20 +242,22 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("================== From testPhoneNull =================" );
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
     @Test
-    public void testPassNull() {
+    public void testMinPass() {
         CustomerEntity c = new CustomerEntity();
         c.setCustomerName("Mine Mine");
         c.setCustomerphone("0890000000");
         c.setCustomerper("1234567890000");
         c.setCustomerEmail("mine@sut.com");
         c.setCustomeraddress("222 หมู่ 8 มทส.");
-        c.setCustomerpass(null);
+        c.setCustomerpass("555");
         try {
 
             entityManager.persist(c);
@@ -222,6 +265,8 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("========================= From testMinPass ====================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
@@ -243,6 +288,8 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("======================== From testPerNull ==========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);

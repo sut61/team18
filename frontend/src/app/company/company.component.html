@@ -20,7 +20,7 @@
           <form id="formtext">
             <label>ชื่อบริษัท</label>
             <mat-form-field id="input">
-                <input matInput placeholder="กรอกชื่อบริษัท" [(ngModel)]="views.name" name = "companyName" >
+                <input matInput placeholder="กรอกชื่อขึ้นต้นด้วย บริษัท" [(ngModel)]="views.name" name = "companyName" >
               </mat-form-field>
             <br><br><br><br>
             <label>ประเภทบริษัท</label>
@@ -34,7 +34,7 @@
             <br><br><br><br>
             <label>เบอร์โทรศัพท์ :</label>
             <mat-form-field id="input">
-                <textarea matInput placeholder="ระบุเบอร์โทรศัพท์" [(ngModel)]="views.phone" name = "companyPhone"></textarea>
+                <input matInput placeholder="ระบุเบอร์โทรศัพท์" [(ngModel)]="views.phone" name = "companyPhone">
             </mat-form-field>
             <br><br><br><br><br>
             <label>ที่อยู่บริษัท :</label>

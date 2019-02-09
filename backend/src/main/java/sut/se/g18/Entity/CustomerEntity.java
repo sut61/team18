@@ -1,6 +1,7 @@
 package sut.se.g18.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -27,11 +28,13 @@ public class CustomerEntity {
     @NotNull
     private  String customeraddress;
     @NotNull
+    @Email
     private  String customerEmail;
     @NotNull
     @Pattern(regexp = "^0([0-9])+")
     private  String customerphone;
     @NotNull
+    @Size(min = 4)
     private  String customerpass;
     @NotNull
     private  String customerper;
