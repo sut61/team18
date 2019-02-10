@@ -108,6 +108,10 @@ public class MaidRegisterController {
 
         return maidRegisterRepository.save(maidRegisterEntity);
     }
-    
-
+    @GetMapping(path ="/WelfareAndSalary/{company}/{workingdate}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Collection<WelfareAndSalaryEntity> welfareAndSalaryEntity(WelfareAndSalaryEntity welsa, @PathVariable String company, @PathVariable String workingdate) {
+        CompanyEntity com = companyRepository.findBycompanyName(company);
+        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(workingdate);
+        return welfareAndSalaryRepository.findByCompanyAndWorkingdate(com, work);
+    }
 }
