@@ -108,5 +108,6 @@ public class MaidRegisterController {
 
         return maidRegisterRepository.save(maidRegisterEntity);
     }
+    
 
 }
