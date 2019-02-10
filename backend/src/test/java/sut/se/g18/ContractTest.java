@@ -69,7 +69,7 @@ public class ContractTest {
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
-        promo = promotionRepository.findBytitle("Discount");
+        promo = promotionRepository.findBytitle("โปรโมชั่นลดราคา");
         company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
         status = paymentStatusRepository.findBypaymentStatus("ค้างชำระ");
         type = contractTypeRepository.findBycontractType("1 Day");

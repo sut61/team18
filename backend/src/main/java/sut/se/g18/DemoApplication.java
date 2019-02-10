@@ -7,10 +7,13 @@ import org.springframework.context.annotation.Bean;
 import sut.se.g18.Entity.*;
 import sut.se.g18.Repository.*;
 
+import java.text.SimpleDateFormat;
 import java.util.stream.Stream;
 
 @SpringBootApplication
 public class DemoApplication {
+
+	private SimpleDateFormat formatter5 = new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss");
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -451,11 +454,14 @@ public class DemoApplication {
 			 m5.setMaidEmail("plorrrrrrrry@gmail.com");
 			 maidSelectRepository.save(m5);
 
-			// PromotionEntity p1 = new PromotionEntity();
-			// p1.setTitle("Discount");
-			// CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
-			// p1.setCompanyEntity(company);
-			// promotionRepository.save(p1);
+			PromotionEntity p1 = new PromotionEntity();
+			p1.setTitle("โปรโมชั่นลดราคา");
+			p1.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+			p1.setDateEnd(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+			CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
+			p1.setDiscount(15);
+			p1.setCompanyEntity(company);
+			promotionRepository.save(p1);
 
 			// Create CleaningEquipment
 			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่",
