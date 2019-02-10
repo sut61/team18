@@ -48,6 +48,7 @@ import { ComplaintService } from './service/complaint.service';
 import { WelfareandsalaryComponent } from './welfareandsalary/welfareandsalary.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { WelfaresalaryService } from './service/welfaresalary.service';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { WelfaresalaryService } from './service/welfaresalary.service';
     CompanyComponent,
     MaidselectComponent,
     ComplaintComponent,
-    WelfareandsalaryComponent
+    WelfareandsalaryComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

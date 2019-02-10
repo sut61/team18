@@ -75,6 +75,10 @@ export class SubmitComponent implements OnInit {
       });
       this.router.navigate(['/mainMaid']);
   
+    },
+    error => {
+      console.log('Error', error);
+      alert('เกิด Error');
     })
   };
   lode(){

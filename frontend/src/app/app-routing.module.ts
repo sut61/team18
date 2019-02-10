@@ -20,6 +20,7 @@ import { CompanyComponent } from './company/company.component';
 import { MaidselectComponent } from './maidselect/maidselect.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { WelfareandsalaryComponent } from './welfareandsalary/welfareandsalary.component';
+import { ReviewComponent } from './review/review.component';
 
 const routes: Routes = [
   {path: '' , component: LoginAddminComponent},
@@ -40,7 +41,8 @@ const routes: Routes = [
   {path: 'company' , component: CompanyComponent},
   {path: 'complaint' , component: ComplaintComponent},
   {path: 'select' , component: MaidselectComponent},
-  {path: 'welsa' , component: WelfareandsalaryComponent}
+  {path: 'welsa' , component: WelfareandsalaryComponent},
+  {path: 'review' , component: ReviewComponent}
 ];
 
 @NgModule({
