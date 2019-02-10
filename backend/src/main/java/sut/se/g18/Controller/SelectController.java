@@ -24,16 +24,20 @@ public class SelectController {
     private MaidSelectRepository maidSelectRepository;
     @Autowired
     private MaidStatusRepository maidStatusRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public SelectController(TypeworkingRepository typeworkingRepository, WorkingDateRepositoy workingDateRepositoy,
             CompanyRepository companyRepository, MaidRegisterRepository maidRegisterRepository,
-            MaidSelectRepository maidSelectRepository, MaidStatusRepository maidStatusRepository) {
+            MaidSelectRepository maidSelectRepository, MaidStatusRepository maidStatusRepository,
+            CustomerRepository customerRepository) {
         this.typeworkingRepository = typeworkingRepository;
         this.workingDateRepositoy = workingDateRepositoy;
         this.companyRepository = companyRepository;
         this.maidRegisterRepository = maidRegisterRepository;
         this.maidSelectRepository = maidSelectRepository;
         this.maidStatusRepository = maidStatusRepository;
+        this.customerRepository = customerRepository;
     }
 
 
@@ -42,18 +46,20 @@ public class SelectController {
         return maidStatusRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/select/{inputEmail}/{companysSelect}/{registerSelect}/{typeworkingSelect}/{workingDateSelect}/{statusSelect}")
-    public MaidSelectEntity maidSelectEntity(@PathVariable String inputEmail, @PathVariable String companysSelect,
-            @PathVariable String registerSelect, @PathVariable String typeworkingSelect,
-            @PathVariable String workingDateSelect, @PathVariable String statusSelect) {
+    @PostMapping("/select/{emailInput}/{companySelect}/{maidselect}/{typeworkingSelect}/{typeworkingDateSelect}/{statusSelect}")
+    public MaidSelectEntity maidSelectEntity(@PathVariable String emailInput, @PathVariable String companySelect,
+            @PathVariable String maidselect, @PathVariable String typeworkingSelect,
+            @PathVariable String typeworkingDateSelect, @PathVariable String statusSelect) {
         MaidSelectEntity maidSelectEntity = new MaidSelectEntity();
-        CompanyEntity company = companyRepository.findBycompanyName(companysSelect);
-        MaidRegisterEntity maid = maidRegisterRepository.findBymaidName(registerSelect);
+        CustomerEntity cus = customerRepository.findBycustomerEmail(emailInput);
+        CompanyEntity company = companyRepository.findBycompanyName(companySelect);
+        MaidRegisterEntity maid = maidRegisterRepository.findBymaidName(maidselect);
         TypeworkingEntity type = typeworkingRepository.findByTypeworking(typeworkingSelect);
-        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(workingDateSelect);
+        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(typeworkingDateSelect);
         MaidStatusEntity status = maidStatusRepository.findBystatus(statusSelect);
-
-        maidSelectEntity.setMaidEmail(inputEmail);
+        
+        maidSelectEntity.setCustomer(cus);
+        maidSelectEntity.setMaidEmail(emailInput);
         maidSelectEntity.setCompanyForMaid(company);
         maidSelectEntity.setMaid(maid);
         maidSelectEntity.setTypeworkingEntity(type);

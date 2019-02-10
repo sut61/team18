@@ -14,5 +14,6 @@ import sut.se.g18.Entity.WorkingDateEntity;
 
 public interface WelfareAndSalaryRepository extends JpaRepository<WelfareAndSalaryEntity, Long> {
     WelfareAndSalaryEntity findBywelsaName(String welsaName);
+    Collection<WelfareAndSalaryEntity> findByCompanyAndWorkingdate(CompanyEntity Company, WorkingDateEntity workingdate);
 }
 
