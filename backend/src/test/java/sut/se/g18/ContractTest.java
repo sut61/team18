@@ -136,36 +136,6 @@ public class ContractTest {
         }
     }
 
-    // TEST NULL RELATION BETWEEN CONTRACT ENTITY AND PROMOTION ENTITY
-    @Test
-    public void testContractEntityRelationToPromotionEntityNull() {
-        ContractEntity c = new ContractEntity();
-        c.setCost(1500);
-        c.setDetail("ทำสัญญาแม่บ้าน");
-        c.setPromotion(null);
-        c.setCompany(company);
-        c.setStatus(status);
-        c.setContractType(type);
-        c.setCustomer(cus);
-        c.setMaid(maid);
-
-        try {
-            c.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
-            entityManager.persist(c);
-            entityManager.flush();
-
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println("=======================FROM testContractEntityZeroInt========================");
-            System.out.println(e.getConstraintViolations());
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
     // TEST NULL RELATION BETWEEN CONTRACT ENTITY AND COMPANY ENTITY
     @Test
     public void testContractEntityRelationToCompanyEntityNull() {

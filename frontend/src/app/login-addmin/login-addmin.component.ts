@@ -14,7 +14,7 @@ export class LoginAddminComponent implements OnInit {
     adminUsername: null,
     adminPassword: null
   }
-  constructor(private route: ActivatedRoute,private adminService: AdminService, private httpClient: HttpClient, private router: Router) { }
+  constructor(private route: ActivatedRoute, private adminService: AdminService, private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }

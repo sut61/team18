@@ -35,7 +35,6 @@ public class ContractEntity {
     private String detail;
 
     //Many To One with Promotion
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionEntity.class)
     private PromotionEntity promotion;
 
