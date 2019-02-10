@@ -291,7 +291,7 @@ public class PromotionTest {
             System.out.println(e);
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 2);
         } catch (ParseException e) {
             e.printStackTrace();
         }

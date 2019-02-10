@@ -108,7 +108,7 @@ public class ComplaintTest {
 
 
         try {
-            comEn.setComplaintDate(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            
             entityManager.persist(comEn);
             entityManager.flush();
 
@@ -119,9 +119,7 @@ public class ComplaintTest {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        } 
     }
 
     //TEST NULL MaidEntiy
@@ -135,7 +133,7 @@ public class ComplaintTest {
 
 
         try {
-            comEn.setComplaintDate(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            
             entityManager.persist(comEn);
             entityManager.flush();
 
@@ -146,9 +144,7 @@ public class ComplaintTest {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        } 
     }
 
      //TEST NULL ComplaintTypeEntiy
@@ -162,7 +158,7 @@ public class ComplaintTest {
 
 
          try {
-             comEn.setComplaintDate(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            
              entityManager.persist(comEn);
              entityManager.flush();
 
@@ -173,9 +169,7 @@ public class ComplaintTest {
              Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
              assertEquals(violations.isEmpty(), false);
              assertEquals(violations.size(), 1);
-         } catch (ParseException e) {
-             e.printStackTrace();
-         }
+         } 
      }
 
       //TEST NULL dateNull
@@ -362,7 +356,7 @@ public class ComplaintTest {
          comEn.setComDetail("เรื่อง แม่บ้านขี้เกียจ");
 
         try {
-            comEn.setComplaintDate(formatter5.parse("Thu, Oct 18 2018 00:00:00"));
+            
             entityManager.persist(comEn);
             entityManager.flush();
 
@@ -373,11 +367,7 @@ public class ComplaintTest {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
-        } catch (ParseException e) {
-            System.out.println("===========In testConplaintInvalidDate============");
-            System.out.println(e);
-            e.printStackTrace();
-        }
+        } 
     }
 
 
