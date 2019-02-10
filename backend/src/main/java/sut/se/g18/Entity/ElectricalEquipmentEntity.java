@@ -1,14 +1,14 @@
 package sut.se.g18.Entity;
 
-
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
 @Getter 
 @Setter
-@NoArgsConstructor
+
 @ToString @EqualsAndHashCode
 @Table (name = " ElectricalEquipmentEntity ")
 
@@ -18,13 +18,15 @@ public class ElectricalEquipmentEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="electricId_seq")
     
     private @NonNull Long electricId;
-    private @NonNull String electric;
+    @NotNull private String electric;
 
     public  ElectricalEquipmentEntity(String electric) {
 
         this.electric = electric;
     }
-    public Long getElectricId() {
+    public ElectricalEquipmentEntity() {
+	}
+	public Long getElectricId() {
         return electricId;
     }
     public void setElectricId(Long electricId) {
