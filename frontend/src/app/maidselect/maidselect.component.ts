@@ -54,18 +54,28 @@ ngOnInit() {
   })
 }
   save_func(){
-        this.httpClient.post('http://localhost:8080/select/' + this.views.emailInput + '/' + this.views.companySelect + '/' + 
-        this.views.maidselect + '/' +  this.views.typeworkingSelect + '/' + this.views.typeworkingDateSelect + '/' + this.views.statusSelect, this.views )
+        this.httpClient.post('http://localhost:8080/select/' +
+        this.views.emailInput + '/' +
+        this.views.companySelect + '/' + 
+        this.views.maidselect + '/' +
+        this.views.typeworkingSelect + '/' +
+        this.views.typeworkingDateSelect + '/' +
+        this.views.statusSelect, this.views )
                .subscribe(
                    data => {
-                       alert("Successfully!!");
+                     
                        console.log('POST Request is successful', data);
+                       alert("Successfully!!");
+                       this.router.navigate(['/mainCus']); 
                    },
                    error => {
+                   
                         console.log('Rrror', error);
+                        alert("ข้อมูลไม่ถูกต้องบันทึกไม่สำเร็จ !!");
                   }
 
                );
+               
   }
 
 

@@ -18,7 +18,7 @@
       </mat-form-field>
 
       <mat-form-field class="prefix">
-        <mat-select placeholder="เลือกฉันเถอะนะคนดี" [(ngModel)]="views.maidselect" name = "maidName">
+        <mat-select placeholder="เลือกแม่บ้าน" [(ngModel)]="views.maidselect" name = "maidName">
           <mat-option *ngFor="let maidName of maids" [value]="maidName.maidName">
             {{maidName.maidName}}</mat-option>
         </mat-select>
