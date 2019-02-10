@@ -2,6 +2,7 @@ package sut.se.g18.Entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Data
 @Entity
@@ -17,24 +18,33 @@ public class LendEquipmentEntity {
     @SequenceGenerator(name="lendId_seq",sequenceName="lendId_seq")     
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="lendId_seq")
     private @NonNull Long lendId;
-    private @NonNull String lendData;
+
+    @Column(unique = true)
+    @NotNull 
+    @Size(min = 3,max = 40)
+    @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| )+")
+    private String lendData;
 
     //---ของอุปกรณ์----
+    @NotNull
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cleaningId")
     private CleaningEquipmentEntity cleaningEquipmentEntity;
 
     //---ของไฟฟ้า----
+    @NotNull
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "electricId")
     private ElectricalEquipmentEntity electricalEquipmentEntity;
 
     //----ของลูกค้า-----
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "customerId")
     private CustomerEntity customerEntity;
 
     //----ของแม่บ้าน-----
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name= "maidId")
     private MaidRegisterEntity maidregisterEntity;
@@ -42,7 +52,8 @@ public class LendEquipmentEntity {
     public LendEquipmentEntity(){
         
     }
-    public  LendEquipmentEntity(String lendData,CleaningEquipmentEntity cleaningEquipmentEntity,ElectricalEquipmentEntity electricalEquipmentEntity,CustomerEntity customerEntity,MaidRegisterEntity maidregisterEntity) {
+    public  LendEquipmentEntity(String lendData,CleaningEquipmentEntity cleaningEquipmentEntity
+    ,ElectricalEquipmentEntity electricalEquipmentEntity,CustomerEntity customerEntity,MaidRegisterEntity maidregisterEntity) {
 
         this.lendData=lendData;
         this.cleaningEquipmentEntity=cleaningEquipmentEntity;
