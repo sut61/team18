@@ -33,7 +33,11 @@ public class DemoApplication {
 			PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
 			CourseTypeRepository courseTypeRepository, CourseRepository courseRepository,
 			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository,
-			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository) {
+			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository
+			,ScoreRepository scoreRepository
+							 ,ScoreExpertiseRepository scoreExpertiseRepository
+							 ,ScorePersonalityRepository scorePersonalityRepository
+							 ,ScoreTimeRepository scoreTimeRepository) {
 		return args -> {
 
 			// Insert Company Type
@@ -483,6 +487,27 @@ public class DemoApplication {
 				type.setTypewelName(welfare);
 				typewelfareRepository.save(type);
 			});
+			Stream.of("1","2","3","4","5").forEach(score -> {
+				ScoreEntity sc = new ScoreEntity(score);
+				sc.setScore(score);
+				scoreRepository.save(sc);
+			});
+			Stream.of("1","2","3","4","5").forEach(scoreEx -> {
+				ScoreExpertiseEntity sce = new ScoreExpertiseEntity(scoreEx);
+				sce.setScoreEx(scoreEx);
+				scoreExpertiseRepository.save(sce);
+			});
+			Stream.of("1","2","3","4","5").forEach(scorePer -> {
+				ScorePersonalityEntity scp = new ScorePersonalityEntity(scorePer);
+				scp.setScorePer(scorePer);
+				scorePersonalityRepository.save(scp);
+			});
+			Stream.of("1","2","3","4","5").forEach(scoreTi -> {
+				ScoreTimeEntity sct = new ScoreTimeEntity(scoreTi);
+				sct.setScoreTi(scoreTi);
+				scoreTimeRepository.save(sct);
+			});
+
 		};
 	}
 }
