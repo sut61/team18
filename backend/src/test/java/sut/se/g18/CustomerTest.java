@@ -265,7 +265,7 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println("========================= From testMinPass ====================");
+            System.out.println("========================= From testMinPass ==========================");
             System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
@@ -288,8 +288,7 @@ public class CustomerTest {
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println("======================== From testPerNull =============================");
-            System.out.println(e.getConstraintViolations());
+=            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
