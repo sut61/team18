@@ -1,6 +1,11 @@
 package sut.se.g18.Entity;
 import lombok.*;
 import  javax.persistence.*;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 @Entity
 @Data
 @Getter @Setter
@@ -13,13 +18,23 @@ public class MaidRegisterEntity {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="registerSeq")
     @Column(name="maidId",unique = true, nullable = false)
     private @NonNull Long maidId;
-    private @NonNull String maidName;
-    private  String maidAddress;
-    private  String maidEmail;
-    private @NonNull String maidPhone;
-    private  String province;
-    private  String district;
-    private  String canton;
+    @NotNull
+    private String maidName;
+    @NotNull
+    private String maidAddress;
+    @Email
+    private String maidEmail;
+    @NotNull
+    @Size(min = 10, max = 10)
+    @Pattern(regexp = "^0([0-9])+")
+    private String maidPhone;
+    @NotNull
+    private String province;
+    @NotNull
+    private String district;
+    @NotNull
+    private String canton;
+
     
 
     //Many To One with Company
