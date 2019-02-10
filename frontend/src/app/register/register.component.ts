@@ -43,7 +43,8 @@ export class RegisterComponent implements OnInit {
       console.log(data)
       this.companyId = data;
     })
-    this.registerService.getWelsaName().subscribe(data => {
+    
+    this.registerService.getWelsaName(this.views.companySelect,this.views.typeworkingDateSelect).subscribe(data => {
       console.log(data)
       this.welsa = data;
     })

@@ -49,7 +49,7 @@ export class RegisterService {
   getCompanyForMaid(): Observable<any>{
     return this.http.get(this.API + '/companys');
   }
-  getWelsaName(): Observable<any>{
-    return this.http.get(this.API + '/WelfareAndSalary');
+  getWelsaName(company,workingdate): Observable<any>{
+    return this.http.get(this.API + '/WelfareAndSalary/' + company + '/' + workingdate);
 }
 }
