@@ -50,4 +50,67 @@ public class LearnedEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = SkillEntity.class)
     private SkillEntity skill;
 
+    public Long getLearnedId() {
+        return learnedId;
+    }
+
+    public void setLearnedId(Long learnedId) {
+        this.learnedId = learnedId;
+    }
+
+    public Date getDateLearned() {
+        return dateLearned;
+    }
+
+    public void setDateLearned(Date dateLearned) {
+        this.dateLearned = dateLearned;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public boolean isCheckObject() {
+        return checkObject;
+    }
+
+    public void setCheckObject(boolean checkObject) {
+        this.checkObject = checkObject;
+    }
+
+    public CompanyEntity getCompany() {
+        return company;
+    }
+
+    public void setCompany(CompanyEntity company) {
+        this.company = company;
+    }
+
+    public CourseEntity getCourse() {
+        return course;
+    }
+
+    public void setCourse(CourseEntity course) {
+        this.course = course;
+    }
+
+    public MaidRegisterEntity getMaid() {
+        return maid;
+    }
+
+    public void setMaid(MaidRegisterEntity maid) {
+        this.maid = maid;
+    }
+
+    public SkillEntity getSkill() {
+        return skill;
+    }
+
+    public void setSkill(SkillEntity skill) {
+        this.skill = skill;
+    }
 }
