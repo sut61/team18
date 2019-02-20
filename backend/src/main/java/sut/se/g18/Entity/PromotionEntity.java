@@ -58,8 +58,10 @@ public class PromotionEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = PromotionTypeEntity.class)
     private PromotionTypeEntity promotionTypeEntity;
     
-    //Many To One with MaidEntity
-   // @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidEntity.class)
+     //Many To One with MaidRegister
+     @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidRegisterEntity.class)
+     private MaidRegisterEntity maid;
+    
 
     //Many To One with CompanyEntity
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
@@ -118,13 +120,20 @@ public class PromotionEntity {
         this.promotionTypeEntity = promotionTypeEntity;
     }
 
-   // public MaidEntity getMaidEntity() {
-     //   return this.maidEntity;
-    //}
 
-   // public void setMaidEntity(MaidEntity maidEntity) {
-     //   this.maidEntity = maidEntity;
-   // }
+    public MaidRegisterEntity getMaid() {
+        return this.maid;
+    }
+
+    public void setMaid(MaidRegisterEntity maid) {
+        this.maid = maid;
+    }
+
+    public PromotionEntity maid(MaidRegisterEntity maid) {
+        this.maid = maid;
+        return this;
+    }
+   
 
     public CompanyEntity getCompanyEntity() {
         return this.companyEntity;
