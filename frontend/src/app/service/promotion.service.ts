@@ -21,4 +21,9 @@ export class PromotionService {
 
  }
  
+ public getMaidName():Observable<any>{
+  return this.http.get(promotionAPI+'/maid')
+
+}
+ 
 }

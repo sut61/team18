@@ -7,6 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import sut.se.g18.Entity.*;
 import sut.se.g18.Repository.CompanyRepository;
+import sut.se.g18.Repository.MaidRegisterRepository;
 import sut.se.g18.Repository.PromotionRepository;
 import sut.se.g18.Repository.PromotionTypeRepository;
 
@@ -44,6 +45,9 @@ public class PromotionTest {
     private PromotionTypeRepository promotionTypeRepository;
 
     @Autowired
+    private MaidRegisterRepository maidRegisterRepository;
+    
+    @Autowired
     private PromotionRepository promotionRepository;
 
 
@@ -55,6 +59,7 @@ public class PromotionTest {
     private CompanyEntity company1;
 
     private PromotionTypeEntity proType;
+    private MaidRegisterEntity maid;
 
     private SimpleDateFormat formatter5 = new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss");
 
@@ -64,6 +69,7 @@ public class PromotionTest {
         validator = factory.getValidator();
         company1 = companyRepository.findBycompanyName("พีกาซัส");
         proType = promotionTypeRepository.findBypromotionType("ส่วนลด");
+        maid = maidRegisterRepository.findBymaidName("Ping Kasinan");
         
 
     }
@@ -72,6 +78,7 @@ public class PromotionTest {
     public void testPromotionSuccess() {
         PromotionEntity pe = new PromotionEntity();
         pe.setCompanyEntity(company1);
+        pe.setMaid(maid);
         pe.setPromotionTypeEntity(proType);
         pe.setDiscount(15);
         pe.setTitle("โปรโมชั่น ลดราคา");
@@ -99,6 +106,7 @@ public class PromotionTest {
     public void testCompanyNull() {
         PromotionEntity pe = new PromotionEntity();
         pe.setCompanyEntity(null);
+        pe.setMaid(maid);
         pe.setPromotionTypeEntity(proType);
         pe.setDiscount(15);
         pe.setTitle("โปรโมชั่น ลดราคา");
@@ -120,12 +128,41 @@ public class PromotionTest {
             e.printStackTrace();
         }
     }
+    
+     // test maidNull
+     @Test
+     public void testmaidNull() {
+         PromotionEntity pe = new PromotionEntity();
+         pe.setCompanyEntity(company1);
+         pe.setMaid(null);
+         pe.setPromotionTypeEntity(proType);
+         pe.setDiscount(15);
+         pe.setTitle("โปรโมชั่น ลดราคา");
+ 
+         try {
+             pe.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+             pe.setDateEnd(formatter5.parse("Fri, Oct 19 2019 00:00:00"));
+             entityManager.persist(pe);
+             entityManager.flush();
+ 
+        // fail("Should not pass to this line");
+         } catch(javax.validation.ConstraintViolationException e) {
+             System.out.println("========================testCompanyNull============================");
+             System.out.println(e);
+             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+             assertEquals(violations.isEmpty(), false);
+             assertEquals(violations.size(), 1);
+         }catch (ParseException e) {
+             e.printStackTrace();
+         }
+     }
 
     // test testProtypeNull
     @Test
     public void testProtypeNull() {
         PromotionEntity pe = new PromotionEntity();
         pe.setCompanyEntity(company1);
+        pe.setMaid(maid);
         pe.setPromotionTypeEntity(null);
         pe.setDiscount(15);
         pe.setTitle("โปรโมชั่น ลดราคา");
@@ -153,6 +190,7 @@ public class PromotionTest {
     public void testTitleNull() {
         PromotionEntity pe = new PromotionEntity();
         pe.setCompanyEntity(company1);
+        pe.setMaid(maid);
         pe.setPromotionTypeEntity(null);
         pe.setDiscount(15);
         pe.setTitle(null);
@@ -223,6 +261,7 @@ public class PromotionTest {
        public void testdateStartNull() {
         PromotionEntity pe = new PromotionEntity();
         pe.setCompanyEntity(company1);
+        pe.setMaid(maid);
         pe.setPromotionTypeEntity(proType);
         pe.setDiscount(15);
         pe.setTitle("โปรโมชั่น ลดราคา");
@@ -250,6 +289,7 @@ public class PromotionTest {
        public void testdateEndNull() {
         PromotionEntity pe = new PromotionEntity();
         pe.setCompanyEntity(company1);
+        pe.setMaid(maid);
         pe.setPromotionTypeEntity(proType);
         pe.setDiscount(15);
         pe.setTitle("โปรโมชั่น ลดราคา");
@@ -277,6 +317,7 @@ public class PromotionTest {
     public void testMaxDiscount() {
         PromotionEntity pe = new PromotionEntity();
         pe.setCompanyEntity(company1);
+        pe.setMaid(maid);
         pe.setPromotionTypeEntity(proType);
         pe.setDiscount(101);
         pe.setTitle("โปรโมชั่น ลดราคา");

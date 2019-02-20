@@ -35,6 +35,9 @@ public class PromotionController implements CommandLineRunner {
     private CompanyRepository companyRepository;
 
     @Autowired
+    private MaidRegisterRepository maidRegisterRepository;
+
+    @Autowired
     private PromotionRepository promotionRepository;
     @Autowired
     private PromotionTypeRepository promotionTypeRepository;
@@ -68,20 +71,25 @@ public class PromotionController implements CommandLineRunner {
     //
 
     // new promotion
-    @PostMapping("/promotion/{companyName}/{promotionType}/{discount}/{title}/{dateStart}/{dateEnd}")
+    @PostMapping("/promotion/{companyName}/{maidSelect}/{promotionType}/{discount}/{title}/{dateStart}/{dateEnd}")
     public PromotionEntity newPromotion(@RequestBody PromotionEntity newPromotionEntity,
-                                                                       @PathVariable String companyName, @PathVariable String promotionType ,
+                                                                       @PathVariable String companyName, 
+                                                                       @PathVariable String maidSelect,
+                                                                       @PathVariable String promotionType ,
                                                                        @PathVariable int discount,
                                                                        @PathVariable String title , @PathVariable Date dateStart,
                                                                        @PathVariable Date dateEnd) {
 
 
         PromotionEntity p = new PromotionEntity();
-
+        
         CompanyEntity companyEntity = companyRepository.findBycompanyName(companyName);
+        MaidRegisterEntity maidName = maidRegisterRepository.findBymaidName(maidSelect);
         PromotionTypeEntity promoType = promotionTypeRepository.findBypromotionType(promotionType);
+        
 
         p.setCompanyEntity(companyEntity);
+        p.setMaid(maidName);
         p.setPromotionTypeEntity(promoType);
         p.setDiscount(discount);
         p.setTitle(title);

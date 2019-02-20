@@ -30,7 +30,7 @@
        
       <h2 class = "label1" >เลือกบริษัท</h2>
       <mat-form-field class ="select1" >
-        <mat-select placeholder="เลือกบริษัท" [(ngModel)]="views.companySelect">
+        <mat-select placeholder="เลือกบริษัท" [(ngModel)]="views.companySelect" (ngModelChange)="dataChanged($event)" name="companyName">
           <mat-option *ngFor="let company of companys" [value]="company.companyName">
             {{company.companyName}}
           </mat-option>
@@ -38,14 +38,14 @@
       </mat-form-field>
   
 
-      <!-- <h2 class = "label2">เลือกแม่บ้าน</h2>
-      <mat-form-field class ="select2"> 
-        <mat-select  placeholder="เลือกแม่บ้าน">
-          <mat-option *ngFor="let maid of maids" [value]="maid.maidId">
-            {{maid.maidName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
+      <h2 class = "label1" >เลือกแม่บ้าน</h2>
+    <mat-form-field class ="select2">
+    <mat-select placeholder="เลือกแม่บ้าน" [(ngModel)]="views.maidSelect">
+      <mat-option *ngFor="let m of maids" [value]="m.maidName">
+        {{m.maidName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
       
       
       <h2 class = "label3">เลือกประเภทโปรโมชั่น</h2>
