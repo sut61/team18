@@ -58,7 +58,7 @@ export class WelfareandsalaryComponent implements OnInit {
         + this.welsa.termcon).subscribe(
           data => {
             this.snackbar.open('บันทึกสวัสดิการและผลตอบแทนสำเร็จ', '', {
-              duration: 1500, verticalPosition: 'top',
+              duration: 3500, verticalPosition: 'top',
             });
             console.log('PUT Request is successful', data);
             this.updateTable();
@@ -66,7 +66,7 @@ export class WelfareandsalaryComponent implements OnInit {
           error => {
             console.log('Rrror', error);
             this.snackbar.open('เกิดข้อผิดพลาด', '', {
-              duration: 1500, verticalPosition: 'top',
+              duration: 3500, verticalPosition: 'top',
             });
           }
         );

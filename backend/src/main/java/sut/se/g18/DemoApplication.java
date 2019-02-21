@@ -487,7 +487,7 @@ public class DemoApplication {
 			p1.setCompanyEntity(company);
 			promotionRepository.save(p1);
 
-			 Create CleaningEquipment
+			 // Create CleaningEquipment
 			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่",
 					"ไม่กวาดทางมะพร้ว พรั่วตักขยะ ไม้กวาดหยักไย่ ผ้าเช็ดพื้น").forEach(cleaning -> {
 						CleaningEquipmentEntity c = new CleaningEquipmentEntity(cleaning);
