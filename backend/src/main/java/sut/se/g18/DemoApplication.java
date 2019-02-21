@@ -478,16 +478,16 @@ public class DemoApplication {
 			m5.setMaidEmail("plorrrrrrrry@gmail.com");
 			maidSelectRepository.save(m5);
 
-//			PromotionEntity p1 = new PromotionEntity();
-//			p1.setTitle("โปรโมชั่นลดราคา");
-//			p1.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
-//			p1.setDateEnd(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
-//			CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
-//			p1.setDiscount(15);
-//			p1.setCompanyEntity(company);
-//			promotionRepository.save(p1);
+			PromotionEntity p1 = new PromotionEntity();
+			p1.setTitle("โปรโมชั่นลดราคา");
+			p1.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+			p1.setDateEnd(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+			CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
+			p1.setDiscount(15);
+			p1.setCompanyEntity(company);
+			promotionRepository.save(p1);
 
-			// Create CleaningEquipment
+			 Create CleaningEquipment
 			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่",
 					"ไม่กวาดทางมะพร้ว พรั่วตักขยะ ไม้กวาดหยักไย่ ผ้าเช็ดพื้น").forEach(cleaning -> {
 						CleaningEquipmentEntity c = new CleaningEquipmentEntity(cleaning);
