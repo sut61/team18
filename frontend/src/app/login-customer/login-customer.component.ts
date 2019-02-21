@@ -14,7 +14,7 @@ export class LoginCustomerComponent implements OnInit {
     customerEmail: null,
     customerpass: null
   }
-  constructor(private route: ActivatedRoute,private customerService: CustomerService, private httpClient: HttpClient, private router: Router) { }
+  constructor(private route: ActivatedRoute, private customerService: CustomerService, private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,7 +33,7 @@ export class LoginCustomerComponent implements OnInit {
       if(this.select.customerEmail == this.cus.customerEmail){
         if(this.select.customerpass == this.cus.customerpass){
           alert('เข้าสู่ระบบสำเร็จ');
-          this.router.navigate(['/mainCus']);
+          this.router.navigate(['/mainCus', this.select.customerEmail]);
         }else{
           alert('รหัสผ่านไม่ถูกต้อง');
         }

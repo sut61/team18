@@ -15,7 +15,7 @@ export class PaymentService {
   getTypepayment(): Observable<any> {
     return this.http.get(this.API + '/TypepaymentEntity');
   }
-  getContract(): Observable<any> {
-    return this.http.get(this.API + '/contract' );
+  getContract(inputEmail): Observable<any> {
+    return this.http.get(this.API + '/contract/' + inputEmail );
   }
 }
