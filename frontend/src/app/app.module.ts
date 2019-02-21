@@ -49,7 +49,7 @@ import { WelfareandsalaryComponent } from './welfareandsalary/welfareandsalary.c
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { WelfaresalaryService } from './service/welfaresalary.service';
 import { ReviewComponent } from './review/review.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +97,8 @@ import { ReviewComponent } from './review/review.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule
 
   ],
 
