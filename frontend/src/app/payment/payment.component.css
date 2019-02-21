@@ -69,3 +69,29 @@ body{
   margin-left: 25%;
 
 }
+.list_menu{
+  float: right;
+}
+.list_menu li{
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 15px;
+  padding-right: 15px;
+}
+.list_menu li a{
+  text-decoration: none;
+  padding:10px 20px;
+  font-family:"Roboto",sans-serif;
+  font-size: 20px;
+  color:white;
+}
+.list_menu li.active a{
+  background-color: rgba(0, 191, 255, 0.7);
+  border-radius: 8px;
+  color:white;
+}
+.list_menu li a:hover{
+  background-color: rgba(0, 191, 255, 0.9);
+  border-radius: 8px;
+  color:white;
+}
