@@ -2,7 +2,7 @@ import { WelfaresalaryService } from './../service/welfaresalary.service';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator} from '@angular/material';
-
+import {MatSnackBar} from '@angular/material';
 @Component({
   selector: 'app-welfareandsalary',
   templateUrl: './welfareandsalary.component.html',
@@ -24,7 +24,7 @@ export class WelfareandsalaryComponent implements OnInit {
     detail: null,
     termcon: null
   };
-  constructor(private welfaresalaryService: WelfaresalaryService, private httpClient: HttpClient) { }
+  constructor(private welfaresalaryService: WelfaresalaryService, private httpClient: HttpClient, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.welfaresalaryService.getCompanyName().subscribe( data => {
@@ -49,19 +49,25 @@ export class WelfareandsalaryComponent implements OnInit {
     if (this.welsa.company == null || this.welsa.typework == null
       || this.welsa.typewel == null || this.welsa.salary == null || this.welsa.welsaName == null ||
       this.welsa.detail == null || this.welsa.termcon == null) {
-        alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        this.snackbar.open('กรุณากรอกข้อมูลให้ครบถ้วน', '', {
+          duration: 1500, verticalPosition: 'top',
+        });
       } else {
         this.httpClient.get('http://localhost:8080/welsa/' + this.welsa.company + '/' + this.welsa.typework + '/'
         + this.welsa.typewel + '/' + this.welsa.welsaName + '/' + this.welsa.salary + '/' + this.welsa.detail + '/'
         + this.welsa.termcon).subscribe(
           data => {
+            this.snackbar.open('บันทึกสวัสดิการและผลตอบแทนสำเร็จ', '', {
+              duration: 1500, verticalPosition: 'top',
+            });
             console.log('PUT Request is successful', data);
             this.updateTable();
-            alert('บันทึกสวัสดิการและผลตอบแทนสำเร็จ');
           },
           error => {
             console.log('Rrror', error);
-            alert('เกิดข้อผิดพลาด');
+            this.snackbar.open('เกิดข้อผิดพลาด', '', {
+              duration: 1500, verticalPosition: 'top',
+            });
           }
         );
         this.resetField();
