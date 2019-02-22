@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.*;
 import sut.se.g18.Model.*;
@@ -31,8 +32,8 @@ public class MaidRegisterController {
     private WelfareAndSalaryRepository welfareAndSalaryRepository;
 
     public MaidRegisterController(MaidRegisterRepository maidRegisterRepository,
-            TitleNameRepository titleNameRepository, TypeworkingRepository typeworkingRepository,
-            WorkingDateRepositoy workingDateRepositoy,CompanyRepository companyRepository,WelfareAndSalaryRepository welfareAndSalaryRepository) {
+                                  TitleNameRepository titleNameRepository, TypeworkingRepository typeworkingRepository,
+                                  WorkingDateRepositoy workingDateRepositoy, CompanyRepository companyRepository, WelfareAndSalaryRepository welfareAndSalaryRepository) {
         this.maidRegisterRepository = maidRegisterRepository;
         this.titleNameRepository = titleNameRepository;
         this.typeworkingRepository = typeworkingRepository;
@@ -46,7 +47,7 @@ public class MaidRegisterController {
         return maidRegisterRepository.findAll().stream().collect(Collectors.toList());
     }
 
-   
+
     /* ======================================================= */
     @GetMapping(path = "/title", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<TitleNameEntity> TitleName() {
@@ -66,52 +67,57 @@ public class MaidRegisterController {
     public Collection<WorkingDateEntity> WorkingDate() {
         return workingDateRepositoy.findAll().stream().collect(Collectors.toList());
     }
-/* ======================================================= */
+
+    /* ======================================================= */
     @GetMapping(path = "/ccompany", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<CompanyEntity> Company() {
         return companyRepository.findAll().stream().collect(Collectors.toList());
     }
+
     /* ======================================================= */
     @GetMapping(path = "/WelfareAndSalary", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<WelfareAndSalaryEntity> WelfareAndSalary() {
         return welfareAndSalaryRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping(path = "/regi/{titleSelect}/{inputmaidName}/{inputmaidPhone}/{inputmaidEmail}/{inputmaidAddress}/{inputdistrict}/{inputcanton}/{inputprovince}/{typeworkingEntity}/{workingDateEntity}/{companys}/{WelfareAndSalarySelect}")
-    public MaidRegisterEntity maidRegisterEntity(MaidRegisterEntity maidentity, @PathVariable String titleSelect,
-    @PathVariable String inputmaidName, @PathVariable String inputmaidPhone,
-    @PathVariable String inputmaidEmail, @PathVariable String inputmaidAddress,
-    @PathVariable String inputdistrict, @PathVariable String inputcanton ,
-    @PathVariable String inputprovince, @PathVariable String typeworkingEntity, @PathVariable String workingDateEntity,
-    @PathVariable String companys, @PathVariable String WelfareAndSalarySelect) {
+    @PostMapping(path = "/regi/{titlenameId}/{nametInput}/{phoneInput}/{emailInput}/{addressInput}/{districtInput}/" +
+            "{cantonInput}/{provinceInput}/{typeworkingSelect}/{typeworkingDateSelect}/{companySelect}/{WelsaSelect}")
+    public MaidRegisterEntity maidRegisterEntity(MaidRegisterEntity maidentity, @PathVariable String titlenameId,
+                                                 @PathVariable String nametInput, @PathVariable String phoneInput,
+                                                 @PathVariable String emailInput, @PathVariable String addressInput,
+                                                 @PathVariable String districtInput, @PathVariable String cantonInput,
+                                                 @PathVariable String provinceInput, @PathVariable String typeworkingSelect,
+                                                 @PathVariable String typeworkingDateSelect, @PathVariable String companySelect,
+                                                 @PathVariable String WelsaSelect) {
 
         MaidRegisterEntity maidRegisterEntity = new MaidRegisterEntity();
-        TitleNameEntity ti = titleNameRepository.findBytitlenameType(titleSelect);
-        CompanyEntity companyy = companyRepository.findBycompanyName(companys);
-        TypeworkingEntity type = typeworkingRepository.findByTypeworking(typeworkingEntity);
-        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(workingDateEntity);
-       WelfareAndSalaryEntity we = welfareAndSalaryRepository.findBywelsaName(WelfareAndSalarySelect);
+        TitleNameEntity ti = titleNameRepository.findBytitlenameType(titlenameId);
+        CompanyEntity companyy = companyRepository.findBycompanyName(companySelect);
+        TypeworkingEntity type = typeworkingRepository.findByTypeworking(typeworkingSelect);
+        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(typeworkingDateSelect);
+        WelfareAndSalaryEntity we = welfareAndSalaryRepository.findBywelsaName(WelsaSelect);
 
-       maidRegisterEntity.setTitleNameEntity(ti);
-       maidRegisterEntity.setMaidName(inputmaidName);
-       maidRegisterEntity.setMaidAddress(inputmaidAddress);
-       maidRegisterEntity.setMaidEmail(inputmaidEmail);
-       maidRegisterEntity.setMaidPhone(inputmaidPhone);
-       maidRegisterEntity.setProvince(inputprovince);
-       maidRegisterEntity.setDistrict(inputdistrict);
-       maidRegisterEntity.setCanton(inputcanton);
+        maidRegisterEntity.setTitleNameEntity(ti);
+        maidRegisterEntity.setMaidName(nametInput);
+        maidRegisterEntity.setMaidAddress(addressInput);
+        maidRegisterEntity.setMaidEmail(emailInput);
+        maidRegisterEntity.setMaidPhone(phoneInput);
+        maidRegisterEntity.setProvince(provinceInput);
+        maidRegisterEntity.setDistrict(districtInput);
+        maidRegisterEntity.setCanton(cantonInput);
 
-       maidRegisterEntity.setTypeworkingEntity(type);
-       maidRegisterEntity.setWorkingDateEntity(work);
-       maidRegisterEntity.setCompanyForMaid(companyy);
-       maidRegisterEntity.setWelfareAndSalaryEntity(we);
+        maidRegisterEntity.setTypeworkingEntity(type);
+        maidRegisterEntity.setWorkingDateEntity(work);
+        maidRegisterEntity.setCompanyForMaid(companyy);
+        maidRegisterEntity.setWelfareAndSalaryEntity(we);
 
         return maidRegisterRepository.save(maidRegisterEntity);
     }
+
     @GetMapping(path = "/wel/{company}/{type}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<WelfareAndSalaryEntity> Wel(@PathVariable String company,@PathVariable String type) {
+    public Collection<WelfareAndSalaryEntity> Wel(@PathVariable String company, @PathVariable String type) {
         CompanyEntity com = companyRepository.findBycompanyName(company);
         WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(type);
-        return welfareAndSalaryRepository.findByCompanyAndWorkingdate(com,work).stream().collect(Collectors.toList());
+        return welfareAndSalaryRepository.findByCompanyAndWorkingdate(com, work).stream().collect(Collectors.toList());
     }
 }
