@@ -66,15 +66,22 @@ export class RegisterComponent implements OnInit {
       + '/' + this.views.phoneInput + '/' + this.views.emailInput + '/' + this.views.addressInput + '/'
       + this.views.districtInput + '/' + this.views.cantonInput + '/' + this.views.provinceInput + '/'
       + this.views.typeworkingSelect + '/' + this.views.typeworkingDateSelect + '/' + this.views.companySelect + '/'
-      + this.views.WelsaSelect, this.views).subscribe(
+      + this.views.WelsaSelect, this.views)
+      .subscribe(
       data => {
         alert('บันทึกสำเสร็จ');
         this.router.navigate(['/loginMaid']);
-      });
+      },
 
+      error => {
+                   
+        console.log('Rrror', error);
+        alert("ข้อมูลไม่ถูกต้องบันทึกไม่สำเร็จ !!");
+      });
   }
 
   Canceled() {
+    
     this.router.navigate(['/loginMaid']);
   }
 
