@@ -37,7 +37,7 @@ public class DemoApplication {
 			,ScoreRepository scoreRepository
 							 ,ScoreExpertiseRepository scoreExpertiseRepository
 							 ,ScorePersonalityRepository scorePersonalityRepository
-							 ,ScoreTimeRepository scoreTimeRepository) {
+							 ,ScoreTimeRepository scoreTimeRepository, WelfareAndSalaryRepository welfareAndSalaryRepository) {
 		return args -> {
 
 			// Insert Company Type
@@ -527,6 +527,57 @@ public class DemoApplication {
 				sct.setScoreTi(scoreTi);
 				scoreTimeRepository.save(sct);
 			});
+			TypewelfareEntity typewel = typewelfareRepository.findByTypewelName("สวัสดิการเพื่อความมั่นคงและสุขภาพ");
+			TypewelfareEntity typewel1 = typewelfareRepository.findByTypewelName("สวัสดิการที่จ่ายตอบแทนเมื่อไม่ได้ทำงาน");
+			TypewelfareEntity typewel2 = typewelfareRepository.findByTypewelName("สวัสดิการบริการ");
+
+			CompanyEntity compa = companyRepository.findBycompanyName("บริษัทพีกาซัส");
+			CompanyEntity compa1 = companyRepository.findBycompanyName("บริษัทโอซาก้า");
+			CompanyEntity compa2 = companyRepository.findBycompanyName("บริษัทกินซ่า");
+
+			WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate("ทำงานแบบรายวัน");
+			WorkingDateEntity work1 = workingDateRepositoy.findBytypeworkingDate("ทำงานแบบรายเดือน");
+			WorkingDateEntity work2 = workingDateRepositoy.findBytypeworkingDate("ทำงานแบบรายปี");
+
+			WelfareAndSalaryEntity wel = new WelfareAndSalaryEntity();
+			wel.setCompany(compa);
+			wel.setTypewelfare(typewel);
+			wel.setWorkingdate(work);
+			wel.setWelsaName("ตรวจสุขภาพประจำปีฟรี");
+			wel.setSalary(1500);
+			wel.setDatail("ได้รับการตรวจสุขภาพประจำปีฟรีทุกปี");
+			wel.setTermCon("ตรวจสุขภาพได้ปีละไม่เกิน2ครั้ง");
+			welfareAndSalaryRepository.save(wel);
+
+			WelfareAndSalaryEntity wel1 = new WelfareAndSalaryEntity();
+			wel1.setCompany(compa1);
+			wel1.setTypewelfare(typewel1);
+			wel1.setWorkingdate(work1);
+			wel1.setWelsaName("สวัสดิการบำเหน็ดบำนาญ");
+			wel1.setSalary(3500);
+			wel1.setDatail("ได้รับเงินบำเหบ็ดบำนาญหลังจากที่เกษียณอายุการทำงานแล้ว");
+			wel1.setTermCon("ต้องมีอายุไม่ต่ำกว่า60ปี");
+			welfareAndSalaryRepository.save(wel1);
+
+			WelfareAndSalaryEntity wel2 = new WelfareAndSalaryEntity();
+			wel2.setCompany(compa2);
+			wel2.setTypewelfare(typewel2);
+			wel2.setWorkingdate(work2);
+			wel2.setWelsaName("นั่งรถเมย์ไปทำงานฟรี");
+			wel2.setSalary(4500);
+			wel2.setDatail("ได้นั่งรถเมย์ฟรีไปทำงานทุกวัน");
+			wel2.setTermCon("นั่งได้เฉพาะรถเมย์ที่ปรับอากาศเท่านั้น");
+			welfareAndSalaryRepository.save(wel2);
+
+			WelfareAndSalaryEntity wel3 = new WelfareAndSalaryEntity();
+			wel3.setCompany(compa1);
+			wel3.setTypewelfare(typewel2);
+			wel3.setWorkingdate(work2);
+			wel3.setWelsaName("มีรถรับส่งไปทำงานทุกวัน");
+			wel3.setSalary(6500);
+			wel3.setDatail("มีรถรับส่งไปกลับจากที่พักถึงที่ทำงานทุกวัน");
+			wel3.setTermCon("ต้องมารอรถก่อนเวลา7โมงเช้า");
+			welfareAndSalaryRepository.save(wel3);
 
 		};
 	}
