@@ -25,31 +25,32 @@ public class CompanyController {
 
     @Autowired
     public CompanyController(CompanyRepository companyRepository, CompanyTypeRepository companyTypeRepository,
-                             ProvinceRepository provincRepository){
+                             ProvinceRepository provincRepository) {
         this.companyRepository = companyRepository;
         this.companyTypeRepository = companyTypeRepository;
         this.provincRepository = provincRepository;
 
     }
+
     @GetMapping(path = "/companys", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<CompanyEntity> Company(){
+    public Collection<CompanyEntity> Company() {
         return companyRepository.findAll().stream().collect(Collectors.toList());
     }
 
 
     @GetMapping(path = "/CompanyType", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<CompanyTypeEntity> CompanyType(){
+    public Collection<CompanyTypeEntity> CompanyType() {
         return companyTypeRepository.findAll().stream().collect(Collectors.toList());
     }
 
     @GetMapping(path = "/province", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<ProvinceEntity> Provinc(){
+    public Collection<ProvinceEntity> Provinc() {
         return provincRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/company/{companyName}/{companyType}/{companyAddress}/{provincName}/{companyPhone}")
+    @PostMapping("/company/{companyName}/{companyType}/{companyPhone}/{companyAddress}/{provincName}")
     public CompanyEntity company(@RequestBody CompanyEntity comp, @PathVariable String companyName, @PathVariable String companyType,
-                                 @PathVariable String companyAddress, @PathVariable String provincName, @PathVariable String companyPhone) {
+                                 @PathVariable String companyPhone, @PathVariable String companyAddress, @PathVariable String provincName) {
         System.out.println(companyName);
         System.out.println(companyType);
         System.out.println(companyAddress);
@@ -67,9 +68,6 @@ public class CompanyController {
         companyEntity.setCompanyPhone(companyPhone);
 
 
-
         return companyRepository.save(companyEntity);
     }
-
-
 }

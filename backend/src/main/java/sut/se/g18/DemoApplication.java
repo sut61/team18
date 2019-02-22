@@ -354,9 +354,9 @@ public class DemoApplication {
 			c3.setCompanyAddress("cc");
 			c3.setCompanyPhone("033333333");
 			CompanyTypeEntity ctt3 = companyTypeRepository.findBycompanyType("บริษัทมหาชน");
-			c2.setCompanyTypeEntity(ctt3);
+			c3.setCompanyTypeEntity(ctt3);
 			ProvinceEntity p33 = provinceRepository.findByprovinceName("ชลบุรี");
-			c2.setProvinecEntity(p33);
+			c3.setProvinecEntity(p33);
 
 			companyRepository.save(c3);
 
@@ -365,9 +365,9 @@ public class DemoApplication {
 			c4.setCompanyAddress("dd");
 			c4.setCompanyPhone("044444444");
 			CompanyTypeEntity ct4 = companyTypeRepository.findBycompanyType("บริษัทเอกชน");
-			c2.setCompanyTypeEntity(ct4);
+			c4.setCompanyTypeEntity(ct4);
 			ProvinceEntity p44 = provinceRepository.findByprovinceName("เชียงใหม่");
-			c2.setProvinecEntity(p44);
+			c4.setProvinecEntity(p44);
 			companyRepository.save(c4);
 
 			CourseEntity co1 = new CourseEntity();
