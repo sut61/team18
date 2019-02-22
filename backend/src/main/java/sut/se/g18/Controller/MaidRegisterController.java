@@ -108,10 +108,10 @@ public class MaidRegisterController {
 
         return maidRegisterRepository.save(maidRegisterEntity);
     }
-    @GetMapping(path ="/WelfareAndSalary/{company}/{workingdate}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<WelfareAndSalaryEntity> welfareAndSalaryEntity(WelfareAndSalaryEntity welsa, @PathVariable String company, @PathVariable String workingdate) {
+    @GetMapping(path = "/wel/{company}/{type}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Collection<WelfareAndSalaryEntity> Wel(@PathVariable String company,@PathVariable String type) {
         CompanyEntity com = companyRepository.findBycompanyName(company);
-        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(workingdate);
-        return welfareAndSalaryRepository.findByCompanyAndWorkingdate(com, work);
+        WorkingDateEntity work = workingDateRepositoy.findBytypeworkingDate(type);
+        return welfareAndSalaryRepository.findByCompanyAndWorkingdate(com,work).stream().collect(Collectors.toList());
     }
 }
