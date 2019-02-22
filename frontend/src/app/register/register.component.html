@@ -6,7 +6,7 @@
   
       <mat-form-field class="prefix">
         <mat-select placeholder="คำนำหน้า" [(ngModel)]="views.titlenameId" name = "titlenameType">
-          <mat-option *ngFor="let titlenameTypes of titlenameType" [value]="titlenameTypes.titlenameId">
+          <mat-option *ngFor="let titlenameTypes of titlenameType" [value]="titlenameTypes.titlenameType">
             {{titlenameTypes.titlenameType}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -18,7 +18,7 @@
   
       <mat-form-field class="phoneInput" >
         <mat-placeholder class="placeholder">เบอร์โทรศัพท์</mat-placeholder>
-        <input matInput [(ngModel)]="views.phoneInput"  type="number">
+        <input matInput [(ngModel)]="views.phoneInput">
       </mat-form-field>
   
       <mat-form-field class="emailInput" >
@@ -48,7 +48,7 @@
   
       <mat-form-field class="prefix">
         <mat-select placeholder="ลักษณะงานที่ต้องการทำ " [(ngModel)]="views.typeworkingSelect" name = "typeworking">
-          <mat-option *ngFor="let typeworkings of typeworking" [value]="typeworkings.typeworkingId">
+          <mat-option *ngFor="let typeworkings of typeworking" [value]="typeworkings.typeworking">
             {{typeworkings.typeworking}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -81,4 +81,3 @@
       </div>
     </div>
   </div>
-  

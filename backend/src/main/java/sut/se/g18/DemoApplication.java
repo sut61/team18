@@ -391,14 +391,44 @@ public class DemoApplication {
 			CompanyEntity com2 = companyRepository.findBycompanyName("บริษัทโอซาก้า");
 			CompanyEntity com3 = companyRepository.findBycompanyName("บริษัทกินซ่า");
 			CompanyEntity com4 = companyRepository.findBycompanyName("บริษัทสวนรักษ์");
+
+			TypeworkingEntity type00 = typeworkingRepository.findByTypeworking("แม่บ้าน");
+			TypeworkingEntity type11 = typeworkingRepository.findByTypeworking("แม่บ้านดูแลเด็ก");
+			TypeworkingEntity type22 = typeworkingRepository.findByTypeworking("แม่บ้านดูแลผู้สูงอายุ");
+			TypeworkingEntity type33 = typeworkingRepository.findByTypeworking("คนทำสวน");
+			TypeworkingEntity type44 = typeworkingRepository.findByTypeworking("คนขับรถ");
+
+			WorkingDateEntity work00 = workingDateRepositoy.findBytypeworkingDate("ทำงานแบบรายวัน");
+			WorkingDateEntity work11 = workingDateRepositoy.findBytypeworkingDate("ทำงานแบบรายเดือน");
+			WorkingDateEntity work22 = workingDateRepositoy.findBytypeworkingDate("ทำงานแบบรายปี");
+
+			TitleNameEntity title00 = titleNameRepository.findBytitlenameType("นาย");
+			TypewelfareEntity typewel00 = typewelfareRepository.findByTypewelName("สวัสดิการเพื่อความมั่นคงและสุขภาพ");
+
+			WelfareAndSalaryEntity wel0 = new WelfareAndSalaryEntity();
+			wel0.setCompany(com);
+			wel0.setTypewelfare(typewel00);
+			wel0.setWorkingdate(work00);
+			wel0.setWelsaName("ตรวจสุขภาพประจำปีฟรีครับ");
+			wel0.setSalary(1500);
+			wel0.setDatail("ได้รับการตรวจสุขภาพประจำปีฟรีทุกปีครับ");
+			wel0.setTermCon("ตรวจสุขภาพได้ปีละไม่เกิน2ครั้งครับ");
+			welfareAndSalaryRepository.save(wel0);
+
 			mm1.setCompanyForMaid(com);
 			mm1.setMaidName("Ping Kasinan");
 			mm1.setMaidPhone("0935395533");
             mm1.setMaidAddress("หมู 6");
             mm1.setProvince("กาญนะจ๊ก");
             mm1.setDistrict("ดอนชะเอม");
-            mm1.setCanton("เมือง");
+			mm1.setCanton("เมือง");
+			mm1.setMaidEmail("se01@gmail.com");
+			mm1.setWorkingDateEntity(work00);
+			mm1.setTypeworkingEntity(type00);
+			mm1.setTitleNameEntity(title00);
+			mm1.setWelfareAndSalaryEntity(wel0);
 			maidRegisterRepository.save(mm1);
+
 			MaidRegisterEntity mm2 = new MaidRegisterEntity();
 			mm2.setMaidName("Ball Donlawat");
 			mm2.setMaidPhone("0935395544");
@@ -406,7 +436,13 @@ public class DemoApplication {
             mm2.setMaidAddress("หมู 7");
             mm2.setProvince("กาญนะจ๊ก");
             mm2.setDistrict("ดอนชะเอม");
-            mm2.setCanton("เมือง");
+			mm2.setCanton("เมือง");
+			mm2.setMaidEmail("se02@gmail.com");
+			mm2.setWorkingDateEntity(work11);
+			mm2.setTypeworkingEntity(type11);
+			mm2.setWelfareAndSalaryEntity(wel0);
+			mm2.setTitleNameEntity(title00);
+
 			maidRegisterRepository.save(mm2);
 			MaidRegisterEntity mm3 = new MaidRegisterEntity();
 			mm3.setMaidName("Yongyut Srisuban");
@@ -415,7 +451,12 @@ public class DemoApplication {
             mm3.setMaidAddress("หมู 8");
             mm3.setProvince("กาญนะจ๊ก");
             mm3.setDistrict("ดอนชะเอม");
-            mm3.setCanton("เมือง");
+			mm3.setCanton("เมือง");
+			mm3.setMaidEmail("se03@gmail.com");
+			mm3.setWorkingDateEntity(work22);
+			mm3.setTypeworkingEntity(type22);
+			mm3.setTitleNameEntity(title00);
+			mm3.setWelfareAndSalaryEntity(wel0);
 			maidRegisterRepository.save(mm3);
 			MaidRegisterEntity mm4 = new MaidRegisterEntity();
 			mm4.setMaidName("Nanthika Poonpin");
@@ -424,7 +465,12 @@ public class DemoApplication {
             mm4.setMaidAddress("หมู 6");
             mm4.setProvince("กาญนะจ๊ก");
             mm4.setDistrict("ดอนชะเอม");
-            mm4.setCanton("เมือง");
+			mm4.setCanton("เมือง");
+			mm4.setMaidEmail("se04@gmail.com");
+			mm4.setWorkingDateEntity(work22);
+			mm4.setTypeworkingEntity(type22);
+			mm4.setTitleNameEntity(title00);
+			mm4.setWelfareAndSalaryEntity(wel0);
 			maidRegisterRepository.save(mm4);
 			MaidRegisterEntity mm5 = new MaidRegisterEntity();
 			mm5.setMaidName("Ploy Sumitra");
@@ -433,7 +479,12 @@ public class DemoApplication {
             mm5.setMaidAddress("หมู 6");
             mm5.setProvince("กาญนะจ๊ก");
             mm5.setDistrict("ดอนชะเอม");
-            mm5.setCanton("เมือง");
+			mm5.setCanton("เมือง");
+			mm5.setMaidEmail("se05@gmail.com");
+			mm5.setWorkingDateEntity(work00);
+			mm5.setTypeworkingEntity(type44);
+			mm5.setTitleNameEntity(title00);
+			mm5.setWelfareAndSalaryEntity(wel0);
 			maidRegisterRepository.save(mm5);
 
 			MaidSelectEntity m1 = new MaidSelectEntity();
@@ -478,14 +529,14 @@ public class DemoApplication {
 			m5.setMaidEmail("plorrrrrrrry@gmail.com");
 			maidSelectRepository.save(m5);
 
-			PromotionEntity p1 = new PromotionEntity();
-			p1.setTitle("โปรโมชั่นลดราคา");
-			p1.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
-			p1.setDateEnd(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
-			CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
-			p1.setDiscount(15);
-			p1.setCompanyEntity(company);
-			promotionRepository.save(p1);
+			// PromotionEntity p1 = new PromotionEntity();
+			// p1.setTitle("โปรโมชั่นลดราคา");
+			// p1.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+			// p1.setDateEnd(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+			// CompanyEntity company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
+			// p1.setDiscount(15);
+			// p1.setCompanyEntity(company);
+			// promotionRepository.save(p1);
 
 			 // Create CleaningEquipment
 			Stream.of("ไม้กวาดดอกหญ้า ไม้ถูพื้น ถังน้ำ ไม้ปัดขนไก่",
