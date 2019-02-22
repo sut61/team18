@@ -280,6 +280,12 @@ public class DemoApplication {
 				type.setTypename(typepay);
 				typepaymentRepository.save(type);
 			});
+            //Add Typewelfare
+            Stream.of("สวัสดิการเพื่อความมั่นคงและสุขภาพ","สวัสดิการที่จ่ายตอบแทนเมื่อไม่ได้ทำงาน","สวัสดิการบริการ").forEach(welfare -> {
+                TypewelfareEntity type = new TypewelfareEntity();
+                type.setTypewelName(welfare);
+                typewelfareRepository.save(type);
+            });
 			AdminAccountEntity admin = new AdminAccountEntity();
 			admin.setAdminUsername("1234");
 			admin.setAdminPassword("4321");
@@ -552,12 +558,7 @@ public class DemoApplication {
 				e.setElectric(electric);
 				electricalEquipmentRepository.save(e);
 			});
-			//Add Typewelfare
-			Stream.of("สวัสดิการเพื่อความมั่นคงและสุขภาพ","สวัสดิการที่จ่ายตอบแทนเมื่อไม่ได้ทำงาน","สวัสดิการบริการ").forEach(welfare -> {
-				TypewelfareEntity type = new TypewelfareEntity();
-				type.setTypewelName(welfare);
-				typewelfareRepository.save(type);
-			});
+
 			Stream.of("1","2","3","4","5").forEach(score -> {
 				ScoreEntity sc = new ScoreEntity(score);
 				sc.setScore(score);

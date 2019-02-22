@@ -45,6 +45,12 @@ export class PaymentComponent implements OnInit {
       console.log(this.contracts);
     });
   }
+  refreshPay() {
+    this.paymentService.getContract2(this.pay.inputEmail).subscribe(data => {
+      this.contracts = data;
+      console.log(this.contracts);
+    });
+  }
   save() {
     if (this.pay.name == null || this.pay.contract == null || this.pay.phonenum == null || this.pay.accountnumber == null
       || this.pay.address == null || this.pay.bank == null || this.pay.typepayment == null) {
@@ -60,6 +66,7 @@ export class PaymentComponent implements OnInit {
         this.snackbar.open('ชำระเงินสำเร็จ', '', {
           duration: 3500, verticalPosition: 'top',
         });
+        this.refreshPay();
       },
       error => {
         console.log('Rrror', error);
