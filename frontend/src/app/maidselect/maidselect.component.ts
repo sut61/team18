@@ -72,6 +72,7 @@ ngOnInit() {
                    
                         console.log('Rrror', error);
                         alert("ข้อมูลไม่ถูกต้องบันทึกไม่สำเร็จ !!");
+                        this.router.navigate(['/mainCus']); 
                   }
 
                );
