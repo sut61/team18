@@ -55,13 +55,13 @@
   
       <mat-form-field class="prefix">
         <mat-select placeholder="ระยะเวลาที่ต้องการทำงาน" [(ngModel)]="views.typeworkingDateSelect" name = "typeworkingDate">
-          <mat-option *ngFor="let typeworkingDates of typeworkingDate" [value]="typeworkingDates.typeworkingDateId">
+          <mat-option *ngFor="let typeworkingDates of typeworkingDate" [value]="typeworkingDates.typeworkingDate">
             {{typeworkingDates.typeworkingDate}}</mat-option>
         </mat-select>
       </mat-form-field>
   
       <mat-form-field class="prefix">
-        <mat-select placeholder="เลือกบริษัท" [(ngModel)]="views.companySelect" name = "companyName">
+        <mat-select placeholder="เลือกบริษัท" [(ngModel)]="views.companySelect" (ngModelChange)="dataChange($event)" name = "companyName">
           <mat-option *ngFor="let company of companyId" [value]="company.companyName">
             {{company.companyName}}</mat-option>
         </mat-select>

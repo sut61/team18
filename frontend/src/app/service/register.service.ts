@@ -50,6 +50,6 @@ export class RegisterService {
     return this.http.get(this.API + '/companys');
   }
   getWelsaName(company,workingdate): Observable<any>{
-    return this.http.get(this.API + '/WelfareAndSalary/' + company + '/' + workingdate);
+    return this.http.get(this.API + '/wel/' + company + '/' + workingdate);
 }
 }

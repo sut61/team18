@@ -44,12 +44,14 @@ export class RegisterComponent implements OnInit {
       this.companyId = data;
     })
     
+    
+  }
+  dataChange(){
     this.registerService.getWelsaName(this.views.companySelect,this.views.typeworkingDateSelect).subscribe(data => {
       console.log(data)
       this.welsa = data;
     })
   }
-
   titlenameType: Array<any> = [];
   titlenameTypes: any = {
     titlenameType: null
@@ -76,7 +78,7 @@ export class RegisterComponent implements OnInit {
   };
 
   save_func() {
-    this.httpClient.get('http://localhost:8080/regi/' + this.views.titlenameId + '/' + this.views.nametInput
+    this.httpClient.post('http://localhost:8080/regi/' + this.views.titlenameId + '/' + this.views.nametInput
       + '/' + this.views.phoneInput + '/' + this.views.emailInput + '/' + this.views.addressInput + '/'
       + this.views.districtInput + '/' + this.views.cantonInput + '/' + this.views.provinceInput + '/'
       + this.views.typeworkingSelect + '/' + this.views.typeworkingDateSelect + '/' + this.views.companySelect + '/'
