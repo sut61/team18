@@ -185,6 +185,14 @@ public class DemoApplication {
 			ComplaintTypeEntity complaintTypeEntity = new ComplaintTypeEntity();
 			complaintTypeEntity.setComplaintType("พฤติกรรมไม่เหมาะสม");
 			complaintTypeRepository.save(complaintTypeEntity);
+            
+			ComplaintTypeEntity complaintTypeEntity2 = new ComplaintTypeEntity();
+			complaintTypeEntity2.setComplaintType("ไม่ตรงต่อเวลา");
+			complaintTypeRepository.save(complaintTypeEntity2);
+
+			ComplaintTypeEntity complaintTypeEntity3 = new ComplaintTypeEntity();
+			complaintTypeEntity3.setComplaintType("พูดจาไม่สุภาพ");
+			complaintTypeRepository.save(complaintTypeEntity3);
 
 			// Insert Sex
 			SexEntity m = new SexEntity("ชาย");
