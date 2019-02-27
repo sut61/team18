@@ -30,9 +30,6 @@ public class ContractTest {
     private TestEntityManager entityManager;
 
     @Autowired
-    private ContractRepository contractRepository;
-
-    @Autowired
     private PromotionRepository promotionRepository;
 
     @Autowired
@@ -92,12 +89,19 @@ public class ContractTest {
         c.setMaid(maid);
         try {
             c.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(c);
+            entityManager.flush();
+            System.out.println("TEST CONTRACT ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testContractEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        entityManager.persist(c);
-        entityManager.flush();
-        System.out.println("TEST CONTRACT ENTITY SUCCESS");
+
     }
 
     // TEST ZERO VALUE INT ( NULL )
@@ -459,9 +463,18 @@ public class ContractTest {
     public void testContractTypeEntitySuccess() {
         ContractTypeEntity c = new ContractTypeEntity();
         c.setContractType("1 Year KK");
-        entityManager.persist(c);
-        entityManager.flush();
-        System.out.println("TEST CONTRACT TYPE ENTITY SUCCESS");
+        try {
+            entityManager.persist(c);
+            entityManager.flush();
+            System.out.println("TEST CONTRACT TYPE ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println("=======================FROM testContractTypeEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
+
     }
 
     // TEST NULL CONTRACT TYPE
@@ -520,9 +533,17 @@ public class ContractTest {
     public void testMaidStatusEntitySuccess() {
         MaidStatusEntity m = new MaidStatusEntity();
         m.setStatus("ว่าง");
-        entityManager.persist(m);
-        entityManager.flush();
-        System.out.println("TEST MAID STATUS ENTITY SUCCESS");
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+            System.out.println("TEST MAID STATUS ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println("=======================FROM testMaidStatusEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
     }
 
     // TEST NULL STATUS
@@ -581,9 +602,18 @@ public class ContractTest {
     public void testPaymentStatusEntitySuccess() {
         PaymentStatusEntity p = new PaymentStatusEntity();
         p.setPaymentStatus("จ่าย");
-        entityManager.persist(p);
-        entityManager.flush();
-        System.out.println("TEST PAYMENT STATUS ENTITY SUCCESS");
+        try {
+            entityManager.persist(p);
+            entityManager.flush();
+            System.out.println("TEST PAYMENT STATUS ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println("=======================FROM testPaymentStatusEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
+
     }
 
     // TEST NULL PAYMENT STATUS

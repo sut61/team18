@@ -14,7 +14,7 @@
       <br>
       <h2 class="label">เลือกบริษัท</h2>
       <mat-form-field class="select_item">
-        <mat-select placeholder="Company Name" [(ngModel)]="newLearn.companySelect" (ngModelChange)="dataChanged($event)"
+        <mat-select placeholder="Company Name" [(ngModel)]="companySelect" (ngModelChange)="dataChanged($event)"
                     name="companyName">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let c of company" [value]="c.companyName">

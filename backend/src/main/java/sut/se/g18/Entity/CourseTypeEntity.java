@@ -25,30 +25,18 @@ public class CourseTypeEntity {
     @Pattern(regexp = "([ก-ู]|[เ-์]| |[a-z]|[A-Z])+")
     private String courseType;
 
-    /**
-     * @return the courseTypeId
-     */
     public Long getCourseTypeId() {
         return courseTypeId;
     }
 
-    /**
-     * @param courseTypeId the courseTypeId to set
-     */
     public void setCourseTypeId(Long courseTypeId) {
         this.courseTypeId = courseTypeId;
     }
 
-    /**
-     * @return the courseType
-     */
     public String getCourseType() {
         return courseType;
     }
 
-    /**
-     * @param courseType the courseType to set
-     */
     public void setCourseType(String courseType) {
         this.courseType = courseType;
     }

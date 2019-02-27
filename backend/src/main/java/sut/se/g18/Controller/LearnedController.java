@@ -64,19 +64,17 @@ public class LearnedController {
         return courseRepository.findByCompany(company);
     }
 
-    @PostMapping("/learned/{companySelect}/{maidSelect}/{courseSelect}/{skillRankSelect}/{dateInput}/" +
+    @PostMapping("/learned/{maidSelect}/{courseSelect}/{skillRankSelect}/{dateInput}/" +
             "{detailInput}")
-    public LearnedEntity newLearn(@RequestBody LearnedEntity learnedEntity, @PathVariable String companySelect,
+    public LearnedEntity newLearn(@RequestBody LearnedEntity learnedEntity,
                                   @PathVariable String maidSelect, @PathVariable String courseSelect,
                                   @PathVariable String skillRankSelect, @PathVariable Date dateInput,
                                   @PathVariable String detailInput) {
 
-        CompanyEntity company = companyRepository.findBycompanyName(companySelect);
         MaidRegisterEntity maidName = maidRegisterRepository.findBymaidName(maidSelect);
         CourseEntity course = courseRepository.findByCourseTitle(courseSelect);
         SkillEntity rank = skillRepository.findBySkillRank(skillRankSelect);
         LearnedEntity newLearn = new LearnedEntity();
-        newLearn.setCompany(company);
         newLearn.setMaid(maidName);
         newLearn.setCourse(course);
         newLearn.setSkill(rank);
@@ -85,7 +83,6 @@ public class LearnedController {
         if (learnedRepository.findBycourseAndMaid(course, maidName) == null) {
             newLearn.setCheckObject(true);
         }
-
         return learnedRepository.save(newLearn);
     }
 }

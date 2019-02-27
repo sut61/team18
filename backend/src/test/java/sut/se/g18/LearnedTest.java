@@ -31,9 +31,6 @@ public class LearnedTest {
     private LearnedRepository learnedRepository;
 
     @Autowired
-    private CompanyRepository companyRepository;
-
-    @Autowired
     private MaidRegisterRepository maidRegisterRepository;
 
     @Autowired
@@ -44,7 +41,6 @@ public class LearnedTest {
 
     private Validator validator;
 
-    private CompanyEntity company1;
     private MaidRegisterEntity maid;
     private CourseEntity course;
     private CourseEntity course2;
@@ -56,7 +52,6 @@ public class LearnedTest {
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
-        company1 = companyRepository.findBycompanyName("บริษัทพีกาซัส");
         maid = maidRegisterRepository.findBymaidName("Ping Kasinan");
         course = courseRepository.findByCourseTitle("คอร์สอบรมการตกแต่งกิ่งต้นบอนไซ");
         course2 = courseRepository.findByCourseTitle("คอร์สฝึกสอนทำอาหารอีสาน");
@@ -74,52 +69,28 @@ public class LearnedTest {
     public void testLearnedEntitySuccess() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
+            entityManager.persist(L);
+            entityManager.flush();
+            System.out.println("TEST LEARNED ENTITY ALL VALID SUCCESS");
+        }catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testLearnedEntitySuccess============");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
         } catch (ParseException e) {
             System.out.println("===========In tsetLearnedEntitySuccess============");
             System.out.println(e);
             e.printStackTrace();
         }
-        entityManager.persist(L);
-        entityManager.flush();
-        System.out.println("TEST LEARNED ENTITY ALL VALID SUCCESS");
-    }
 
-    // TEST NULL RELATION BETWEEN LEARNED ENTITY AND COMPANY ENTITY
-    @Test
-    public void testLearnedEntityRelationToCompanyEntityNull() {
-        LearnedEntity L = new LearnedEntity();
-        L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(null);
-        L.setMaid(maid);
-        L.setCourse(course);
-        L.setSkill(rank);
-        L.setCheckObject(true);
-
-        try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
-            entityManager.persist(L);
-            entityManager.flush();
-            System.out.println("TEST LEARNED ENTITY ALL VALID SUCCESS");
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println("===========In testLearnedEntityRelationToCompanyEntityNull============");
-            System.out.println(e.getConstraintViolations());
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        } catch (ParseException e) {
-            System.out.println("===========In testLearnedEntityRelationToCompanyEntityNull============");
-            System.out.println(e);
-            e.printStackTrace();
-        }
     }
 
     // TEST NULL RELATION BETWEEN LEARNED ENTITY AND MAID REGISTER ENTITY
@@ -127,14 +98,13 @@ public class LearnedTest {
     public void testLearnedEntityRelationToMaidRegisterEntityNull() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(company1);
         L.setMaid(null);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
             System.out.println("TEST LEARNED ENTITY ALL VALID SUCCESS");
@@ -157,14 +127,13 @@ public class LearnedTest {
     public void testLearnedEntityRelationToCourseEntityNull() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(null);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
             System.out.println("TEST LEARNED ENTITY ALL VALID SUCCESS");
@@ -187,14 +156,13 @@ public class LearnedTest {
     public void testLearnedEntityRelationToSkillEntityNull() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(null);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
             System.out.println("TEST LEARNED ENTITY ALL VALID SUCCESS");
@@ -217,14 +185,13 @@ public class LearnedTest {
     public void testLearnedEntityNullDetail() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail(null);
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
 
@@ -247,14 +214,13 @@ public class LearnedTest {
     public void testLearnedEntityMinSizeDetail() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
 
@@ -278,14 +244,13 @@ public class LearnedTest {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนแต่งหน้า นั่งสมาธิ ดำน้ำ ปลูกปะการัง ทำอาหาร นวดสปา ปลูกป่า ดำนา ดูดิสนีย์ออนไอซ์ แรลลี่ตีกอล์ฟ ล่องเรือ ส่องสัตว์ ช๊อปปิ้ง ดูงิ้ว ดูละครเวที ดูคอนเสิร์ต " +
                 "ดินเนอร์ ทำขนม จัดดอกไม้ เที่ยวตลาดน้ำ เรียนถ่ายรูป ดูกายกรรม ชมเมืองเก่า เข้าสัมมนา ทัวร์ธรรมมะ เรียนเต้นแล้วก็ร้องเพลง");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
 
@@ -308,14 +273,13 @@ public class LearnedTest {
     public void testLearnedEntityInvalidPatternDetail() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์เรียนแต่งหน้า นั่งสมาธิ ดำน้ำ ปลูกปะการัง");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
 
@@ -338,14 +302,13 @@ public class LearnedTest {
     public void testLearnedEntityInvalidDate() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
 
         try {
-            L.setDateLearned(formatter5.parse("Thu, Oct 18 2018 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Oct 17 2019 00:00:00"));
             entityManager.persist(L);
             entityManager.flush();
 
@@ -368,13 +331,12 @@ public class LearnedTest {
     public void testLearnedEntityReInsertObject() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
         try {
-            L.setDateLearned(formatter5.parse("Fri, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Fri, Feb 8 2019 00:00:00"));
 
         } catch (ParseException e) {
             System.out.println("===========In testLearnedEntityReInsertObject============");
@@ -386,7 +348,6 @@ public class LearnedTest {
 
         LearnedEntity L2 = new LearnedEntity();
         L2.setDetail("คอร์สเรียนตัดหญ้า");
-        L2.setCompany(company1);
         L2.setMaid(maid);
         L2.setCourse(course);
         L2.setSkill(rank);
@@ -395,7 +356,7 @@ public class LearnedTest {
         }
 
         try {
-            L2.setDateLearned(formatter5.parse("Sat, Oct 19 2019 00:00:00"));
+            L2.setDateLearned(formatter5.parse("Sat, Feb 9 2019 00:00:00"));
             entityManager.persist(L2);
             entityManager.flush();
 
@@ -418,13 +379,12 @@ public class LearnedTest {
     public void testLearnedEntityLearnMoreCourseInOneDay() {
         LearnedEntity L = new LearnedEntity();
         L.setDetail("คอร์สเรียนตัดหญ้า");
-        L.setCompany(company1);
         L.setMaid(maid);
         L.setCourse(course);
         L.setSkill(rank);
         L.setCheckObject(true);
         try {
-            L.setDateLearned(formatter5.parse("Fri, Oct 18 2019 00:00:00"));
+            L.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
 
         } catch (ParseException e) {
             System.out.println("===========In testLearnedEntityLearnMoreCourseInOneDay============");
@@ -436,7 +396,6 @@ public class LearnedTest {
 
         LearnedEntity L2 = new LearnedEntity();
         L2.setDetail("คอร์สเรียนตัดหญ้า");
-        L2.setCompany(company1);
         L2.setMaid(maid);
         L2.setCourse(course2);
         L2.setSkill(rank);
@@ -445,7 +404,7 @@ public class LearnedTest {
         }
 
         try {
-            L2.setDateLearned(formatter5.parse("Fri, Oct 18 2019 00:00:00"));
+            L2.setDateLearned(formatter5.parse("Thu, Feb 7 2019 00:00:00"));
             entityManager.persist(L2);
             entityManager.flush();
 
@@ -478,9 +437,17 @@ public class LearnedTest {
     public void testSkillEntitySuccess() {
         SkillEntity K = new SkillEntity();
         K.setSkillRank("Noob");
-        entityManager.persist(K);
-        entityManager.flush();
-        System.out.println("TEST SKILL ENTITY ALL VALID SUCCESS");
+        try {
+            entityManager.persist(K);
+            entityManager.flush();
+            System.out.println("TEST SKILL ENTITY ALL VALID SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testSkillEntitySuccess============");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
     }
 
     // TEST NULL SKILL RANK ENTITY
@@ -557,9 +524,17 @@ public class LearnedTest {
     public void testCourseTypeEntitySuccess() {
         CourseTypeEntity C = new CourseTypeEntity();
         C.setCourseType("งานในบ้าน");
-        entityManager.persist(C);
-        entityManager.flush();
-        System.out.println("TEST COURSE TYPE ENTITY ALL VALID SUCCESS");
+        try {
+            entityManager.persist(C);
+            entityManager.flush();
+            System.out.println("TEST COURSE TYPE ENTITY ALL VALID SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testCourseTypeEntitySuccess============");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
     }
 
     // TEST NULL COURSE TYPE
@@ -636,9 +611,18 @@ public class LearnedTest {
         CourseEntity C = new CourseEntity();
         C.setCourseTitle("เรียนดำน้ำ");
         C.setCourseDetail("เรียนที่นี่ที่เดียว");
-        entityManager.persist(C);
-        entityManager.flush();
-        System.out.println("TEST COURSE ENTITY ALL VALID SUCCESS");
+        try {
+            entityManager.persist(C);
+            entityManager.flush();
+            System.out.println("TEST COURSE ENTITY ALL VALID SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("===========In testCourseEntitySuccess============");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
+
 
     }
 
