@@ -53,11 +53,6 @@ public class ContractEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = ContractTypeEntity.class)
     private ContractTypeEntity contractType;
 
-    //Many To One with Customer
-    @NotNull
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = CustomerEntity.class)
-    private CustomerEntity customer;
-
     //One To One with MaidSelectEntity
     @NotNull
     @OneToOne(fetch = FetchType.EAGER,targetEntity = MaidSelectEntity.class)
@@ -125,14 +120,6 @@ public class ContractEntity {
 
     public void setContractType(ContractTypeEntity contractType) {
         this.contractType = contractType;
-    }
-
-    public CustomerEntity getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerEntity customer) {
-        this.customer = customer;
     }
 
     public MaidSelectEntity getMaid() {
