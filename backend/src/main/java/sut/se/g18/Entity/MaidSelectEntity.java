@@ -1,7 +1,7 @@
 package sut.se.g18.Entity;
 
 import lombok.*;
-
+import java.util.Date;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -20,11 +20,25 @@ public class MaidSelectEntity {
     @Column(name = "maidId", unique = true, nullable = false)
     private @NotNull Long maidId;
 
+    //@NotNull
+    @Future
+    private Date datepick;
     @NotNull
-    @Size(min = 15, max = 50)
-    @Column(unique = true)
-    @Email
-    private String maidEmail;
+    @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| |-)+")
+    @Size(min = 3,max = 40)
+    private String workingday;
+    @NotNull
+    @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| )+")
+    @Size(min = 3,max = 40)
+    private String mainjob;
+    @NotNull
+    @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| )+")
+    @Size(min = 3,max = 40)
+    private String secondaryjob;
+    @NotNull
+    @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| )+")
+    @Size(min = 3,max = 40)
+    private String place;
 
     // Many To One with Customer
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CustomerEntity.class)
@@ -48,7 +62,8 @@ public class MaidSelectEntity {
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidStatusEntity.class)
     private MaidStatusEntity status;
 
-    /**
+    
+/**
      * @return the maidId
      */
     public Long getMaidId() {
@@ -56,24 +71,80 @@ public class MaidSelectEntity {
     }
 
     /**
+     * @return the place
+     */
+    public String getPlace() {
+        return place;
+    }
+
+    /**
+     * @param place the place to set
+     */
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    /**
+     * @return the secondaryjob
+     */
+    public String getSecondaryjob() {
+        return secondaryjob;
+    }
+
+    /**
+     * @param secondaryjob the secondaryjob to set
+     */
+    public void setSecondaryjob(String secondaryjob) {
+        this.secondaryjob = secondaryjob;
+    }
+
+    /**
+     * @return the mainjob
+     */
+    public String getMainjob() {
+        return mainjob;
+    }
+
+    /**
+     * @param mainjob the mainjob to set
+     */
+    public void setMainjob(String mainjob) {
+        this.mainjob = mainjob;
+    }
+
+    /**
+     * @return the workingday
+     */
+    public String getWorkingday() {
+        return workingday;
+    }
+
+    /**
+     * @param workingday the workingday to set
+     */
+    public void setWorkingday(String workingday) {
+        this.workingday = workingday;
+    }
+
+    /**
+     * @return the datepick
+     */
+    public Date getDatepick() {
+        return datepick;
+    }
+
+    /**
+     * @param datepick the datepick to set
+     */
+    public void setDatepick(Date datepick) {
+        this.datepick = datepick;
+    }
+
+    /**
      * @param maidId the maidId to set
      */
     public void setMaidId(Long maidId) {
         this.maidId = maidId;
-    }
-
-    /**
-     * @return the maidEmail
-     */
-    public String getMaidEmail() {
-        return maidEmail;
-    }
-
-    /**
-     * @param maidEmail the maidEmail to set
-     */
-    public void setMaidEmail(String maidEmail) {
-        this.maidEmail = maidEmail;
     }
 
     /**
