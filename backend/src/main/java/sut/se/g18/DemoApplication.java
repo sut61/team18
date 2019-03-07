@@ -29,14 +29,14 @@ public class DemoApplication {
 			WorkingDateRepositoy workingDateRepositoy, CountryCodeRepository countryCodeRepository,
 			SexRepository sexRepository, TypepaymentRepository typepaymentRepository, BankRepository bankRepository,
 			CleaningEquipmentRepository cleaningEquipmentRepository,
-			ElectricalEquipmentRepository electricalEquipmentRepository,
+			
+			
 			PromotionTypeRepository promotionTypeRepository, SkillRepository skillRepository,
 			CourseTypeRepository courseTypeRepository, CourseRepository courseRepository,
 			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository,
-			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository
-			,ScoreRepository scoreRepository
-							 , WelfareAndSalaryRepository welfareAndSalaryRepository,
-							 ,TypeReviewRepository typeReviewRepository) {
+			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository,
+			ScoreRepository scoreRepository, WelfareAndSalaryRepository welfareAndSalaryRepository,
+			TypeReviewRepository typeReviewRepository) {
 		return args -> {
 
 			// Insert Company Type
@@ -580,12 +580,8 @@ public class DemoApplication {
 						cleaningEquipmentRepository.save(c);
 					});
 
-			// Create ElectricalEquipment
-			Stream.of("เครื่องดูดฝุ่น Full Size", "เครื่องดูดฝุ่น แบบมือถือ", "เครื่องขัดพื้น").forEach(electric -> {
-				ElectricalEquipmentEntity e = new ElectricalEquipmentEntity(electric);
-				e.setElectric(electric);
-				electricalEquipmentRepository.save(e);
-			});
+			
+			
 
 			Stream.of("1","2","3","4","5").forEach(score -> {
 				ScoreEntity sc = new ScoreEntity(score);

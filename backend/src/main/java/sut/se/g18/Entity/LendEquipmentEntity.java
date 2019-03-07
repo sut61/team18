@@ -1,6 +1,9 @@
 package sut.se.g18.Entity;
 
 import lombok.*;
+
+import java.util.Date;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -19,53 +22,68 @@ public class LendEquipmentEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="lendId_seq")
     private @NonNull Long lendId;
 
+    @NotNull
+    private Date lendstart;
+
+    @NotNull
+    private Date lendend;
+
+    @NotNull
     @Column(unique = true)
-    @NotNull 
     @Size(min = 3,max = 40)
     @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| )+")
     private String lendData;
 
     //---ของอุปกรณ์----
     @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cleaningId")
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = CleaningEquipmentEntity.class)
     private CleaningEquipmentEntity cleaningEquipmentEntity;
 
-    //---ของไฟฟ้า----
-    @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "electricId")
-    private ElectricalEquipmentEntity electricalEquipmentEntity;
+   
 
     //----ของลูกค้า-----
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER )
-    @JoinColumn(name= "customerId")
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = CustomerEntity.class)
     private CustomerEntity customerEntity;
 
     //----ของแม่บ้าน-----
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER )
-    @JoinColumn(name= "maidId")
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidRegisterEntity.class)
     private MaidRegisterEntity maidregisterEntity;
 
     public LendEquipmentEntity(){
         
     }
-    public  LendEquipmentEntity(String lendData,CleaningEquipmentEntity cleaningEquipmentEntity
-    ,ElectricalEquipmentEntity electricalEquipmentEntity,CustomerEntity customerEntity,MaidRegisterEntity maidregisterEntity) {
+    
 
-        this.lendData=lendData;
-        this.cleaningEquipmentEntity=cleaningEquipmentEntity;
-        this.electricalEquipmentEntity=electricalEquipmentEntity;
-        this.customerEntity = customerEntity;
-        this.maidregisterEntity = maidregisterEntity;
-    }
+    public LendEquipmentEntity(String lendData2, Date lendstart2, Date lendend2, CleaningEquipmentEntity clean,
+			CustomerEntity cuss, MaidRegisterEntity med) {
+                this.lendData=lendData2;
+                this.lendstart=lendstart2;
+                this.lendend=lendend2;
+                this.cleaningEquipmentEntity=clean;
+                this.customerEntity=cuss;
+                this.maidregisterEntity=med;
+                
+	}
+
     public Long getLendId() {
         return lendId;
     }
     public void setLendId(Long lendId) {
         this.lendId = lendId;
+    }
+    public Date getLendstart() {
+        return lendstart;
+    }
+    public void setLendstart(Date date) {
+        this.lendstart = date;
+    }
+    public Date getLendend() {
+        return lendend;
+    }
+    public void setLendend(Date lendend) {
+        this.lendend = lendend;
     }
     public String getLendData() {
         return lendData;
@@ -79,23 +97,20 @@ public class LendEquipmentEntity {
     public void setCleaningEquipmentEntity(CleaningEquipmentEntity cleaningEquipmentEntity) {
         this.cleaningEquipmentEntity = cleaningEquipmentEntity;
     }
-    public ElectricalEquipmentEntity getElectricalEquipmentEntity() {
-        return electricalEquipmentEntity;
-    }
-    public void setElectricalEquipmentEntity(ElectricalEquipmentEntity electricalEquipmentEntity) {
-        this.electricalEquipmentEntity = electricalEquipmentEntity;
-    }
     public CustomerEntity getCustomerEntity() {
         return customerEntity;
     }
     public void setCustomerEntity(CustomerEntity customerEntity) {
         this.customerEntity = customerEntity;
     }
-    public MaidRegisterEntity getRegisterEntity() {
+    public MaidRegisterEntity getMaidregisterEntity() {
         return maidregisterEntity;
     }
-    public void setRegisterEntity(MaidRegisterEntity maidregisterEntity) {
+    public void setMaidregisterEntity(MaidRegisterEntity maidregisterEntity) {
         this.maidregisterEntity = maidregisterEntity;
     }
+
+    
+    
 
 }
