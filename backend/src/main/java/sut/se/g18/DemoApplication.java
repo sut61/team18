@@ -35,9 +35,8 @@ public class DemoApplication {
 			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository,
 			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository
 			,ScoreRepository scoreRepository
-							 ,ScoreExpertiseRepository scoreExpertiseRepository
-							 ,ScorePersonalityRepository scorePersonalityRepository
-							 ,ScoreTimeRepository scoreTimeRepository, WelfareAndSalaryRepository welfareAndSalaryRepository) {
+							 , WelfareAndSalaryRepository welfareAndSalaryRepository,
+							 ,TypeReviewRepository typeReviewRepository) {
 		return args -> {
 
 			// Insert Company Type
@@ -593,21 +592,7 @@ public class DemoApplication {
 				sc.setScore(score);
 				scoreRepository.save(sc);
 			});
-			Stream.of("1","2","3","4","5").forEach(scoreEx -> {
-				ScoreExpertiseEntity sce = new ScoreExpertiseEntity(scoreEx);
-				sce.setScoreEx(scoreEx);
-				scoreExpertiseRepository.save(sce);
-			});
-			Stream.of("1","2","3","4","5").forEach(scorePer -> {
-				ScorePersonalityEntity scp = new ScorePersonalityEntity(scorePer);
-				scp.setScorePer(scorePer);
-				scorePersonalityRepository.save(scp);
-			});
-			Stream.of("1","2","3","4","5").forEach(scoreTi -> {
-				ScoreTimeEntity sct = new ScoreTimeEntity(scoreTi);
-				sct.setScoreTi(scoreTi);
-				scoreTimeRepository.save(sct);
-			});
+			
 			TypewelfareEntity typewel = typewelfareRepository.findByTypewelName("สวัสดิการเพื่อความมั่นคงและสุขภาพ");
 			TypewelfareEntity typewel1 = typewelfareRepository.findByTypewelName("สวัสดิการที่จ่ายตอบแทนเมื่อไม่ได้ทำงาน");
 			TypewelfareEntity typewel2 = typewelfareRepository.findByTypewelName("สวัสดิการบริการ");
@@ -660,6 +645,11 @@ public class DemoApplication {
 			wel3.setTermCon("ต้องมารอรถก่อนเวลา7โมงเช้า");
 			welfareAndSalaryRepository.save(wel3);
 
+			Stream.of("การทำงาน","ความตรงต่อเวลา").forEach(typereview -> {
+				TypeReviewEntity ty = new TypeReviewEntity(typereview);
+				ty.setTypereview(typereview);
+				typeReviewRepository.save(ty);
+			});
 		};
 	}
 }

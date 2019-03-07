@@ -42,7 +42,7 @@ const routes: Routes = [
   {path: 'complaint' , component: ComplaintComponent},
   {path: 'select/:inputEmail' , component: MaidselectComponent},
   {path: 'welsa' , component: WelfareandsalaryComponent},
-  {path: 'review' , component: ReviewComponent}
+  {path: 'review/:inputEmail' , component: ReviewComponent}
 ];
 
 @NgModule({

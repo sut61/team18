@@ -31,31 +31,26 @@ public class ReviewTest{
     private MaidRegisterRepository maidRegisterRepository;
     @Autowired
     private ReviewRepository reviewRepository;
-    @Autowired
-    private ScoreExpertiseRepository scoreExpertiseRepository;
-    @Autowired
-    private ScorePersonalityRepository scorePersonalityRepository;
-    @Autowired
-    private ScoreTimeRepository scoreTimeRepository;
+    
     @Autowired
     private ScoreRepository scoreRepository;
+    @Autowired
+    private TypeReviewRepository typeReviewRepository;
     
     private Validator validator;
-    private ScoreExpertiseEntity se;
-    private ScorePersonalityEntity sp;
-    private ScoreTimeEntity st;
+   
     private ScoreEntity sc;
     private MaidRegisterEntity me;
+    private TypeReviewEntity ty;
 
     @Before
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
-        se = scoreExpertiseRepository.findByscoreExId(5L);
-        sp = scorePersonalityRepository.findByscorePerId(5L);
-        st = scoreTimeRepository.findByscoreTiId(5L);
+       
         sc = scoreRepository.findByscoreId(5L);
         me = maidRegisterRepository.findByMaidId(1L);
+        ty = typeReviewRepository.findBytypereviewId(1L);
         
     }
     //test testSuccess
@@ -63,12 +58,10 @@ public class ReviewTest{
     public void testSuccess() {
         ReviewEntity r = new ReviewEntity();
         r.setReview("ดีมากกกกกกกกก");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
         r.setScoreEntity(sc);
         r.setMaidRegisterEntity(me);
-        
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
         try {
            
             entityManager.persist(r);
@@ -95,7 +88,7 @@ public class ReviewTest{
            
             entityManager.persist(r);
             System.out.println("**********************************************");
-            System.out.println("Success-Score");
+            System.out.println("Success-Class-Score");
             System.out.println("**********************************************");
             entityManager.flush();
 
@@ -106,93 +99,7 @@ public class ReviewTest{
             assertEquals(violations.size(), 0);
         } 
     }
-    //test testSuccessScoreEx
-    @Test
-    public void testSuccessScoreEx() {
-        ScoreExpertiseEntity r = new ScoreExpertiseEntity();
-        r.setScoreEx("scoreex");
-        
-        try {
-           
-            entityManager.persist(r);
-            System.out.println("**********************************************");
-            System.out.println("Success-Score-Ex");
-            System.out.println("**********************************************");
-            entityManager.flush();
-
-            //fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 0);
-        } 
-    }
-    //test testSuccessScorePe
-    @Test
-    public void testSuccessScorePe() {
-        ScorePersonalityEntity r = new ScorePersonalityEntity();
-        r.setScorePer("scorepe");
-        
-        try {
-           
-            entityManager.persist(r);
-            System.out.println("**********************************************");
-            System.out.println("Success-Score-Pe");
-            System.out.println("**********************************************");
-            entityManager.flush();
-
-            //fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 0);
-        } 
-    }
-    //test testSuccessScoreTi
-    @Test
-    public void testSuccessScoreTi() {
-        ScoreTimeEntity r = new ScoreTimeEntity();
-        r.setScoreTi("scoreti");
-        
-        try {
-           
-            entityManager.persist(r);
-            System.out.println("**********************************************");
-            System.out.println("Success-Score-Ti");
-            System.out.println("**********************************************");
-            entityManager.flush();
-
-            //fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 0);
-        } 
-    }
-
-    //Null-Review
-    @Test
-    public void testNullDetail() {
-        ReviewEntity r = new ReviewEntity();
-        r.setReview(null);
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
-        r.setScoreEntity(sc);
-        r.setMaidRegisterEntity(me);
-        try {
-            entityManager.persist(r);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            System.out.println("******************************************************");
-            System.out.println(e);
-            System.out.println("====================Null-Review========================");
-        } 
-    }
+    
     //Null-ScoreClass
     @Test
     public void testNullCleassScor() {
@@ -212,11 +119,33 @@ public class ReviewTest{
             System.out.println("====================Null-Class-Score========================");
         } 
     }
-    //Null-ScoreExClass
+   
+    //test testSuccesstypereview
     @Test
-    public void testNullCleassScoreEx() {
-        ScoreExpertiseEntity r = new ScoreExpertiseEntity();
-        r.setScoreEx(null);
+    public void testSuccesstypereview() {
+        TypeReviewEntity r = new TypeReviewEntity();
+        r.setTypereview("Ohhhhh");
+        
+        try {
+           
+            entityManager.persist(r);
+            System.out.println("**********************************************");
+            System.out.println("Success-Class-Typereview");
+            System.out.println("**********************************************");
+            entityManager.flush();
+
+            //fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        } 
+    }
+    //Null-typeClass
+    @Test
+    public void typeClass() {
+        TypeReviewEntity r = new TypeReviewEntity();
+        r.setTypereview(null);
         
         try {
             entityManager.persist(r);
@@ -228,16 +157,20 @@ public class ReviewTest{
             assertEquals(violations.size(), 1);
             System.out.println("******************************************************");
             System.out.println(e);
-            System.out.println("====================Null-Class-Score-Ex========================");
+            System.out.println("====================Null-Class-Typereview========================");
         } 
     }
 
-    //Null-ScorePeClass
+    //Null-Review
     @Test
-    public void testNullCleassScorePe() {
-        ScorePersonalityEntity r = new ScorePersonalityEntity();
-        r.setScorePer(null);
-        
+    public void testNullDetail() {
+        ReviewEntity r = new ReviewEntity();
+        r.setReview(null);
+       
+        r.setScoreEntity(sc);
+        r.setMaidRegisterEntity(me);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
         try {
             entityManager.persist(r);
             entityManager.flush();
@@ -248,40 +181,21 @@ public class ReviewTest{
             assertEquals(violations.size(), 1);
             System.out.println("******************************************************");
             System.out.println(e);
-            System.out.println("====================Null-Class-Score-Pe========================");
+            System.out.println("====================Null-Review========================");
         } 
     }
-
-    //Null-ScoreTiClass
-    @Test
-    public void testNullCleassScoreTi() {
-        ScoreTimeEntity r = new ScoreTimeEntity();
-        r.setScoreTi(null);
-        
-        try {
-            entityManager.persist(r);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            System.out.println("******************************************************");
-            System.out.println(e);
-            System.out.println("====================Null-Class-Score-Ti========================");
-        } 
-    }
-
+    
+    
     //Null-Score
     @Test
     public void testNullScore() {
         ReviewEntity r = new ReviewEntity();
         r.setReview("ดีมากกกกกกกกก");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
+   
         r.setScoreEntity(null);
         r.setMaidRegisterEntity(me);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
         try {
             entityManager.persist(r);
             entityManager.flush();
@@ -296,87 +210,16 @@ public class ReviewTest{
         } 
     }
 
-    //Null-ScoreEx
-    @Test
-    public void testNullScoreEx() {
-        ReviewEntity r = new ReviewEntity();
-        r.setReview("ดีมากกกกกกกกก");
-        r.setScoreExpertiseEntity(null);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
-        r.setScoreEntity(sc);
-        r.setMaidRegisterEntity(me);
-        try {
-            entityManager.persist(r);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            System.out.println("******************************************************");
-            System.out.println(e);
-            System.out.println("====================Null-Score-Ex========================");
-        } 
-    }
-
-    //Null-ScorePer
-    @Test
-    public void testNullScorePer() {
-        ReviewEntity r = new ReviewEntity();
-        r.setReview("ดีมากกกกกกกกก");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(null);
-        r.setScoreTimeEntity(st);
-        r.setScoreEntity(sc);
-        r.setMaidRegisterEntity(me);
-        try {
-            entityManager.persist(r);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            System.out.println("******************************************************");
-            System.out.println(e);
-            System.out.println("====================Null-Score-Per========================");
-        } 
-    }
-
-    //Null-ScoreTi
-    @Test
-    public void testNullScoreTi() {
-        ReviewEntity r = new ReviewEntity();
-        r.setReview("ดีมากกกกกกกกก");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(null);
-        r.setScoreEntity(sc);
-        r.setMaidRegisterEntity(me);
-        try {
-            entityManager.persist(r);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            System.out.println("******************************************************");
-            System.out.println(e);
-            System.out.println("====================Null-Score-Time========================");
-        } 
-    }
     //Null-Maid
     @Test
     public void testNullScoreMaid() {
         ReviewEntity r = new ReviewEntity();
         r.setReview("ดีมากกกกกกกกก");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
+   
         r.setScoreEntity(sc);
         r.setMaidRegisterEntity(null);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
         try {
             entityManager.persist(r);
             entityManager.flush();
@@ -390,16 +233,62 @@ public class ReviewTest{
             System.out.println("====================Null-Maid========================");
         } 
     }
+    //Null-adj
+    @Test
+    public void testNulladj() {
+        ReviewEntity r = new ReviewEntity();
+        r.setReview("ดีมากกกกกกกกก");
+   
+        r.setScoreEntity(sc);
+        r.setMaidRegisterEntity(me);
+        r.setAdjust(null);
+        r.setTypeReviewEntity(ty);
+        try {
+            entityManager.persist(r);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+            System.out.println("******************************************************");
+            System.out.println(e);
+            System.out.println("====================Null-adjust========================");
+        } 
+    }
+    //Null-type
+    @Test
+    public void testNulltype() {
+        ReviewEntity r = new ReviewEntity();
+        r.setReview("ดีมากกกกกกกกก");
+   
+        r.setScoreEntity(sc);
+        r.setMaidRegisterEntity(me);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(null);
+        try {
+            entityManager.persist(r);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+            System.out.println("******************************************************");
+            System.out.println(e);
+            System.out.println("====================Null-type========================");
+        } 
+    }
     //Min
     @Test
     public void testMinSizeDetail() {
         ReviewEntity r = new ReviewEntity();
         r.setReview("ดี");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
+
         r.setScoreEntity(sc);
         r.setMaidRegisterEntity(me);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
         try {
            
             entityManager.persist(r);
@@ -424,11 +313,11 @@ public class ReviewTest{
     public void testMaxSizeDetail() {
         ReviewEntity r = new ReviewEntity();
         r.setReview("ดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดีดี");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
+
         r.setScoreEntity(sc);
         r.setMaidRegisterEntity(me);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
 
         try {
            
@@ -452,11 +341,11 @@ public class ReviewTest{
      public void testInvalidPatternDetail() {
         ReviewEntity r = new ReviewEntity();
         r.setReview("So Good");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
+   
         r.setScoreEntity(sc);
         r.setMaidRegisterEntity(me);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
  
          try {
             
@@ -480,11 +369,11 @@ public class ReviewTest{
         ReviewEntity r = new ReviewEntity();
         
         r.setReview("ดีดีดีดีดีดีดี");
-        r.setScoreExpertiseEntity(se);
-        r.setScorePersonalityEntity(sp);
-        r.setScoreTimeEntity(st);
+
         r.setScoreEntity(sc);
         r.setMaidRegisterEntity(me);
+        r.setAdjust("นิสัย");
+        r.setTypeReviewEntity(ty);
 
 
         entityManager.persist(r);
@@ -492,11 +381,11 @@ public class ReviewTest{
         try{
             ReviewEntity rr = new ReviewEntity();
             rr.setReview("ดีดีดีดีดีดีดี");
-            rr.setScoreExpertiseEntity(se);
-            rr.setScorePersonalityEntity(sp);
-            rr.setScoreTimeEntity(st);
+
             rr.setScoreEntity(sc);
             rr.setMaidRegisterEntity(me);
+            rr.setAdjust("นิสัย");
+            rr.setTypeReviewEntity(ty);
 
             entityManager.persist(rr);
 		    entityManager.flush();
