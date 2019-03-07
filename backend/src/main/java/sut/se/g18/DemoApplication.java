@@ -501,6 +501,7 @@ public class DemoApplication {
 			mm5.setWelfareAndSalaryEntity(wel0);
 			maidRegisterRepository.save(mm5);
 
+			
 			MaidSelectEntity m1 = new MaidSelectEntity();
 			CustomerEntity customer = customerRepository.findBycustomerName("Pitchayut CheeseJa");
 			m1.setCustomer(customer);
