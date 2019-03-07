@@ -11,15 +11,19 @@ export interface ReviewCalum {
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-  datareview:any={maidId:null,scoreId:null,scoreExId:null,scorePerId:null,scoreTiId:null,review:null};
+  datareview:any={maidId:null,scoreId:null,typereviewId:null,review:null,adjust:null};
 
-  displayedColumns: string[] = ['no', 'maidName', 'scoreti','scoreex','scorepe','score', 'comment'];
+  displayedColumns: string[] = ['no', 'maidName','typereview','score','comment','adjust'];
+
   selection = new SelectionModel<ReviewCalum>(true, []);
   allReview: Array<any>;
   private id: number;
   private sub: any;
+  private inputEmail: any;
 
-  constructor(private rev : ReviewService,private route: ActivatedRoute,private router: Router) { }
+  constructor(private rev : ReviewService,private route: ActivatedRoute,private router: Router) { 
+    this.inputEmail = this.route.snapshot.paramMap.get('inputEmail');
+  }
 
   ngOnInit() {
     this.rev.getReview().subscribe(data => {
@@ -31,21 +35,14 @@ export class ReviewComponent implements OnInit {
       console.log(data)
       this.maidName = data;
     });
-    this.rev.getScoreExId().subscribe(data=>{
-      console.log(data)
-      this.scoreEx = data;
-    });
-    this.rev.getScorePerId().subscribe(data=>{
-      console.log(data)
-      this.scorePer = data;
-    });
-    this.rev.getScoreTiId().subscribe(data=>{
-      console.log(data)
-      this.scoreTi = data;
-    });
+    
     this.rev.getScoreId().subscribe(data=>{
       console.log(data)
       this.score = data;
+    });
+    this.rev.getTypereviewId().subscribe(data=>{
+      console.log(data)
+      this.typereview = data;
     });
   }
   maidName: Array<any>= [];
@@ -56,18 +53,11 @@ export class ReviewComponent implements OnInit {
   scores: any = {
     score:null
   };
-  scoreEx: Array<any>= [];
-  scoreExs: any = {
-    scoreEx:null
+  typereview: Array<any>= [];
+  typereviews: any = {
+    typereview:null
   };
-  scorePer: Array<any>= [];
-  scorePers: any = {
-    scorePer:null
-  };
-  scoreTi: Array<any>= [];
-  scoreTis: any = {
-    scoreTi:null
-  };
+  
 
   ss(){
 
@@ -75,15 +65,23 @@ export class ReviewComponent implements OnInit {
     if(this.datareview.maidId == null){
       alert("กรุณาเลือกแม่บ้าน");
     }
-    else if(this.datareview.scoreId == null){
-      alert("กรุณาให้คะแนน");
+    else if(this.datareview.typereviewId == null){
+      alert("กรุณาเลือกประเภทการรีวิว");
     }
-    
+    else if(this.datareview.scoreId == null){
+      alert("กรุณาให้คะแนนการรีวิว");
+    }
+    else if(this.datareview.review == null){
+      alert("กรุณาใส่ความคิดเห็น");
+    }
+    else if(this.datareview.adjust == null){
+      alert("กรุณาใส่สิ่งที่ควรปรับปรุง");
+    }
     else{
     console.log(this.datareview)
     this.rev.saveReview(this.datareview).subscribe(data=>{
       console.log(data)
-      this.datareview ={maidId:"",scoreId:"",scoreExId:"",scorePerId:"",scoreTiId:"",review:""}
+      this.datareview ={maidId:"",scoreId:"",typereviewId:"",review:"",adjust:""}
       alert("บันทึกสำเสร็จ");
       
     },
@@ -94,7 +92,7 @@ export class ReviewComponent implements OnInit {
     }
   };
   cs(){
-    this.router.navigate(['/mainCus']);
+    this.router.navigate(['/mainCus', this.inputEmail]);
   };
   
 

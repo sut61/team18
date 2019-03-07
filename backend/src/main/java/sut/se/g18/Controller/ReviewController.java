@@ -20,21 +20,15 @@ public class ReviewController{
     @Autowired
     private final ReviewRepository reviewRepository;
     @Autowired
-    private final ScoreExpertiseRepository scoreExpertiseRepository;
-    @Autowired
-    private final ScorePersonalityRepository scorePersonalityRepository;
-    @Autowired
-    private final ScoreTimeRepository scoreTimeRepository;
+    private final TypeReviewRepository typeReviewRepository;
     
     @Autowired
-    public ReviewController(ScoreRepository scoreRepository,MaidRegisterRepository maidregisterRepository,ReviewRepository reviewRepository
-    ,ScoreExpertiseRepository scoreExpertiseRepository,ScorePersonalityRepository scorePersonalityRepository,ScoreTimeRepository scoreTimeRepository){
+    public ReviewController(ScoreRepository scoreRepository,MaidRegisterRepository maidregisterRepository,ReviewRepository reviewRepository,TypeReviewRepository typeReviewRepository){
         this.maidregisterRepository = maidregisterRepository;
         this.scoreRepository = scoreRepository;
         this.reviewRepository = reviewRepository;
-        this.scoreExpertiseRepository = scoreExpertiseRepository;
-        this.scorePersonalityRepository = scorePersonalityRepository;
-        this.scoreTimeRepository = scoreTimeRepository;
+        this.typeReviewRepository = typeReviewRepository;
+     
     }
     //------------------------------------------
     @GetMapping("/rerere")
@@ -54,37 +48,17 @@ public class ReviewController{
         return scoreRepository.findByscoreId(id);
     }
     //---------------------------------------------
-    @GetMapping("/ScoreExt")
-    public Collection<ScoreExpertiseEntity> scoreExpertiseEntities() {
-        return scoreExpertiseRepository.findAll().stream().collect(Collectors.toList());
+
+    @GetMapping("/TypeReview")
+    public Collection<TypeReviewEntity> typeReviewEntities() {
+        return typeReviewRepository.findAll().stream().collect(Collectors.toList());
     }
-    @GetMapping("/ScoreExt-list/{id}")
+    @GetMapping("/TypeReview-list/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ScoreExpertiseEntity scoreExpertiseEntitityFind(@PathVariable("id") Long id) {
-        return scoreExpertiseRepository.findByscoreExId(id);
+    public TypeReviewEntity typeReviewEntitieFind(@PathVariable("id") Long id) {
+        return typeReviewRepository.findBytypereviewId(id);
     }
     //---------------------------------------------
-    @GetMapping("/Scoreper")
-    public Collection<ScorePersonalityEntity> scorePersonalityEntities() {
-        return scorePersonalityRepository.findAll().stream().collect(Collectors.toList());
-    }
-    @GetMapping("/Scoreper-list/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ScorePersonalityEntity ScorePersonalityEntitityFind(@PathVariable("id") Long id) {
-        return scorePersonalityRepository.findByscorePerId(id);
-    }
-    //---------------------------------------------
-    @GetMapping("/ScoreTi")
-    public Collection<ScoreTimeEntity> scoreTimeEntities() {
-        return scoreTimeRepository.findAll().stream().collect(Collectors.toList());
-    }
-    @GetMapping("/ScoreTi-list/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ScoreTimeEntity scoreTimeEntitity(@PathVariable("id") Long id) {
-        return scoreTimeRepository.findByscoreTiId(id);
-    }
-    //---------------------------------------------
-    
     @GetMapping("/MMaidRegister")
     public Collection<MaidRegisterEntity> maidregisterEntitys() {
         return maidregisterRepository.findAll().stream().collect(Collectors.toList());
@@ -100,13 +74,11 @@ public class ReviewController{
     @PostMapping(path = "/review")
     public ReviewEntity rev(@RequestBody DataReview dataReview){
 
-        ScoreExpertiseEntity se = this.scoreExpertiseRepository.findByscoreExId(dataReview.getScoreExId());
-        ScorePersonalityEntity sp = this.scorePersonalityRepository.findByscorePerId(dataReview.getScorePerId());
-        ScoreTimeEntity st = this.scoreTimeRepository.findByscoreTiId(dataReview.getScoreTiId());
         MaidRegisterEntity med = this.maidregisterRepository.findByMaidId(dataReview.getMaidId());
         ScoreEntity sco = this.scoreRepository.findByscoreId(dataReview.getScoreId());
-        
-        ReviewEntity revv = this.reviewRepository.save(new ReviewEntity(med,sco,se,sp,st,dataReview.getReview()));
+        TypeReviewEntity ty = this.typeReviewRepository.findBytypereviewId(dataReview.getTypereviewId());
+
+        ReviewEntity revv = this.reviewRepository.save(new ReviewEntity(med,sco,ty,dataReview.getReview(),dataReview.getAdjust()));
     
         return revv;
     }

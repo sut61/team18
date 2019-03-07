@@ -22,9 +22,7 @@ export class LendService {
     return this.http.get(this.API+'/Customer');
   }
 
-  getElectricId() :  Observable<any>{
-    return this.http.get(this.API+'/ElectricalEquipment');
-  }
+
 
   getMaidId() :  Observable<any>{
     return this.http.get(this.API+'/Register');

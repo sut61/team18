@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SubmitComponent implements OnInit {
   
-  datalend:any={maidId:"",customerId:"",cleaningId:"",electricId:"",lendData:""};
+  datalend:any={maidId:null,customerId:null,cleaningId:null,lendData:null,lendstart:null,lendend:null};
 
   constructor(private lend : LendService ,public dialog: MatDialog,private route: ActivatedRoute,
     private router: Router) {
@@ -35,10 +35,7 @@ export class SubmitComponent implements OnInit {
       this.cleaning = data;
     })
 
-    this.lend.getElectricId().subscribe(data=>{
-      console.log(data)
-      this.electric = data;
-    })
+   
   }
 
   maidName: Array<any>= [];
@@ -56,23 +53,29 @@ export class SubmitComponent implements OnInit {
     cleaning:null
   };
 
-  electric: Array<any>= [];
-  electrics: any = {
-    electric:null
-  };
   OnSubmit(){
+    if(this.datalend.maidId == null){
+      alert("กรุณาเลือกแม่บ้าน");
+    }
+    else if(this.datalend.customerId == null){
+      alert("กรุณาเลือกลูกค้า");
+    }
+    else if(this.datalend.cleaningId == null){
+      alert("กรุณาเลือกอุปกรณ์ทำความสะอาด");
+    }
+    else if(this.datalend.lendstart == null){
+      alert("กรุณาเลือกวันที่ยืม");
+    }
+    else if(this.datalend.lendend == null){
+      alert("กรุณาเลือกวันที่คืน");
+    }
+    else{
     console.log(this.datalend)
     this.lend.saveLendEquipment(this.datalend).subscribe(data=>{
       console.log(data)
-      this.datalend ={maidId:"",customerId:"",cleaningId:"",electricId:"",lendData:""}
-      const dialogRef = this.dialog.open(TextComponent, {
-        width: '600px',
-    
-        data: {name: 'บันทึกสำเร็จ'}
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
+      this.datalend ={maidId:"",customerId:"",cleaningId:"",lendData:"",lendstart:"",lendend:""}
+      alert('บันทึกสำเร็จ');
+      
       this.router.navigate(['/mainMaid']);
   
     },
@@ -80,6 +83,8 @@ export class SubmitComponent implements OnInit {
       console.log('Error', error);
       alert('เกิด Error');
     })
+
+    }
   };
   lode(){
     this.router.navigate(['/mainMaid']);

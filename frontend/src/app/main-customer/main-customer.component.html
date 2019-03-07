@@ -20,7 +20,7 @@
     <br>
     <br>
     <div class="group-A">
-      <a mat-raised-button routerLink="/review"><b>Review</b></a>
+      <a mat-raised-button (click) = "goReview()" routerLinkActive="active"><b>Review</b></a>
     </div>
     <br>
     <br>
@@ -44,7 +44,7 @@
     <br>
     <br>
     <div class="group-A">
-      <a mat-raised-button routerLink="/select"><b>MaidSelect</b></a>
+      <a mat-raised-button (click) ="select()" routerLinkActive="active"><b>MaidSelect</b></a>
     </div>
   </div>
 </div>
