@@ -88,16 +88,16 @@ public class PaymentController {
                                       @PathVariable String name, @PathVariable String address, @PathVariable String phonenum, @PathVariable String accountNumber,
                                       @PathVariable String typeName, @PathVariable String bankName) {
             CustomerEntity customer = customerRepository.findBycustomerEmail(inputEmail);
-            payContract.setCustomerEntity(customer);
             ContractEntity contract = contractRepository.findBycontractId(contractId);
+            TypepaymentEntity typepay = typepaymentRepository.findBytypeName(typeName);
+            BankEntity bank = bankRepository.findBybankName(bankName);
+            payContract.setCustomerEntity(customer);
             payContract.setContractEntity(contract);
             payContract.setName(name);
             payContract.setAddress(address);
             payContract.setPhonenum(phonenum);
             payContract.setAccountNumber(accountNumber);
-            TypepaymentEntity typepay = typepaymentRepository.findBytypeName(typeName);
             payContract.setTypepaymentEntity(typepay);
-            BankEntity bank = bankRepository.findBybankName(bankName);
             payContract.setBankEntity(bank);
             PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("จ่ายแล้ว");
             contract.setStatus(status);

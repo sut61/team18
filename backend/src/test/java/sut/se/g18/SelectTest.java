@@ -1,5 +1,6 @@
 package sut.se.g18;
 
+    
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,8 @@ public class SelectTest {
 
     private Validator validator;
 
+    private SimpleDateFormat formatter5 = new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss");
+
     @Before
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -37,156 +40,406 @@ public class SelectTest {
 
     }
 
-    // TEST MIN SIZE DETAIL
+    // TEST SELECT ENTITY SUCCESS
     @Test
-    public void testNull() {
-        MaidSelectEntity L = new MaidSelectEntity();
-        L.setMaidEmail(null);
-
+    public void testSelectEntitySuccess() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
         try {
-
-            entityManager.persist(L);
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
             entityManager.flush();
-
-            fail("Should not pass to this line");
+            System.out.println("TEST SELECT ENTITY SUCCESS");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1); // ผิด Pattern ด้วย
-            System.out.println("==============================testNull=============================");
-            System.out.println(e);
-        } catch (javax.persistence.PersistenceException e) {
+            assertEquals(violations.size(), 0);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
 
+    // TEST SELECT ENTITY NULL WORKING DAY
     @Test
-    public void testMin() {
-        MaidSelectEntity L = new MaidSelectEntity();
-        L.setMaidEmail("q@.het9s.com");
-
+    public void testSelectEntityNullWorkingDate() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday(null);
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
         try {
-
-            entityManager.persist(L);
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
             entityManager.flush();
-
-            fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityNullWorkingDate========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2); // ผิด Pattern ด้วย
-            System.out.println("==============================testMin=============================");
-            System.out.println(e);
-        } catch (javax.persistence.PersistenceException e) {
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
 
+    // TEST SELECT ENTITY MIN LENGTH WORKING DAY
     @Test
-    public void testMax() {
-        MaidSelectEntity L = new MaidSelectEntity();
-        L.setMaidEmail("q@.hhfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffset9s");
-
+    public void testSelectEntityMinLengthWorkingDate() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("อา");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
         try {
-
-            entityManager.persist(L);
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
             entityManager.flush();
-
-            fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "=======================FROM testSelectEntityMinLengthWorkingDate========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2); // ผิด Pattern ด้วย
-            System.out.println("==============================testMax=============================");
-            System.out.println(e);
-        } catch (javax.persistence.PersistenceException e) {
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
 
+    // TEST SELECT ENTITY MAX LENGTH WORKING DAY
     @Test
-    public void testPattern() {
-        MaidSelectEntity L = new MaidSelectEntity();
-        L.setMaidEmail("qhhfffffffffffffffffffset9s");
-
+    public void testSelectEntityMaxLengthWorkingDate() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday(
+                "อาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาทิตตตตตตตตตตตตตตตตตตตตตตตตตตตตตตตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
         try {
-
-            entityManager.persist(L);
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
             entityManager.flush();
-
-            fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "=======================FROM testSelectEntityMaxLengthWorkingDate========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1); // ผิด Pattern ด้วย
-            System.out.println("==============================testPattern=============================");
-            System.out.println(e);
-        } catch (javax.persistence.PersistenceException e) {
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
 
+    // TEST SELECT ENTITY INVALID PATTERN WORKING DAY
     @Test
-    public void testSuccess() {
-        MaidSelectEntity L = new MaidSelectEntity();
-        L.setMaidEmail("thiwab59@gmail.com");
-
+    public void testSelectEntityInvalidPatternWorkingDate() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("Sunday");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
         try {
-
-            entityManager.persist(L);
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
             entityManager.flush();
-
-            // fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println(
+                    "=======================FROM testSelectEntityInvalidPatternWorkingDate========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1); // ผิด Pattern ด้วย
-            System.out.println("==============================testSuccess=============================");
-            System.out.println(e);
-        } catch (javax.persistence.PersistenceException e) {
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
 
+    // TEST SELECT ENTITY NULL MAIN JOB
     @Test
-    public void testUnique() {
-        MaidSelectEntity L = new MaidSelectEntity();
-        L.setMaidEmail("thiwab59@gmail.com");
-
+    public void testSelectEntityNullMainJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob(null);
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
         try {
-
-            entityManager.persist(L);
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
             entityManager.flush();
-
-            // fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityNullMainJob========================");
+            System.out.println(e.getConstraintViolations());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1); // ผิด Pattern ด้วย
-            System.out.println("==============================testUnique=============================");
-            System.out.println(e);
-        } catch (javax.persistence.PersistenceException e) {
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        MaidSelectEntity L2 = new MaidSelectEntity();
-        L.setMaidEmail("thiwab59@gmail.com");
-
-        try {
-
-            entityManager.persist(L2);
-            entityManager.flush();
-
-            //fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            System.out.println("==============================testUnique=============================");
-            System.out.println(e);
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1); // ผิด Pattern ด้วย
-        } catch (javax.persistence.PersistenceException e) {
-            e.printStackTrace();
-        }
     }
-    
+    // TEST SELECT ENTITY MIN LENGTH MAIN JOB
+    @Test
+    public void testSelectEntityMinLengthMainJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("ล้");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityMinLengthMainJob========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY MAX LENGTH MAIN JOB
+    @Test
+    public void testSelectEntityMaxLengthMainJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("ล้าาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาางงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงงจจจจจจจจจจจจจจจจจาาาาาาาาาาาาาาาาาาาาาาานนนนนนนนนนนนนนนน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityMaxLengthMainJob========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY INVALID PATTERN MAIN JOB
+    @Test
+    public void testSelectEntityInvalidPatternMainJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("Wash");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เรียนรวม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityInvalidPatternMainJob========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY NULL SECONDARY JOB
+    @Test
+    public void testSelectEntityNullSecondaryJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob(null);
+        m.setPlace("เรียนรวม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityNullSecondaryJob========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY MIN LENGTH SECONDARY JOB
+    @Test
+    public void testSelectEntityMinLengthSecondaryJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้");
+        m.setPlace("เรียนรวม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityMinLengthSecondaryJob========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY MAX LENGTH SECONDARY JOB
+    @Test
+    public void testSelectEntityMaxLengthSecondaryJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้าาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาางงงงงงงงงงงงงงงงงงงงงงงงงงงงงงจจจจจจจจจจจจาาาาาาาาาาาาาาาาาาาานนนนนนนนนนนนนนนนนน");
+        m.setPlace("เรียนรวม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityMaxLengthSecondaryJob========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY INVALID PATTERN SECONDARY JOB
+    @Test
+    public void testSelectEntityInvalidPatternSecondaryJob() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("Wash");
+        m.setPlace("เรียนรวม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityInvalidPatternSecondaryJob========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY NULL PLACE
+    @Test
+    public void testSelectEntityNullPlace() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace(null);
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityNullPlace========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY MIN LENGTH PLACE
+    @Test
+    public void testSelectEntityMinLengthPlace() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เร");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityMinLengthPlace========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY MAX LENGTH PLACE
+    @Test
+    public void testSelectEntityMaxLengthPlace() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("เเเเเเเเเเเรียยยยยยยยยยยยยยยยยยยยยนนนนนนนนนนนนนนนนนนรรรรรรรรรรรรรรรรรรรรรรรรรรรววววววววววววววววววววววววววมมมมมมมมมมมมมมมมม");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityMaxLengthPlace========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+    // TEST SELECT ENTITY NULL PLACE
+    @Test
+    public void testSelectEntityInvalidPatternPlace() {
+        MaidSelectEntity m = new MaidSelectEntity();
+        m.setWorkingday("เสาร์-อาทิตย์");
+        m.setMainjob("กวาดบ้าน");
+        m.setSecondaryjob("ล้างจาน");
+        m.setPlace("ZZZZZ");
+        try {
+            m.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(m);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testSelectEntityInvalidPatternPlace========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

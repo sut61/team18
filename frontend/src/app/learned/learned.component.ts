@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../service/admin.service';
 import {HttpClient} from '@angular/common/http';
-
+import {MatSnackBar} from '@angular/material';
 @Component({
   selector: 'app-learned',
   templateUrl: './learned.component.html',
@@ -20,7 +20,7 @@ export class LearnedComponent implements OnInit {
     dateInput: null,
     detailInput: null
   };
-  constructor(private adminService: AdminService, private httpClient: HttpClient) { }
+  constructor(private adminService: AdminService, private httpClient: HttpClient, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.adminService.getCompany().subscribe(data => {
@@ -67,16 +67,25 @@ export class LearnedComponent implements OnInit {
       .subscribe(
         data => {
           console.log('PUT Request is successful', data);
-          alert('เพิ่มหลักสูตรสำเร็จ');
+          this.snackbar.open('เพิ่มหลักสูตรสำเร็จ', '', {
+            duration: 35000, verticalPosition: 'top',
+          });
           this.reset_func();
         },
         error => {
           console.log('Rrror', error);
-          alert('เกิดข้อผิดพลาด');
+          this.snackbar.open('เกิดข้อผิดพลาด', '', {
+            duration: 35000, verticalPosition: 'top',
+          });
         }
       );
   }
   reset_func() {
+    this.newLearn.maidSelect = null;
+    this.newLearn.courseSelect = null;
+    this.newLearn.skillRankSelect = null;
+    this.newLearn.dateInput = null;
+    this.newLearn.detailInput = null;
   }
 
 }
