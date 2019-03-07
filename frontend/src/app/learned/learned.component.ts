@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../service/admin.service';
 import {HttpClient} from '@angular/common/http';
-
+import {MatSnackBar} from '@angular/material';
 @Component({
   selector: 'app-learned',
   templateUrl: './learned.component.html',
@@ -12,15 +12,15 @@ export class LearnedComponent implements OnInit {
   skill: Array<any>;
   maid: Array<any>;
   course: Array<any>;
+  companySelect: null;
   newLearn: any = {
-    companySelect: null,
     maidSelect: null,
     courseSelect: null,
     skillRankSelect: null,
     dateInput: null,
     detailInput: null
   };
-  constructor(private adminService: AdminService, private httpClient: HttpClient) { }
+  constructor(private adminService: AdminService, private httpClient: HttpClient, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.adminService.getCompany().subscribe(data => {
@@ -34,20 +34,18 @@ export class LearnedComponent implements OnInit {
   }
 
   dataChanged() {
-    this.adminService.getMaidInCompany(this.newLearn.companySelect).subscribe(data => {
+    this.adminService.getMaidInCompany(this.companySelect).subscribe(data => {
       this.maid = data;
       console.log(this.maid);
     });
-    this.adminService.getCourseInCompany(this.newLearn.companySelect).subscribe(data => {
+    this.adminService.getCourseInCompany(this.companySelect).subscribe(data => {
       this.course = data;
       console.log(this.course);
     });
   }
 
   save() {
-    if (this.newLearn.companySelect == null) {
-      alert('กรุณาเลือกบริษัท');
-    } else if (this.newLearn.maidSelect == null) {
+    if (this.newLearn.maidSelect == null) {
       alert('กรุณาเลือกแม่บ้าน');
     } else if (this.newLearn.courseSelect == null) {
       alert('กรุณาเลือกหลักสูตร');
@@ -63,22 +61,31 @@ export class LearnedComponent implements OnInit {
   }
 
   save_func() {
-    this.httpClient.post('http://localhost:8080/learned/' + this.newLearn.companySelect + '/' + this.newLearn.maidSelect +
+    this.httpClient.post('http://localhost:8080/learned/' + this.newLearn.maidSelect +
       '/' + this.newLearn.courseSelect + '/' + this.newLearn.skillRankSelect + '/' + this.newLearn.dateInput + '/' +
       this.newLearn.detailInput, this.newLearn)
       .subscribe(
         data => {
           console.log('PUT Request is successful', data);
-          alert('เพิ่มหลักสูตรสำเร็จ');
+          this.snackbar.open('เพิ่มหลักสูตรสำเร็จ', '', {
+            duration: 35000, verticalPosition: 'top',
+          });
           this.reset_func();
         },
         error => {
           console.log('Rrror', error);
-          alert('เกิดข้อผิดพลาด');
+          this.snackbar.open('เกิดข้อผิดพลาด', '', {
+            duration: 35000, verticalPosition: 'top',
+          });
         }
       );
   }
   reset_func() {
+    this.newLearn.maidSelect = null;
+    this.newLearn.courseSelect = null;
+    this.newLearn.skillRankSelect = null;
+    this.newLearn.dateInput = null;
+    this.newLearn.detailInput = null;
   }
 
 }

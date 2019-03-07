@@ -35,9 +35,8 @@ public class DemoApplication {
 			CompanyTypeRepository companyTypeRepository, ProvinceRepository provinceRepository,
 			ComplaintTypeRepository complaintTypeRepository,TypewelfareRepository typewelfareRepository
 			,ScoreRepository scoreRepository
-							 ,ScoreExpertiseRepository scoreExpertiseRepository
-							 ,ScorePersonalityRepository scorePersonalityRepository
-							 ,ScoreTimeRepository scoreTimeRepository, WelfareAndSalaryRepository welfareAndSalaryRepository) {
+							 , WelfareAndSalaryRepository welfareAndSalaryRepository,
+							 ,TypeReviewRepository typeReviewRepository) {
 		return args -> {
 
 			// Insert Company Type
@@ -501,6 +500,7 @@ public class DemoApplication {
 			mm5.setWelfareAndSalaryEntity(wel0);
 			maidRegisterRepository.save(mm5);
 
+			
 			MaidSelectEntity m1 = new MaidSelectEntity();
 			CustomerEntity customer = customerRepository.findBycustomerName("Pitchayut CheeseJa");
 			m1.setCustomer(customer);
@@ -508,7 +508,11 @@ public class DemoApplication {
 			m1.setMaid(maid1);
 			MaidStatusEntity statusMaid = maidStatusRepository.findBystatus("จอง");
 			m1.setStatus(statusMaid);
-			m1.setMaidEmail("pingzzzzzzzzzzzzz@gmail.com");
+			m1.setWorkingday("เสาร์-อาทิตย์");
+			m1.setMainjob("กวาดบ้าน");
+			m1.setSecondaryjob("ล้างจาน");
+			m1.setPlace("เรียนรวม");
+			m1.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
 			maidSelectRepository.save(m1);
 
 			MaidSelectEntity m3 = new MaidSelectEntity();
@@ -516,7 +520,11 @@ public class DemoApplication {
 			MaidRegisterEntity maid2 = maidRegisterRepository.findBymaidName("Ball Donlawat");
 			m3.setMaid(maid2);
 			m3.setStatus(statusMaid);
-			m3.setMaidEmail("ballzzzzzzzzzzzz@gmail.com");
+			m3.setWorkingday("เสาร์-อาทิตย์");
+			m3.setMainjob("กวาดบ้าน");
+			m3.setSecondaryjob("ล้างจาน");
+			m3.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+			m3.setPlace("เรียนรวม");
 			maidSelectRepository.save(m3);
 
 			MaidSelectEntity m2 = new MaidSelectEntity();
@@ -524,7 +532,11 @@ public class DemoApplication {
 			MaidRegisterEntity maid3 = maidRegisterRepository.findBymaidName("Yongyut Srisuban");
 			m2.setMaid(maid3);
 			m2.setStatus(statusMaid);
-			m2.setMaidEmail("yermzzzzzzzzzzz@gmail.com");
+			m2.setWorkingday("เสาร์-อาทิตย์");
+			m2.setMainjob("กวาดบ้าน");
+			m2.setSecondaryjob("ล้างจาน");
+			m2.setPlace("เรียนรวม");
+			m2.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
 			maidSelectRepository.save(m2);
 
 			MaidSelectEntity m4 = new MaidSelectEntity();
@@ -532,7 +544,11 @@ public class DemoApplication {
 			MaidRegisterEntity maid4 = maidRegisterRepository.findBymaidName("Nanthika Poonpin");
 			m4.setMaid(maid4);
 			m4.setStatus(statusMaid);
-			m4.setMaidEmail("beamzzzzzzzzz@gmail.com");
+			m4.setWorkingday("เสาร์-อาทิตย์");
+			m4.setMainjob("กวาดบ้าน");
+			m4.setSecondaryjob("ล้างจาน");
+			m4.setPlace("เรียนรวม");
+			m4.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
 			maidSelectRepository.save(m4);
 
 			MaidSelectEntity m5 = new MaidSelectEntity();
@@ -540,7 +556,11 @@ public class DemoApplication {
 			MaidRegisterEntity maid5 = maidRegisterRepository.findBymaidName("Ploy Sumitra");
 			m5.setMaid(maid5);
 			m5.setStatus(statusMaid);
-			m5.setMaidEmail("plorrrrrrrry@gmail.com");
+			m5.setWorkingday("เสาร์-อาทิตย์");
+			m5.setMainjob("กวาดบ้าน");
+			m5.setSecondaryjob("ล้างจาน");
+			m5.setPlace("เรียนรวม");
+			m5.setDatepick(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
 			maidSelectRepository.save(m5);
 
 			PromotionEntity p1 = new PromotionEntity();
@@ -572,21 +592,7 @@ public class DemoApplication {
 				sc.setScore(score);
 				scoreRepository.save(sc);
 			});
-			Stream.of("1","2","3","4","5").forEach(scoreEx -> {
-				ScoreExpertiseEntity sce = new ScoreExpertiseEntity(scoreEx);
-				sce.setScoreEx(scoreEx);
-				scoreExpertiseRepository.save(sce);
-			});
-			Stream.of("1","2","3","4","5").forEach(scorePer -> {
-				ScorePersonalityEntity scp = new ScorePersonalityEntity(scorePer);
-				scp.setScorePer(scorePer);
-				scorePersonalityRepository.save(scp);
-			});
-			Stream.of("1","2","3","4","5").forEach(scoreTi -> {
-				ScoreTimeEntity sct = new ScoreTimeEntity(scoreTi);
-				sct.setScoreTi(scoreTi);
-				scoreTimeRepository.save(sct);
-			});
+			
 			TypewelfareEntity typewel = typewelfareRepository.findByTypewelName("สวัสดิการเพื่อความมั่นคงและสุขภาพ");
 			TypewelfareEntity typewel1 = typewelfareRepository.findByTypewelName("สวัสดิการที่จ่ายตอบแทนเมื่อไม่ได้ทำงาน");
 			TypewelfareEntity typewel2 = typewelfareRepository.findByTypewelName("สวัสดิการบริการ");
@@ -639,6 +645,11 @@ public class DemoApplication {
 			wel3.setTermCon("ต้องมารอรถก่อนเวลา7โมงเช้า");
 			welfareAndSalaryRepository.save(wel3);
 
+			Stream.of("การทำงาน","ความตรงต่อเวลา").forEach(typereview -> {
+				TypeReviewEntity ty = new TypeReviewEntity(typereview);
+				ty.setTypereview(typereview);
+				typeReviewRepository.save(ty);
+			});
 		};
 	}
 }

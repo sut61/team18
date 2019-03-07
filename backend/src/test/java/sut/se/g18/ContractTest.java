@@ -30,9 +30,6 @@ public class ContractTest {
     private TestEntityManager entityManager;
 
     @Autowired
-    private ContractRepository contractRepository;
-
-    @Autowired
     private PromotionRepository promotionRepository;
 
     @Autowired
@@ -43,9 +40,6 @@ public class ContractTest {
 
     @Autowired
     private ContractTypeRepository contractTypeRepository;
-
-    @Autowired
-    private CustomerRepository customerRepository;
 
     @Autowired
     private MaidSelectRepository maidSelectRepository;
@@ -59,7 +53,6 @@ public class ContractTest {
     private CompanyEntity company;
     private PaymentStatusEntity status;
     private ContractTypeEntity type;
-    private CustomerEntity cus;
     private MaidRegisterEntity maidRegis;
     private MaidSelectEntity maid;
 
@@ -73,7 +66,6 @@ public class ContractTest {
         company = companyRepository.findBycompanyName("บริษัทพีกาซัส");
         status = paymentStatusRepository.findBypaymentStatus("ค้างชำระ");
         type = contractTypeRepository.findBycontractType("1 Day");
-        cus = customerRepository.findBycustomerName("Pitchayut CheeseJa");
         maidRegis = maidRegisterRepository.findBymaidName("Ping Kasinan");
         maid = maidSelectRepository.findBymaid(maidRegis);
     }
@@ -94,16 +86,22 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
         try {
             c.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
+            entityManager.persist(c);
+            entityManager.flush();
+            System.out.println("TEST CONTRACT ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println("=======================FROM testContractEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        entityManager.persist(c);
-        entityManager.flush();
-        System.out.println("TEST CONTRACT ENTITY SUCCESS");
+
     }
 
     // TEST ZERO VALUE INT ( NULL )
@@ -116,7 +114,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -146,7 +143,6 @@ public class ContractTest {
         c.setCompany(null);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -176,7 +172,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(null);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -206,37 +201,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(null);
-        c.setCustomer(cus);
-        c.setMaid(maid);
-
-        try {
-            c.setDateStart(formatter5.parse("Thu, Oct 18 2019 00:00:00"));
-            entityManager.persist(c);
-            entityManager.flush();
-
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println("=======================FROM testContractEntityZeroInt========================");
-            System.out.println(e.getConstraintViolations());
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // TEST NULL RELATION BETWEEN CONTRACT ENTITY AND CUSTOMER ENTITY
-    @Test
-    public void testContractEntityRelationToCustomerEntityNull() {
-        ContractEntity c = new ContractEntity();
-        c.setCost(1500);
-        c.setDetail("ทำสัญญาแม่บ้าน");
-        c.setPromotion(promo);
-        c.setCompany(company);
-        c.setStatus(status);
-        c.setContractType(type);
-        c.setCustomer(null);
         c.setMaid(maid);
 
         try {
@@ -266,7 +230,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(null);
 
         try {
@@ -296,7 +259,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -326,7 +288,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -356,7 +317,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -386,7 +346,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -416,7 +375,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -446,7 +404,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -476,7 +433,6 @@ public class ContractTest {
         c.setCompany(company);
         c.setStatus(status);
         c.setContractType(type);
-        c.setCustomer(cus);
         c.setMaid(maid);
 
         try {
@@ -507,9 +463,18 @@ public class ContractTest {
     public void testContractTypeEntitySuccess() {
         ContractTypeEntity c = new ContractTypeEntity();
         c.setContractType("1 Year KK");
-        entityManager.persist(c);
-        entityManager.flush();
-        System.out.println("TEST CONTRACT TYPE ENTITY SUCCESS");
+        try {
+            entityManager.persist(c);
+            entityManager.flush();
+            System.out.println("TEST CONTRACT TYPE ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println("=======================FROM testContractTypeEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
+
     }
 
     // TEST NULL CONTRACT TYPE
@@ -568,9 +533,17 @@ public class ContractTest {
     public void testMaidStatusEntitySuccess() {
         MaidStatusEntity m = new MaidStatusEntity();
         m.setStatus("ว่าง");
-        entityManager.persist(m);
-        entityManager.flush();
-        System.out.println("TEST MAID STATUS ENTITY SUCCESS");
+        try {
+            entityManager.persist(m);
+            entityManager.flush();
+            System.out.println("TEST MAID STATUS ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println("=======================FROM testMaidStatusEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
     }
 
     // TEST NULL STATUS
@@ -629,9 +602,18 @@ public class ContractTest {
     public void testPaymentStatusEntitySuccess() {
         PaymentStatusEntity p = new PaymentStatusEntity();
         p.setPaymentStatus("จ่าย");
-        entityManager.persist(p);
-        entityManager.flush();
-        System.out.println("TEST PAYMENT STATUS ENTITY SUCCESS");
+        try {
+            entityManager.persist(p);
+            entityManager.flush();
+            System.out.println("TEST PAYMENT STATUS ENTITY SUCCESS");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println("=======================FROM testPaymentStatusEntitySuccess========================");
+            System.out.println(e.getConstraintViolations());
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 0);
+        }
+
     }
 
     // TEST NULL PAYMENT STATUS

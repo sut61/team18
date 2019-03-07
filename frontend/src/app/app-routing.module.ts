@@ -40,9 +40,9 @@ const routes: Routes = [
   {path: 'learned' , component: LearnedComponent},
   {path: 'company' , component: CompanyComponent},
   {path: 'complaint' , component: ComplaintComponent},
-  {path: 'select' , component: MaidselectComponent},
+  {path: 'select/:inputEmail' , component: MaidselectComponent},
   {path: 'welsa' , component: WelfareandsalaryComponent},
-  {path: 'review' , component: ReviewComponent}
+  {path: 'review/:inputEmail' , component: ReviewComponent}
 ];
 
 @NgModule({

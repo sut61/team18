@@ -35,20 +35,25 @@
         </mat-select>
     </mat-form-field>
     </div>
-    
-
-    <mat-form-field>
-      <mat-select placeholder="เลือกอุปกรณ์ไฟฟ้า" [(ngModel)]="datalend.electricId" name = "electrics">
-        <mat-option style="width: 300px;background-color:hsl(212, 100%, 24%);" *ngFor="let electrics of electric" [value]="electrics.electricId">
-          {{electrics.electric}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  <br/>
 
         <mat-form-field class="example-full-width">
           <input matInput placeholder="อื่นๆ" valuse = "" [(ngModel)]="datalend.lendData">
         </mat-form-field>
+        <br/>
+        <mat-form-field class="start">
+          <input matInput [matDatepicker]="picker" placeholder="เลือกวันที่ยืม" [(ngModel)]="datalend.lendstart">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker  #picker></mat-datepicker>
+        </mat-form-field>
+        <br/>
+        <br/>
+        <div class="sec">
+        <mat-form-field class ="end">
+          <input matInput [matDatepicker]="picker1" placeholder="เลือกวันที่คืน" [(ngModel)] = "datalend.lendend">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker  #picker1></mat-datepicker>
+        </mat-form-field>
+        </div>
 
     <div class="bot">
     <button mat-button    (click)="OnSubmit()">บันทึก</button>

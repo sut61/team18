@@ -16,14 +16,9 @@ export class ReviewService {
   getScoreId() :  Observable<any>{
     return this.http.get(this.API+'/Score');
   }
-  getScoreExId() :  Observable<any>{
-    return this.http.get(this.API+'/ScoreExt');
-  }
-  getScorePerId() :  Observable<any>{
-    return this.http.get(this.API+'/Scoreper');
-  }
-  getScoreTiId() :  Observable<any>{
-    return this.http.get(this.API+'/ScoreTi');
+
+  getTypereviewId():  Observable<any>{
+    return this.http.get(this.API+'/TypeReview');
   }
   
   getMaidId() :  Observable<any>{

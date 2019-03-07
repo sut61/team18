@@ -145,14 +145,12 @@ public class ContractController {
         MaidSelectEntity maid = maidSelectRepository.findBymaid(maidName);
         maid.setStatus(maidStatus);
         maidSelectRepository.save(maid);
-        CustomerEntity customer = maid.getCustomer();
         ContractTypeEntity type = contractTypeRepository.findBycontractType(contractTypeSelect);
         PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("ค้างชำระ");
         ContractEntity newContract = new ContractEntity();
         newContract.setCompany(company);
         newContract.setMaid(maid);
         newContract.setContractType(type);
-        newContract.setCustomer(customer);
         PromotionEntity promotion = new PromotionEntity();
         if(!(promotionSelect.equals("No Promotion"))){
             promotion = promotionRepository.findBytitle(promotionSelect);

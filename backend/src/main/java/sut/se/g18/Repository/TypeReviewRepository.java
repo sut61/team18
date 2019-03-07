@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource
 @CrossOrigin(origins = "http://localhost:4200")
 
-public interface ScoreTimeRepository extends JpaRepository<ScoreTimeEntity, Long>{
-    ScoreTimeEntity findByscoreTiId(Long scoreId);
+public interface TypeReviewRepository extends JpaRepository<TypeReviewEntity, Long>{
+    TypeReviewEntity findBytypereviewId(Long typereviewId);
 }

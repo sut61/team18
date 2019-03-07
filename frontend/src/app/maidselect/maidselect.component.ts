@@ -20,14 +20,21 @@ export class MaidselectComponent implements OnInit {
   maids:Array<any>;
   
   views: any = {
-  emailInput: "",
+  maidEmail: "",
+  dateInput: "",
+  workingdayInput: "",
+  mainjobInput: "",
+  secondaryjobInput: "",
+  placeInput: "",
   maidselect: "",
   typeworkingSelect:"",
   typeworkingDateSelect: "",
-  companySelect: "",
-  statusSelect:""
+  companySelect: ""
 };
-constructor(private maidSelectService: SelectService , private httpClient: HttpClient, private route: ActivatedRoute,private router: Router) { }
+constructor(private maidSelectService: SelectService , private httpClient: HttpClient, private route: ActivatedRoute,private router: Router) { 
+  this.views.maidEmail = this.route.snapshot.paramMap.get('inputEmail');
+  console.log(this.views.maidEmail);
+}
 ngOnInit() {
  
   this.maidSelectService.getTypeworking().subscribe(data=>{
@@ -55,33 +62,35 @@ ngOnInit() {
 }
   save_func(){
         this.httpClient.post('http://localhost:8080/select/' +
-        this.views.emailInput + '/' +
+        this.views.maidEmail + '/' +
         this.views.companySelect + '/' + 
         this.views.maidselect + '/' +
         this.views.typeworkingSelect + '/' +
         this.views.typeworkingDateSelect + '/' +
-        this.views.statusSelect, this.views )
+        this.views.dateInput + '/' +
+        this.views.workingdayInput + '/' +
+        this.views.mainjobInput + '/' +
+        this.views.secondaryjobInput + '/' +
+        this.views.placeInput , this.views )
                .subscribe(
                    data => {
                      
                        console.log('POST Request is successful', data);
                        alert("Successfully!!");
-                       this.router.navigate(['/mainCus']); 
+                       location.reload();
                    },
                    error => {
                    
                         console.log('Rrror', error);
                         alert("ข้อมูลไม่ถูกต้องบันทึกไม่สำเร็จ !!");
-                        this.router.navigate(['/mainCus']); 
                   }
 
                );
                
   }
 
-
   Canceled(){
-    this.router.navigate(['/mainCus']); 
+    this.router.navigate(['/mainCus', this.views.maidEmail]); 
   } 
 }
 

@@ -6,7 +6,7 @@
   <div class="datareview">
       <br/>
     <a class="ii">กรุณาใส่ข้อมูลให้ครบ</a>
-   
+    <br/>
     <br/>
       <mat-form-field class="prefix">
           <mat-select  placeholder="เลือกแม่บ้าน" [(ngModel)]="datareview.maidId" name = "maidName">
@@ -16,36 +16,28 @@
         </mat-form-field>
         <br/>
         <mat-form-field class="prefix">
-          <mat-select placeholder="คะแนนรวม" [(ngModel)]="datareview.scoreId" name = "score">
+          <mat-select placeholder="ประเภทการรีวิว" [(ngModel)]="datareview.typereviewId" name = "typereview">
+            <mat-option *ngFor="let typereviews of typereview" [value]="typereviews.typereviewId">
+              {{typereviews.typereview}}</mat-option>   
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="prefix">
+          <mat-select placeholder="คะแนนการรีวิว" [(ngModel)]="datareview.scoreId" name = "score">
             <mat-option *ngFor="let scores of score" [value]="scores.scoreId">
               {{scores.score}}</mat-option>   
           </mat-select>
         </mat-form-field>
         
-        <mat-form-field class="prefix">
-          <mat-select placeholder="คะแนนความชำนาญงาน" [(ngModel)]="datareview.scoreExId" name = "scoreEx">
-            <mat-option *ngFor="let scoreExs of scoreEx" [value]="scoreExs.scoreExId">
-              {{scoreExs.scoreEx}}</mat-option>   
-          </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field class="prefix">
-          <mat-select placeholder="คะแนนบุคลิกภาพ" [(ngModel)]="datareview.scorePerId" name = "scorePer">
-            <mat-option *ngFor="let scorePers of scorePer" [value]="scorePers.scorePerId">
-              {{scorePers.scorePer}}</mat-option>   
-          </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field class="prefix">
-          <mat-select placeholder="คะแนนความตรงต่อเวลา" [(ngModel)]="datareview.scoreTiId" name = "scoreTi">
-            <mat-option *ngFor="let scoreTis of scoreTi" [value]="scoreTis.scoreTiId">
-              {{scoreTis.scoreTi}}</mat-option>   
-          </mat-select>
-        </mat-form-field>
+        <br/>
         
 
         <mat-form-field class="example-full-width">
           <input matInput placeholder="ความคิดเห็น" valuse = "" [(ngModel)]="datareview.review">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="สิ่งที่ควรปรับปรุง" valuse = "" [(ngModel)]="datareview.adjust">
         </mat-form-field>
         <br/>
         <button class="ba" style="background-color:hsl(106, 88%, 66%);" mat-button    (click)="ss()">Save</button>
@@ -57,6 +49,7 @@
   
 </div>
 <!-- -------------------------------------- -->
+<br/>
 <table class="tatata" mat-table [dataSource]="allReview">
       
           
@@ -71,29 +64,24 @@
     <td mat-cell *matCellDef="let element" class="tableColumn">{{element.maidRegisterEntity.maidName}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="scoreex">
-    <th mat-header-cell *matHeaderCellDef class="tableColumn"> ScoreExpertise </th>
-    <td mat-cell *matCellDef="let element" class="tableColumn">{{element.scoreExpertiseEntity.scoreEx}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="scorepe">
-    <th mat-header-cell *matHeaderCellDef class="tableColumn"> ScorePersonality </th>
-    <td mat-cell *matCellDef="let element" class="tableColumn">{{element.scorePersonalityEntity.scorePer}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="scoreti">
-    <th mat-header-cell *matHeaderCellDef class="tableColumn"> ScoreTime </th>
-    <td mat-cell *matCellDef="let element" class="tableColumn">{{element.scoreTimeEntity.scoreTi}}</td>
+  <ng-container matColumnDef="typereview">
+    <th mat-header-cell *matHeaderCellDef class="tableColumn"> Typereview </th>
+    <td mat-cell *matCellDef="let element" class="tableColumn">{{element.typeReviewEntity.typereview}}</td>
   </ng-container>
 
   <ng-container matColumnDef="score">
-    <th mat-header-cell *matHeaderCellDef class="tableColumn"> Sum Score </th>
+    <th mat-header-cell *matHeaderCellDef class="tableColumn"> Score Review </th>
     <td mat-cell *matCellDef="let element" class="tableColumn">{{element.scoreEntity.score}}</td>
   </ng-container>
 
   <ng-container matColumnDef="comment">
     <th mat-header-cell *matHeaderCellDef class="tableColumn"> Comment </th>
     <td mat-cell *matCellDef="let element" class="tableColumn">{{element.review}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="adjust">
+    <th mat-header-cell *matHeaderCellDef class="tableColumn"> Adjust </th>
+    <td mat-cell *matCellDef="let element" class="tableColumn">{{element.adjust}}</td>
   </ng-container>
 
   

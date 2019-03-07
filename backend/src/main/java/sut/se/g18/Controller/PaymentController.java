@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -31,13 +33,22 @@ public class PaymentController {
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
-    public PaymentController (BankRepository bankRepository, PaymentRepository paymentRepository, TypepaymentRepository typepaymentRepository, ContractRepository contractRepository, PaymentStatusRepository paymentStatusRepository, CustomerRepository customerRepository) {
+    private MaidSelectRepository maidSelectRepository;
+    @Autowired
+    private MaidStatusRepository maidStatusRepository;
+    @Autowired
+    public PaymentController (BankRepository bankRepository, PaymentRepository paymentRepository,
+                              TypepaymentRepository typepaymentRepository, ContractRepository contractRepository,
+                              PaymentStatusRepository paymentStatusRepository, CustomerRepository customerRepository,
+                              MaidSelectRepository maidSelectRepository, MaidStatusRepository maidStatusRepository) {
         this.bankRepository = bankRepository;
         this.paymentRepository = paymentRepository;
         this.typepaymentRepository = typepaymentRepository;
         this.contractRepository= contractRepository;
         this.paymentStatusRepository = paymentStatusRepository;
         this.customerRepository = customerRepository;
+        this.maidSelectRepository = maidSelectRepository;
+        this.maidStatusRepository = maidStatusRepository;
 
     }
 
@@ -60,23 +71,33 @@ public class PaymentController {
     public Collection<ContractEntity> contractEntities(@PathVariable String inputEmail) {
         PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("ค้างชำระ");
         CustomerEntity customer = customerRepository.findBycustomerEmail(inputEmail);
-        return contractRepository.findByCustomerAndStatus(customer, status);
+        Collection<MaidSelectEntity> select = maidSelectRepository.findByCustomer(customer);
+        MaidStatusEntity s = maidStatusRepository.findBystatus("ทำสัญญาอยู่");
+        Collection<ContractEntity> contract = new ArrayList<>();
+        for(MaidSelectEntity m : select){
+            if(m.getStatus()==s) {
+                if (contractRepository.findByMaid(m).getStatus()==status)
+                    contract.add(contractRepository.findByMaidAndStatus(m, status));
+            }
+        }
+        System.out.println(contract);
+        return contract.stream().collect(Collectors.toList());
     }
     @GetMapping(path = "/payment/{inputEmail}/{contractId}/{name}/{address}/{phonenum}/{accountNumber}/{typeName}/{bankName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public PaymentEntity payContract(PaymentEntity payContract, @PathVariable String inputEmail, @PathVariable Long contractId,
                                       @PathVariable String name, @PathVariable String address, @PathVariable String phonenum, @PathVariable String accountNumber,
                                       @PathVariable String typeName, @PathVariable String bankName) {
             CustomerEntity customer = customerRepository.findBycustomerEmail(inputEmail);
-            payContract.setCustomerEntity(customer);
             ContractEntity contract = contractRepository.findBycontractId(contractId);
+            TypepaymentEntity typepay = typepaymentRepository.findBytypeName(typeName);
+            BankEntity bank = bankRepository.findBybankName(bankName);
+            payContract.setCustomerEntity(customer);
             payContract.setContractEntity(contract);
             payContract.setName(name);
             payContract.setAddress(address);
             payContract.setPhonenum(phonenum);
             payContract.setAccountNumber(accountNumber);
-            TypepaymentEntity typepay = typepaymentRepository.findBytypeName(typeName);
             payContract.setTypepaymentEntity(typepay);
-            BankEntity bank = bankRepository.findBybankName(bankName);
             payContract.setBankEntity(bank);
             PaymentStatusEntity status = paymentStatusRepository.findBypaymentStatus("จ่ายแล้ว");
             contract.setStatus(status);

@@ -23,19 +23,18 @@ public class LendEquipmentController<lendEquipments>{
     private final CleaningEquipmentRepository cleaningEquipmentRepository;
     @Autowired
     private final CustomerRepository customerRepository;
-    @Autowired
-    private final ElectricalEquipmentRepository electricalEquipmentRepository;
+   
     @Autowired
     private final LendEquipmentRepository lendEquipmentRepository;
     @Autowired
     private final MaidRegisterRepository maidregisterRepository;
 
     @Autowired
-    public LendEquipmentController(CleaningEquipmentRepository cleaningEquipmentRepository,CustomerRepository customerRepository,ElectricalEquipmentRepository electricalEquipmentRepository,LendEquipmentRepository lendEquipmentRepository,MaidRegisterRepository maidregisterRepository){
+    public LendEquipmentController(CleaningEquipmentRepository cleaningEquipmentRepository,CustomerRepository customerRepository,LendEquipmentRepository lendEquipmentRepository,MaidRegisterRepository maidregisterRepository){
 
         this.cleaningEquipmentRepository = cleaningEquipmentRepository;
         this.customerRepository = customerRepository;
-        this.electricalEquipmentRepository = electricalEquipmentRepository;
+        
         this.lendEquipmentRepository = lendEquipmentRepository;
         this.maidregisterRepository = maidregisterRepository;
 
@@ -66,18 +65,7 @@ public class LendEquipmentController<lendEquipments>{
     }
     //----------------------------------------------------------------------------------------------
 
-    @GetMapping("/ElectricalEquipment")
-    public Collection<ElectricalEquipmentEntity> electricalEquipmentEntitys() {
-        return electricalEquipmentRepository.findAll().stream().collect(Collectors.toList());
-    }
-
-    @GetMapping("/ElectricalEquipment-list/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
-    public ElectricalEquipmentEntity electricalEquipmentEntityFind(@PathVariable("id") Long id) {
-        return electricalEquipmentRepository.findByelectricId(id);
-    }
-
-    //---------------------------------------------------------------------------------------------
+   
 
     @GetMapping("/LendEquipment")
     public Collection<LendEquipmentEntity> lendEquipmentEntitys() {
@@ -102,11 +90,11 @@ public class LendEquipmentController<lendEquipments>{
 
         CleaningEquipmentEntity clean = this.cleaningEquipmentRepository.findBycleaningId(dataLendEquipment.getCleaningId());
         CustomerEntity cuss = this.customerRepository.findBycustomerId(dataLendEquipment.getCustomerId());
-        ElectricalEquipmentEntity elec = this.electricalEquipmentRepository.findByelectricId(dataLendEquipment.getElectricId());
+       
         MaidRegisterEntity med = this.maidregisterRepository.findByMaidId(dataLendEquipment.getMaidId());
         System.out.print(dataLendEquipment.getLendData());
        
-        LendEquipmentEntity le = this.lendEquipmentRepository.save(new LendEquipmentEntity(dataLendEquipment.getLendData(),clean, elec, cuss, med));
+        LendEquipmentEntity le = this.lendEquipmentRepository.save(new LendEquipmentEntity(dataLendEquipment.getLendData(),dataLendEquipment.getLendstart(),dataLendEquipment.getLendend(), clean,cuss, med));
     
         return le;
     }

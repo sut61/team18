@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../service/admin.service';
 import {HttpClient} from '@angular/common/http';
 import {SelectionModel} from '@angular/cdk/collections';
+import {MatSnackBar} from '@angular/material';
 import {matDialogAnimations} from '@angular/material';
 
 export interface ContractElement {
@@ -33,7 +34,7 @@ export class ContractComponent implements OnInit {
   private id: number;
   private sub: any;
 
-  constructor(private adminService: AdminService, private httpClient: HttpClient) {
+  constructor(private adminService: AdminService, private httpClient: HttpClient, private snackbar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -122,12 +123,16 @@ export class ContractComponent implements OnInit {
       .subscribe(
         data => {
           console.log('PUT Request is successful', data);
-          alert('บันทึกสัญญาสำเร็จ');
+          this.snackbar.open('บันทึกสัญญาสำเร็จ', '', {
+            duration: 35000, verticalPosition: 'top',
+          });
           this.reset_func();
         },
         error => {
           console.log('Rrror', error);
-          alert('เกิดข้อผิดพลาด');
+          this.snackbar.open('เกิดข้อผิดพลาด', '', {
+            duration: 35000, verticalPosition: 'top',
+          });
         }
       );
   }

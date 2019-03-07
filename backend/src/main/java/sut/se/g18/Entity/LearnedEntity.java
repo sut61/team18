@@ -20,7 +20,7 @@ public class LearnedEntity {
     @Column(name="learnedId",unique = true, nullable = false)
     @NotNull
     private Long learnedId;
-    @FutureOrPresent
+    @PastOrPresent
     @Column(unique = true)
     private Date dateLearned;
     @NotNull
@@ -29,11 +29,6 @@ public class LearnedEntity {
     private String detail;
     @AssertTrue
     private boolean checkObject;
-
-    //Many To One with Company
-    @NotNull
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = CompanyEntity.class)
-    private CompanyEntity company;
 
     //Many To One with Course
     @NotNull
@@ -80,14 +75,6 @@ public class LearnedEntity {
 
     public void setCheckObject(boolean checkObject) {
         this.checkObject = checkObject;
-    }
-
-    public CompanyEntity getCompany() {
-        return company;
-    }
-
-    public void setCompany(CompanyEntity company) {
-        this.company = company;
     }
 
     public CourseEntity getCourse() {

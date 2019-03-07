@@ -6,15 +6,14 @@ import lombok.*;
 @Setter
 
 public class DataReview{
-    private Long scoreExId;
-    private Long scorePerId;
-    private Long scoreTiId;
+  
 
     private Long scoreId;
     private Long maidId;
     private String review;
+    private String adjust;
+    private Long typereviewId;
 
-    
     public Long getScoreId() {
         return scoreId;
     }
@@ -33,24 +32,22 @@ public class DataReview{
     public void setReview(String review) {
         this.review = review;
     }
-    public Long getScoreExId() {
-        return scoreExId;
+    public String getAdjust() {
+        return adjust;
     }
-    public void setScoreExId(Long scoreExId) {
-        this.scoreExId = scoreExId;
+    public void setAdjust(String adjust) {
+        this.adjust = adjust;
     }
-    public Long getScorePerId() {
-        return scorePerId;
+    public Long getTypereviewId() {
+        return typereviewId;
     }
-    public void setScorePerId(Long scorePerId) {
-        this.scorePerId = scorePerId;
+    public void setTypereviewId(Long typereviewId) {
+        this.typereviewId = typereviewId;
     }
-    public Long getScoreTiId() {
-        return scoreTiId;
-    }
-    public void setScoreTiId(Long scoreTiId) {
-        this.scoreTiId = scoreTiId;
-    }
+
+    
+    
+   
     
 
 

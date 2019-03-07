@@ -17,4 +17,7 @@ export class MainCustomerComponent implements OnInit {
   goPayment() {
     this.router.navigate(['/payment', this.inputEmail]);
   }
+  select(){
+    this.router.navigate(['/select', this.inputEmail]);
+  }
 }
