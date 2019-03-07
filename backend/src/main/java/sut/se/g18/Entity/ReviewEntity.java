@@ -18,6 +18,7 @@ public class ReviewEntity{
     @Id 
     @SequenceGenerator(name="reviewId_seq",sequenceName="reviewId_seq")     
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="reviewId_seq")
+    
     private @NonNull Long reviewId;
 
     //review
@@ -25,161 +26,80 @@ public class ReviewEntity{
     @NotNull 
     @Size(min = 3,max = 40)
     @Pattern(regexp = "([ก-ู]|[เ-์]||[0-9]| )+")
-
     private  String review;
+
+
+    @NotNull 
+    private String adjust;
+
 
     //---คะแนน----
     @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "scoreId")
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = ScoreEntity.class)
     private ScoreEntity scoreEntity;
-
-    //---คะแนนความชำนาญ----
-    @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "scoreExId")
-    private ScoreExpertiseEntity scoreExpertiseEntity;
-
-    //---คะแนนบุคลิก----
-    @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "scorePerId")
-    private ScorePersonalityEntity scorePersonalityEntity;
-
-    //---คะแนนความเวลา----
-    @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "scoreTiId")
-    private ScoreTimeEntity scoreTimeEntity;
 
     //---แม่บ้าน----
     @NotNull
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "maidId")
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = MaidRegisterEntity.class)
     private MaidRegisterEntity maidRegisterEntity;
 
-    
-    
-    // public ReviewEntity(MaidRegisterEntity med, ScoreEntity sco, String review2) {
-    //     this.maidRegisterEntity = med;
-    //     this.scoreEntity = sco;
-    //     this.review = review2;
-    // }
-    
+    //--ประเภทขขข
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = TypeReviewEntity.class)
+    private TypeReviewEntity typeReviewEntity;
 
-	
 
+  
     public ReviewEntity() {
 	}
 
-    public ReviewEntity(MaidRegisterEntity med, ScoreEntity sco, ScoreExpertiseEntity se
-    , ScorePersonalityEntity sp,ScoreTimeEntity st, String review2) {
-            this.maidRegisterEntity = med;
-            this.scoreEntity = sco;
-            this.review = review2;
-            this.scoreExpertiseEntity=se;
-            this.scorePersonalityEntity=sp;
-            this.scoreTimeEntity=st;
+    public ReviewEntity(MaidRegisterEntity med, ScoreEntity sco, TypeReviewEntity ty, String review2, String adjust2) {
+        this.maidRegisterEntity=med;
+        this.scoreEntity=sco;
+        this.typeReviewEntity=ty;
+        this.review=review2;
+        this.adjust=adjust2;
 
 	}
 
-    /**
-     * @return the reviewId
-     */
-    public Long getReviewId() {
+	public Long getReviewId() {
         return reviewId;
     }
-
-    /**
-     * @param reviewId the reviewId to set
-     */
     public void setReviewId(Long reviewId) {
         this.reviewId = reviewId;
     }
-
-    /**
-     * @return the review
-     */
     public String getReview() {
         return review;
     }
-
-    /**
-     * @param review the review to set
-     */
     public void setReview(String review) {
         this.review = review;
     }
-
-    /**
-     * @return the scoreEntity
-     */
+    public String getAdjust() {
+        return adjust;
+    }
+    public void setAdjust(String adjust) {
+        this.adjust = adjust;
+    }
     public ScoreEntity getScoreEntity() {
         return scoreEntity;
     }
-
-    /**
-     * @param scoreEntity the scoreEntity to set
-     */
     public void setScoreEntity(ScoreEntity scoreEntity) {
         this.scoreEntity = scoreEntity;
     }
-
-    /**
-     * @return the scoreExpertiseEntity
-     */
-    public ScoreExpertiseEntity getScoreExpertiseEntity() {
-        return scoreExpertiseEntity;
-    }
-
-    /**
-     * @param scoreExpertiseEntity the scoreExpertiseEntity to set
-     */
-    public void setScoreExpertiseEntity(ScoreExpertiseEntity scoreExpertiseEntity) {
-        this.scoreExpertiseEntity = scoreExpertiseEntity;
-    }
-
-    /**
-     * @return the scorePersonalityEntity
-     */
-    public ScorePersonalityEntity getScorePersonalityEntity() {
-        return scorePersonalityEntity;
-    }
-
-    /**
-     * @param scorePersonalityEntity the scorePersonalityEntity to set
-     */
-    public void setScorePersonalityEntity(ScorePersonalityEntity scorePersonalityEntity) {
-        this.scorePersonalityEntity = scorePersonalityEntity;
-    }
-
-    /**
-     * @return the scoreTimeEntity
-     */
-    public ScoreTimeEntity getScoreTimeEntity() {
-        return scoreTimeEntity;
-    }
-
-    /**
-     * @param scoreTimeEntity the scoreTimeEntity to set
-     */
-    public void setScoreTimeEntity(ScoreTimeEntity scoreTimeEntity) {
-        this.scoreTimeEntity = scoreTimeEntity;
-    }
-
-    /**
-     * @return the maidRegisterEntity
-     */
     public MaidRegisterEntity getMaidRegisterEntity() {
         return maidRegisterEntity;
     }
-
-    /**
-     * @param maidRegisterEntity the maidRegisterEntity to set
-     */
     public void setMaidRegisterEntity(MaidRegisterEntity maidRegisterEntity) {
         this.maidRegisterEntity = maidRegisterEntity;
     }
+    public TypeReviewEntity getTypeReviewEntity() {
+        return typeReviewEntity;
+    }
+    public void setTypeReviewEntity(TypeReviewEntity typeReviewEntity) {
+        this.typeReviewEntity = typeReviewEntity;
+    }
+
+   
 
 	
 
